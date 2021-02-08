@@ -61,13 +61,39 @@ export default function Login(props) {
                       placeholder="Password"
                     />
                   </div>
+                  <div class="flex-center mb-12">
+                    <input
+                      class="input fs-14"
+                      name="name"
+                      type="text"
+                      placeholder="Fullname"
+                    />
+                  </div>
+                  <div class="flex-center mb-12">
+                    <input
+                      class="input fs-14"
+                      name="phone"
+                      type="text"
+                      placeholder="Phone number"
+                    />
+                  </div>
+                  <div class="flex-center mb-12">
+                    <input
+                      class="input fs-14"
+                      name="address"
+                      type="text"
+                      placeholder="Address"
+                    />
+                  </div>
                   <label class="group-checkbox flex-center mb-32">
                     <input type="checkbox" />
                     <span class="checkmark"></span>
-                    <span class="fs-12 pl-4">Remember me?</span>
+                    <span class="fs-12 pl-4">
+                      I accept the Terms of Use & Privacy Policy.
+                    </span>
                   </label>
                   <button class="c-btn bg-blue-btn fs-14 text-white text-bold mb-15">
-                    Login
+                    Signup
                   </button>
                 </Form>
               );
@@ -75,9 +101,9 @@ export default function Login(props) {
           </Formik>
           <div class="flex-center fs-14">
             <span class="flex-center flex-gap">
-              Not a member?
-              <Link to="/signup" class="text-bold text-blue ml-5">
-                Signup now
+              Already have an account?
+              <Link to="/login" class="text-bold text-blue ml-5">
+                Login here
               </Link>
             </span>
           </div>

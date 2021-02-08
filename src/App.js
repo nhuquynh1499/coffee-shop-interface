@@ -1,13 +1,17 @@
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import './App.scss';
 import Header from './components/partials/Header';
-import LoginPage from "./pages/LoginPage";
+import Routes from "./routes";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <LoginPage />
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes />
+      </div>
+    </Router>
   );
 }
 
