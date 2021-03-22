@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/images/commons/logo_full.png";
 import iconCart from "../../assets/images/commons/_i_icon_cart.svg";
 import iconSearch from "../../assets/images/commons/_i_icon_search.svg";
@@ -9,7 +10,9 @@ export default function Header() {
       <div class="wrapper pl-20 pr-20 flex-middle">
         <div class="logo mr-30">
           <div class="image">
-            <img alt="Vue logo" src={logo} />
+            <Link to="/">
+              <img alt="Vue logo" src={logo} />
+            </Link>
           </div>
         </div>
         <div class="nav-bar">

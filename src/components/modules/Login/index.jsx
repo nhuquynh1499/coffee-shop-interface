@@ -1,29 +1,45 @@
-import React, { useState, useEffect } from "react";
-// import { Link, useHistory } from "react-router-dom";
-// import axios from "axios";
-import logo from "../../../assets/images/commons/logo_lagre.png";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-import { Form, Formik } from "formik";
+import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Login(props) {
-  // const [canSubmit, setCanSubmit] = useState(false);
-  const handleSubmit = (values) => {
-    // axios.post("https://api-expense-tracker-codersx.herokuapp.com/api/login", values).then((res) => {
-    // console.log(res);
-    // localStorage.setItem("token", res.data.token);
-    //     localStorage.setItem("userId", res.data.userId);
-    //     history.push("/");
-    // }).catch((error) => {
-    // toast.error("Invalid username or password");
-    // });
-  };
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import TextField from '@material-ui/core/TextField';
 
-  const initialValues = {
-    email: "",
-    password: "",
-  };
+import logo from "../../../assets/images/commons/logo_lagre.png";
+
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
+
+const validationSchema = yup.object({
+  username: yup
+    .string('Enter your username')
+    .required('Username is required'),
+  password: yup
+    .string('Enter your password')
+    .min(6, 'Password should be of minimum 6 characters length')
+    .required('Password is required'),
+});
+
+export default function Login(props) {
+  const formik = useFormik({
+    initialValues: {
+      username: '',
+      password: '',
+      isRemember: false,
+    },
+    validationSchema: validationSchema,
+    onSubmit: values => {
+      alert(JSON.stringify(values, null, 2));
+      // axios.post("https://api-expense-tracker-codersx.herokuapp.com/api/login", values).then((res) => {
+      // console.log(res);
+      // localStorage.setItem("token", res.data.token);
+      //     localStorage.setItem("userId", res.data.userId);
+      //     history.push("/");
+      // }).catch((error) => {
+      // toast.error("Invalid username or password");
+      // });
+    },
+  });
 
   return (
     <div className="auth">
@@ -40,45 +56,53 @@ export default function Login(props) {
             <h2 className="text-center">A cup of coffee</h2>
             <h2 className="text-center">A cup for new day</h2>
           </div>
-          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-            {(formikProps) => {
-              const { values, errors, touched } = formikProps;
-              console.log({ values, touched, errors });
 
-              return (
-                <Form>
-                  <div class="flex-center mb-12">
-                    <input
-                      class="input fs-14"
-                      type="email"
-                      placeholder="Username"
-                    />
-                  </div>
-                  <div class="flex-center mb-12">
-                    <input
-                      class="input fs-14"
-                      type="password"
-                      placeholder="Password"
-                    />
-                  </div>
-                  <label class="group-checkbox flex-center mb-32">
-                    <input type="checkbox" />
-                    <span class="checkmark"></span>
-                    <span class="fs-12 pl-4">Remember me?</span>
-                  </label>
-                  <button class="c-btn bg-blue-btn fs-14 text-white text-bold mb-15">
-                    Login
-                  </button>
-                </Form>
-              );
-            }}
-          </Formik>
+          <form onSubmit={formik.handleSubmit}>
+            <div class="mb-12">
+              <TextField 
+                fullWidth 
+                variant="outlined" 
+                label="Username"
+                name="username"
+                type="text"
+                value={formik.values.username}
+                onChange={formik.handleChange}
+                error={formik.touched.username && Boolean(formik.errors.username)}
+                helperText={formik.touched.username && formik.errors.username}
+              />
+            </div>
+            <div class="mb-12">
+              <TextField 
+                fullWidth 
+                variant="outlined"
+                label="Password" 
+                type="password" 
+                name="password" 
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                error={formik.touched.password && Boolean(formik.errors.password)}
+                helperText={formik.touched.password && formik.errors.password}
+              />
+            </div>
+            <div class="mb-12">
+            <label class="group-checkbox flex-center mb-20">
+              <input 
+                type="checkbox" 
+                name="isRemember"
+                onChange={formik.handleChange} 
+                checked={formik.values.isRemember} 
+              />
+              <span class="checkmark"></span>
+              <span class="fs-12 pl-4">Remember me?</span>
+            </label>
+            </div>
+            <button type="submit" class="c-btn bg-blue-btn fs-14 text-white text-bold mb-15">Login</button>
+          </form>
+
           <div class="flex-center fs-14">
             <span class="flex-center flex-gap">
               Not a member?
-              <Link to="/signup" class="text-bold text-blue ml-5">
-                Signup now
-              </Link>
+              <Link to="/signup" class="text-bold text-blue ml-5">Signup now</Link>
             </span>
           </div>
         </div>
