@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import PropTypes from "prop-types";
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../src/assets/images/commons/logo_lagre.png";
 
 const drawerWidth = 240;
@@ -58,6 +59,11 @@ function ResponsiveDrawer(props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
+  const handleTo = (text) => {
+    if (text === "Bevarages") {
+      return "/menus";
+    } return "/login";
+  }
 
   const drawer = (
     <div>
@@ -77,7 +83,13 @@ function ResponsiveDrawer(props) {
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <Link
+                to={handleTo(text)}
+                class="text-bold text-black ml-5"
+                style={{ textDecoration: "none" }}
+              >
+                {text}
+              </Link>
             </ListItem>
           )
         )}
@@ -116,7 +128,7 @@ function ResponsiveDrawer(props) {
             {drawer}
           </Drawer>
         </Hidden>
-        
+
         <Hidden xsDown implementation="css">
           <Drawer
             classes={{
