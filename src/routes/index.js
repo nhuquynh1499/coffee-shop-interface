@@ -1,13 +1,17 @@
 import React from "react";
-import { BrowserRouter as Switch, Route } from "react-router-dom";
-import LoginPage from "../pages/LoginPage";
-import SignupPage from "../pages/SignupPage";
+import { Switch, Route } from "react-router-dom";
+import LoginPage from "../pages/loginpage";
+import SignupPage from "../pages/signuppage";
+import HomePage from "../pages/homepage";
 
-export default function () {
+const routes =  () => {
   return (
     <Switch>
-      <Route path="/login" component={LoginPage} />
-      <Route path="/signup" component={SignupPage} />
+      <Route exact path="/login" component={LoginPage} />
+      <Route exact path="/signup" component={SignupPage} />
+      <Route exact path="/" component={HomePage} />
     </Switch>   
   );
 }
+
+export default routes;
