@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/images/commons/logo.png";
-import iconCart from "../../assets/images/commons/_i_icon_cart.svg";
-import iconSearch from "../../assets/images/commons/_i_icon_search.svg";
+import logo from "../../../assets/images/commons/logo.png";
+import iconCart from "../../../assets/images/commons/_i_icon_cart.svg";
+import iconSearch from "../../../assets/images/commons/_i_icon_search.svg";
 
 export default function Header() {
   return (
@@ -16,17 +16,17 @@ export default function Header() {
               </Link>
             </div>
           </div>
-          <div class="nav-bar">
-            <div class="menu-small flex-column">
-              <div class="icon-menu">
+          <div className="nav-bar">
+            <div className="menu-small flex-column">
+              <div className="icon-menu">
                 <div></div>
                 <div></div>
                 <div></div>
               </div>
             </div>
-            <div class="menu flex-center">
-              <ul class="flex-center">
-                <li class="active">Home</li>
+            <div className="menu flex-center">
+              <ul className="flex-center">
+                <li className="active">Home</li>
                 <li>Pages</li>
                 <li>Services</li>
                 <li>Shop</li>
@@ -34,17 +34,17 @@ export default function Header() {
                 <li>Contact</li>
               </ul>
             </div>
-            <div class="actions flex-middle">
-              <ul class="flex-middle">
-                <li class="mr-20">
+            <div className="actions flex-middle">
+              <ul className="flex-middle">
+                <li className="mr-20">
                   <img src={iconCart} alt="Icon Cart" />
                 </li>
-                <li class="mr-20">
+                <li className="mr-20">
                   <img src={iconSearch} alt="Icon Search" />
                 </li>
               </ul>
               <Link to="/login">
-                <button class="p-10 bg-blue-btn text-white text-uppercase text-bold">
+                <button className="p-10 bg-blue-btn text-white text-uppercase text-bold">
                   Login
                 </button>
               </Link>

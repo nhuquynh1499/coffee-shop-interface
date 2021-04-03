@@ -1,6 +1,6 @@
 import React from "react";
 
-import bannerBg from "../../assets/images/partials/home/banner_background.jpg";
+import bannerBg from "../../../assets/images/partials/home/banner_background.jpg";
 
 export default function Home(props) {
     return (

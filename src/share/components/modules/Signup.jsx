@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import * as yup from 'yup';
 import TextField from '@material-ui/core/TextField';
 
-import logo from "../../assets/images/commons/logo.png";
+import logo from "../../../assets/images/commons/logo.png";
 
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
@@ -72,7 +72,7 @@ export default function Login(props) {
           </div>
 
           <form onSubmit={formik.handleSubmit}>
-            <div class="flex-center mb-12">
+            <div className="flex-center mb-12">
               <TextField 
                 fullWidth 
                 variant="outlined" 
@@ -85,7 +85,7 @@ export default function Login(props) {
                 helperText={formik.touched.username && formik.errors.username}
               />
             </div>
-            <div class="flex-center mb-12">
+            <div className="flex-center mb-12">
               <TextField 
                 fullWidth 
                 variant="outlined"
@@ -98,7 +98,7 @@ export default function Login(props) {
                 helperText={formik.touched.password && formik.errors.password}
               />
             </div>
-            <div class="flex-center mb-12">
+            <div className="flex-center mb-12">
               <TextField 
                 fullWidth 
                 variant="outlined" 
@@ -111,7 +111,7 @@ export default function Login(props) {
                 helperText={formik.touched.fullname && formik.errors.fullname}
               />
             </div>
-            <div class="flex-center mb-12">
+            <div className="flex-center mb-12">
               <TextField 
                 fullWidth 
                 variant="outlined" 
@@ -124,7 +124,7 @@ export default function Login(props) {
                 helperText={formik.touched.phone && formik.errors.phone}
               />
             </div>
-            <div class="flex-center mb-12">
+            <div className="flex-center mb-12">
               <TextField 
                 fullWidth 
                 variant="outlined" 
@@ -137,7 +137,7 @@ export default function Login(props) {
                 helperText={formik.touched.address && formik.errors.address}
               />
             </div>
-            <label class="group-checkbox flex-center mb-32">
+            <label className="group-checkbox flex-center mb-32">
               <input 
                 type="checkbox" 
                 name="isAccept"
@@ -146,15 +146,15 @@ export default function Login(props) {
                 error={formik.touched.isAccept && Boolean(formik.errors.isAccept)}
                 helperText={formik.touched.isAccept && formik.errors.isAccept}
               />
-              <span class="checkmark"></span>
-              <span class="fs-12 pl-4">I accept the Terms of Use & Privacy Policy.</span>
+              <span className="checkmark"></span>
+              <span className="fs-12 pl-4">I accept the Terms of Use & Privacy Policy.</span>
             </label>
-            <button type="submit" class="c-btn bg-blue-btn fs-14 text-white text-bold mb-15">Signup</button>
+            <button type="submit" className="c-btn bg-blue-btn fs-14 text-white text-bold mb-15">Signup</button>
           </form>
-          <div class="flex-center fs-14">
-            <span class="flex-center flex-gap">
+          <div className="flex-center fs-14">
+            <span className="flex-center flex-gap">
               Already have an account?
-              <Link to="/login" class="text-bold text-blue ml-5">Login here</Link>
+              <Link to="/login" className="text-bold text-blue ml-5">Login here</Link>
             </span>
           </div>
         </div>
