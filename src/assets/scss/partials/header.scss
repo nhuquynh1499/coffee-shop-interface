@@ -3,10 +3,6 @@
     position: relative;
     z-index: 2;
 
-    .wrapper {
-        height: 100%;
-    }
-
     .nav-bar {
         flex-grow: 2;
         display: flex;
@@ -65,20 +61,6 @@
             li.active {
                 color: $BLUE;
             }
-        }
-    }
-
-    .logo {
-        .image {
-            width: 100%;
-            height: auto;
-            max-width: 120px;
-            display: block;
-            margin: auto;
-        }
-
-        img {
-            width: 100%;
         }
     }
 

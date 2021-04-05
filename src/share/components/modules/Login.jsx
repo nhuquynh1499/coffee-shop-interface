@@ -5,7 +5,8 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import TextField from '@material-ui/core/TextField';
 
-import logo from "../../../assets/images/commons/logo_lagre.png";
+import logo from "../../../assets/images/commons/logo.png";
+
 
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
@@ -58,7 +59,7 @@ export default function Login(props) {
           </div>
 
           <form onSubmit={formik.handleSubmit}>
-            <div class="mb-12">
+            <div className="mb-12">
               <TextField 
                 fullWidth 
                 variant="outlined" 
@@ -71,7 +72,7 @@ export default function Login(props) {
                 helperText={formik.touched.username && formik.errors.username}
               />
             </div>
-            <div class="mb-12">
+            <div className="mb-12">
               <TextField 
                 fullWidth 
                 variant="outlined"
@@ -84,25 +85,25 @@ export default function Login(props) {
                 helperText={formik.touched.password && formik.errors.password}
               />
             </div>
-            <div class="mb-12">
-            <label class="group-checkbox flex-center mb-20">
+            <div className="mb-12">
+            <label className="group-checkbox flex-center mb-20">
               <input 
                 type="checkbox" 
                 name="isRemember"
                 onChange={formik.handleChange} 
                 checked={formik.values.isRemember} 
               />
-              <span class="checkmark"></span>
-              <span class="fs-12 pl-4">Remember me?</span>
+              <span className="checkmark"></span>
+              <span className="fs-12 pl-4">Remember me?</span>
             </label>
             </div>
-            <button type="submit" class="c-btn bg-blue-btn fs-14 text-white text-bold mb-15">Login</button>
+            <button type="submit" className="c-btn bg-blue-btn fs-14 text-white text-bold mb-15">Login</button>
           </form>
 
-          <div class="flex-center fs-14">
-            <span class="flex-center flex-gap">
+          <div className="flex-center fs-14">
+            <span className="flex-center flex-gap">
               Not a member?
-              <Link to="/signup" class="text-bold text-blue ml-5">Signup now</Link>
+              <Link to="/signup" className="text-bold text-blue ml-5">Signup now</Link>
             </span>
           </div>
         </div>

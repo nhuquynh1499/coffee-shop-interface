@@ -1,13 +1,15 @@
 import React from "react";
-import { BrowserRouter as Switch, Route } from "react-router-dom";
-import LoginPage from "../pages/LoginPage";
-import SignupPage from "../pages/SignupPage";
+import { Switch, Route } from "react-router-dom";
+import LoginPage from "../share/pages/LoginPage";
+import SignupPage from "../share/pages/SignupPage";
+import HomePage from "../share/pages/HomePage";
 import Admin from "../admin/Admin";
 import Menu from "../admin/menus/pages/Menu";
 
-export default function () {
+const routes =  () => {
   return (
     <Switch>
+      <Route exact path="/" component={HomePage} />
       <Route path="/login" component={LoginPage} />
       <Route path="/signup" component={SignupPage} />
       <Route path="/admin" component={Admin} />
@@ -15,3 +17,5 @@ export default function () {
     </Switch>   
   );
 }
+
+export default routes;

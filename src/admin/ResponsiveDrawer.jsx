@@ -13,7 +13,7 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../src/assets/images/commons/logo_lagre.png";
+import logo from "../../src/assets/images/commons/logo.png";
 
 const drawerWidth = 240;
 

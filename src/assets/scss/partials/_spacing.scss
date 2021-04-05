@@ -22,12 +22,13 @@
   }
 }
 @mixin rp($type, $breakpoint: 375px) {
-  @if $type == "min" {
-    @media (min-width : $breakpoint) {
+  @if $type == "max" {
+    @media (max-width : $breakpoint - 1px) {
       @content
     }
-  } @else if $type == "max" {
-    @media (max-width : $breakpoint - 1px) {
+  }
+  @if $type == "min" {
+    @media (min-width : $breakpoint) {
       @content
     }
   }

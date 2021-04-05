@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import './App.scss';
-import Header from './components/partials/Header';
+import Header from './share/components/partials/Header';
 import Routes from "./routes";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        {/* <Header /> */}
+        <Header />
         <Routes />
       </div>
     </Router>

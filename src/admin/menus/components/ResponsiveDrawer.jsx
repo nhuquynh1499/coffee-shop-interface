@@ -14,7 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import PropTypes from "prop-types";
 import React from "react";
-import logo from "../../../assets/images/commons/logo_lagre.png";
+import logo from "../../../assets/images/commons/logo.png";
 import Button from "./Button";
 
 const drawerWidth = 240;
