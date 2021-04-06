@@ -1,6 +1,7 @@
 import React from "react";
+import ResponsiveDrawer from "../components/ResponsiveDrawer";
 
 const SchedulePage = () => {
-  return <div>SchedulePage</div>;
+  return <ResponsiveDrawer />;
 };
 export default SchedulePage;

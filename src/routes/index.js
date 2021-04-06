@@ -9,6 +9,7 @@ import EmployeePage from "../admin/employees/pages/EmployeePage";
 import UserPage from "../admin/users/pages/UserPage";
 import SalaryPage from "../admin/salary/pages/SalaryPage";
 import SchedulePage from "../admin/schedules/pages/SchedulePage";
+import CategoryPage from "../admin/categories/pages/CategoryPage";
 
 const routes =  () => {
   return (
@@ -22,6 +23,7 @@ const routes =  () => {
       <Route path="/admin/user" component={UserPage} />
       <Route path="/admin/salary" component={SalaryPage} />
       <Route path="/admin/schedule" component={SchedulePage} />
+      <Route path="/admin/categories" component={CategoryPage} />
     </Switch>   
   );
 }

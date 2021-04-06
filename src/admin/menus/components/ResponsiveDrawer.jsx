@@ -62,6 +62,9 @@ function ResponsiveDrawer(props) {
   const theme = useTheme();
 
   const handleTo = (text) => {
+    if (text === "Categories") {
+      return "/admin/categories";
+    }
     if (text === "Bevarages") {
       return "/admin/menu";
     }
@@ -89,22 +92,27 @@ function ResponsiveDrawer(props) {
       </div>
       <Divider />
       <List>
-        {["Bevarages", "Employees", "Users", "Calendar", "Salary"].map(
-          (text) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <Link
-                to={handleTo(text)}
-                class="text-bold text-black ml-5"
-                style={{ textDecoration: "none" }}
-              >
-                {text}
-              </Link>
-            </ListItem>
-          )
-        )}
+        {[
+          "Categories",
+          "Bevarages",
+          "Employees",
+          "Users",
+          "Calendar",
+          "Salary",
+        ].map((text) => (
+          <ListItem button key={text}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <Link
+              to={handleTo(text)}
+              class="text-bold text-black ml-5"
+              style={{ textDecoration: "none" }}
+            >
+              {text}
+            </Link>
+          </ListItem>
+        ))}
       </List>
     </div>
   );

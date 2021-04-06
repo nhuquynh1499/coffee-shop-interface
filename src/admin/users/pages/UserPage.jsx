@@ -1,6 +1,7 @@
 import React from "react";
+import ResponsiveDrawer from "../components/ResponsiveDrawer";
 
 const UserPage = () => {
-  return <div>UserPage</div>;
+  return <ResponsiveDrawer />;
 };
 export default UserPage;

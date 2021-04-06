@@ -1,6 +1,7 @@
 import React from "react";
+import ResponsiveDrawer from "../components/ResponsiveDrawer";
 
 const EmployeePage = () => {
-  return <div>employees</div>;
+  return <ResponsiveDrawer />;
 };
 export default EmployeePage;

@@ -1,3 +1,4 @@
+import { Grid } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
@@ -13,13 +14,15 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../src/assets/images/commons/logo.png";
+import logo from "../../../assets/images/commons/logo.png";
+import Card from "./Card";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    flexGrow: 1,
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
@@ -47,10 +50,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
     height: 750,
-    backgroundImage:
-      'url("https://images.unsplash.com/photo-1514845994104-1be22149278b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80")',
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
   },
 }));
 
@@ -124,7 +123,7 @@ function ResponsiveDrawer(props) {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
-            Coffee Managements
+            Category Managements
           </Typography>
         </Toolbar>
       </AppBar>
@@ -159,7 +158,13 @@ function ResponsiveDrawer(props) {
         </Hidden>
       </nav>
       <main className={classes.content}>
-        <div className={classes.toolbar} />
+        <div className={classes.root}>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <Card />
+            </Grid>
+          </Grid>
+        </div>
       </main>
     </div>
   );

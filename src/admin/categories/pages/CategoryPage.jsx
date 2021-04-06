@@ -1,7 +1,7 @@
 import React from "react";
 import ResponsiveDrawer from "../components/ResponsiveDrawer";
 
-const SalaryPage = () => {
+const CategoryPage = () => {
   return <ResponsiveDrawer />;
 };
-export default SalaryPage;
+export default CategoryPage;
