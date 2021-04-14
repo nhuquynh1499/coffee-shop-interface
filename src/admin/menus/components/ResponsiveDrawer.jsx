@@ -1,4 +1,3 @@
-import Grid from "../components/Grid";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
@@ -7,14 +6,15 @@ import Hidden from "@material-ui/core/Hidden";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import PropTypes from "prop-types";
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../../assets/images/commons/logo.png";
+import Grid from "../components/Grid";
 import Button from "./Button";
 
 const drawerWidth = 240;
@@ -61,6 +61,25 @@ function ResponsiveDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
 
+  const handleTo = (text) => {
+    if (text === "Categories") {
+      return "/admin/categories";
+    }
+    if (text === "Bevarages") {
+      return "/admin/menu";
+    }
+    if (text === "Employees") {
+      return "/admin/employee";
+    }
+    if (text === "Users") {
+      return "/admin/user";
+    }
+    if (text === "Calendar") {
+      return "/admin/schedule";
+    }
+    return "/admin/salary";
+  };
+
   const drawer = (
     <div>
       <div className={classes.toolbar}>
@@ -68,21 +87,32 @@ function ResponsiveDrawer(props) {
           className="logo"
           src={logo}
           alt="logo"
-          style={{ marginLeft: "15%" }}
+          style={{ marginLeft: "5%", width: 200, height: 200 }}
         />
       </div>
       <Divider />
       <List>
-        {["Bevarages", "Employees", "Users", "Calendar", "Salary"].map(
-          (text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          )
-        )}
+        {[
+          "Categories",
+          "Bevarages",
+          "Employees",
+          "Users",
+          "Calendar",
+          "Salary",
+        ].map((text) => (
+          <ListItem button key={text}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <Link
+              to={handleTo(text)}
+              class="text-bold text-black ml-5"
+              style={{ textDecoration: "none" }}
+            >
+              {text}
+            </Link>
+          </ListItem>
+        ))}
       </List>
     </div>
   );
