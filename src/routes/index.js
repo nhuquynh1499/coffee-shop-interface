@@ -10,7 +10,7 @@ import UserPage from "../admin/users/pages/UserPage";
 import SalaryPage from "../admin/salary/pages/SalaryPage";
 import SchedulePage from "../admin/schedules/pages/SchedulePage";
 import CategoryPage from "../admin/categories/pages/CategoryPage";
-import MenuPage from "../users(1)/pages/MenuPage";
+import MenuPage from "../users/pages/MenuPage";
 
 const routes =  () => {
   return (

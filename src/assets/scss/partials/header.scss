@@ -48,18 +48,21 @@
                 text-transform: uppercase;
                 font-weight: bold;
                 cursor: pointer;
+                color: $BLACK;
+
+                a {
+                    color: $BLACK;
+                    &:hover {
+                        color: $BLUE;
+                    }
+                    &.active {
+                        color: $BLUE;
+                    }
+                }
 
                 &:not(:last-child) {
                     margin-right: 20px;
                 }
-
-                &:hover {
-                    color: $BLUE;
-                }
-            }
-
-            li.active {
-                color: $BLUE;
             }
         }
     }

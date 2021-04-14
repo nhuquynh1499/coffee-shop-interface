@@ -1,10 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/commons/logo.png";
 import iconCart from "../../../assets/images/commons/_i_icon_cart.svg";
 import iconSearch from "../../../assets/images/commons/_i_icon_search.svg";
 
 export default function Header() {
+  let { pathname } = useLocation();
+  const [isActive, setIsActive] = useState(pathname);
+
+  useEffect(() => {
+    setIsActive(pathname);
+  }, [pathname]);
+
+  const toggle = () => {
+    setIsActive(pathname);
+  };
+
   return (
     <div className="header bg-white">
       <div className="container h-100">
@@ -26,9 +37,9 @@ export default function Header() {
             </div>
             <div className="menu flex-center">
               <ul className="flex-center">
-                <li className="active">Home</li>
+                <li><Link to="/" onClick={toggle} className={isActive === "/" ? "active" : null}>Home</Link></li>
+                <li><Link to="/menu" onClick={toggle} className={isActive === "/menu" ? "active" : null}>Menu</Link></li>
                 <li>Pages</li>
-                <li>Services</li>
                 <li>Shop</li>
                 <li>News</li>
                 <li>Contact</li>
