@@ -55,7 +55,7 @@ export default function Header() {
                 </li>
               </ul>
               <Link to="/login">
-                <button className="p-10 bg-blue-btn text-white text-uppercase text-bold">
+                <button className="btn-radius p-10 bg-blue-btn text-white text-uppercase text-bold">
                   Login
                 </button>
               </Link>
