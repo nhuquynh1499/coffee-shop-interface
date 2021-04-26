@@ -11,6 +11,7 @@ import UserPage from "../admin/users/pages/UserPage";
 import SalaryPage from "../admin/salary/pages/SalaryPage";
 import SchedulePage from "../admin/schedules/pages/SchedulePage";
 import CategoryPage from "../admin/categories/pages/CategoryPage";
+import FeedbackPage from "../admin/feedbacks/pages/FeedbackPage";
 
 import MenuPage from "../users/pages/MenuPage";
 import UserDetailPage from "../users/pages/UserDetailPage";
@@ -36,6 +37,7 @@ const routes =  () => {
       <Route path="/admin/salary" component={SalaryPage} />
       <Route path="/admin/schedule" component={SchedulePage} />
       <Route path="/admin/categories" component={CategoryPage} />
+      <Route path="/admin/feedback" component={FeedbackPage} />
     </Switch>   
   );
 }

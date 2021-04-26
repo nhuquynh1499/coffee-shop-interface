@@ -51,7 +51,7 @@ export default function ContainedButtons() {
         style={{ width: 400, marginTop: 8, marginBottom: 24 }}
         onClick={handleOpen}
       >
-        Add User
+        Add Employee
       </Button>
 
       <Dialog
@@ -71,7 +71,7 @@ export default function ContainedButtons() {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Create User Information
+              Create Employee Information
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
               Save

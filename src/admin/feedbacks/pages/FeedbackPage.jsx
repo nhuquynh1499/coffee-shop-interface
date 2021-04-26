@@ -11,6 +11,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    flexGrow: 1,
   },
   appBar: {
     [theme.breakpoints.up("sm")]: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SalaryPage = () => {
+const FeedbackPage = () => {
   const classes = useStyles();
 
   return (
@@ -35,15 +36,17 @@ const SalaryPage = () => {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
-            Salary Managements
+            Feedback Managements
           </Typography>
         </Toolbar>
       </AppBar>
 
       <ResponsiveDrawer />
 
-      <main className={classes.content}></main>
+      <main className={classes.content}>
+        
+      </main>
     </div>
   );
 };
-export default SalaryPage;
+export default FeedbackPage;
