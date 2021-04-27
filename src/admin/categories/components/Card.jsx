@@ -8,8 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import React from "react";
 import coffeeCup from "../../../assets/images/commons/coffeeCup.jpg";
 import coldDrink from "../../../assets/images/commons/coldDrink.jpg";
-import CardActionsCate from "./CardActionsCate";
 import Button from "./Button";
+import CardActionsCate from "./CardActionsCate";
 
 const useStyles = makeStyles({
   root: {
@@ -27,6 +27,15 @@ const useStyles = makeStyles({
 
 export default function MediaCard() {
   const classes = useStyles();
+
+  // componentDidMount() {
+  //   axios.get(`https://salty-dawn-54578.herokuapp.com/category`)
+  //     .then(res => {
+  //       const listCategory = res.data;
+  //       this.setState({ listCategory });
+  //     })
+  //     .catch(error => console.log(error));
+  // };
 
   return (
     <React.Fragment>

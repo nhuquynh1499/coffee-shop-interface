@@ -6,7 +6,6 @@ import Typography from "@material-ui/core/Typography";
 import React from "react";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
 import Table from "../components/Table";
-import Rating from "@material-ui/lab/Rating";
 
 const drawerWidth = 240;
 
@@ -28,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FeedbackPage = () => {
+const OrderPage = () => {
   const classes = useStyles();
 
   return (
@@ -38,7 +37,7 @@ const FeedbackPage = () => {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
-            Feedback Managements
+            Order Managements
           </Typography>
         </Toolbar>
       </AppBar>
@@ -51,4 +50,4 @@ const FeedbackPage = () => {
     </div>
   );
 };
-export default FeedbackPage;
+export default OrderPage;

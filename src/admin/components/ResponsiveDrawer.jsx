@@ -30,6 +30,7 @@ function ResponsiveDrawer(props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
+
   const handleTo = (text) => {
     if (text === "Categories") {
       return "/admin/categories";
@@ -38,18 +39,27 @@ function ResponsiveDrawer(props) {
       return "/admin/menu";
     }
     if (text === "Employees") {
-      return "/admin/employee";
+      return "/admin/employees";
     }
     if (text === "Users") {
-      return "/admin/user";
+      return "/admin/users";
     }
     if (text === "Calendar") {
       return "/admin/schedule";
     }
-    if (text === "Feedback") {
-      return "/admin/feedback";
+    if (text === "Feedbacks") {
+      return "/admin/feedbacks";
     }
-    return "/admin/salary";
+    if (text === "Salary") {
+      return "/admin/salary";
+    }
+    if (text === "Events") {
+      return "/admin/events";
+    }
+    if (text === "Orders") {
+      return "/admin/orders";
+    }
+    return "/admin/summary";
   };
 
   const drawer = (
@@ -62,16 +72,20 @@ function ResponsiveDrawer(props) {
           style={{ marginLeft: "5%", width: 200, height: 200 }}
         />
       </div>
+
       <Divider />
+
       <List>
         {[
           "Categories",
           "Bevarages",
           "Employees",
           "Users",
+          "Orders",
+          "Events",
           "Calendar",
           "Salary",
-          "Feedback"
+          "Feedbacks",
         ].map((text) => (
           <ListItem button key={text}>
             <ListItemIcon>

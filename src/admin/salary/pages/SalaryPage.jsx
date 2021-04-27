@@ -42,7 +42,8 @@ const SalaryPage = () => {
 
       <ResponsiveDrawer />
 
-      <main className={classes.content}></main>
+      <main className={classes.content}>
+      </main>
     </div>
   );
 };
