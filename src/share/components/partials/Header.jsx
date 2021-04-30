@@ -3,6 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/commons/logo.png";
 import iconCart from "../../../assets/images/commons/_i_icon_cart.svg";
 import iconSearch from "../../../assets/images/commons/_i_icon_search.svg";
+import avatarUser from '../../../assets/images/commons/icon_user.png';
+import { Avatar } from "@material-ui/core";
 
 export default function Header() {
   let { pathname } = useLocation();
@@ -45,6 +47,7 @@ export default function Header() {
                 <li>Contact</li>
               </ul>
             </div>
+            <Avatar  alt="Remy Sharp" src={avatarUser} />
             <div className="actions flex-middle">
               <ul className="flex-middle">
                 <li className="mr-20">
