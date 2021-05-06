@@ -9,6 +9,7 @@ import { Avatar } from "@material-ui/core";
 export default function Header() {
   let { pathname } = useLocation();
   const [isActive, setIsActive] = useState(pathname);
+  const isAuthenticated = localStorage.getItem("token") ? true : false;
 
   useEffect(() => {
     setIsActive(pathname);
@@ -37,17 +38,12 @@ export default function Header() {
                 <div></div>
               </div>
             </div>
-            <div className="menu flex-center">
+            <div className="menu flex-middle">
               <ul className="flex-center">
                 <li><Link to="/" onClick={toggle} className={isActive === "/" ? "active" : null}>Home</Link></li>
                 <li><Link to="/menu" onClick={toggle} className={isActive === "/menu" ? "active" : null}>Menu</Link></li>
-                <li>Pages</li>
-                <li>Shop</li>
-                <li>News</li>
-                <li>Contact</li>
               </ul>
             </div>
-            <Avatar  alt="Remy Sharp" src={avatarUser} />
             <div className="actions flex-middle">
               <ul className="flex-middle">
                 <li className="mr-20">
@@ -57,9 +53,10 @@ export default function Header() {
                   <img src={iconSearch} alt="Icon Search" />
                 </li>
               </ul>
+              <Avatar alt="Remy Sharp" src={avatarUser} className="mr-10"/>
               <Link to="/login">
                 <button className="btn-radius p-10 bg-blue-btn text-white text-uppercase text-bold">
-                  Login
+                  { isAuthenticated ? "Logout" : "Login"}
                 </button>
               </Link>
             </div>

@@ -1,6 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
 
+$color-white: #ffffff;
+$color-black: #000000;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+
+$font-size-typography-h1: 5em;
+$font-size-typography-h2: 4.5em;
+$font-size-typography-h3: 33px;
+$font-size-typography-h4: 27px;
+$font-size-typography-h5: 25px;
+$font-size-typography-h6: 21px;
+$font-size-body: 17px;
+
 body {
 background: $BG_BLUE2;
 font-family: "Montserrat", sans-serif;
@@ -317,5 +332,41 @@ h1, h2, h3, h4, h5, h6 {
   }
   p {
     line-height: 13px;
+  }
+}
+
+.typography {
+  &-h1 {
+    font-size: $font-size-typography-h1;
+    font-family: 'Fredericka the Great', cursive;
+    text-transform: uppercase;
+    font-weight: $font-weight-regular;
+  }
+
+  &-h2 {
+    font-weight: $font-weight-bold;
+    font-size: $font-size-typography-h2;
+    text-transform: uppercase;
+  }
+  &-h3 {
+    font-weight: $font-weight-bold;
+    font-size: $font-size-typography-h3;
+    text-transform: uppercase;
+  }
+  &-h4 {
+    font-weight: $font-weight-bold;
+    font-size: $font-size-typography-h4;
+  }
+
+  &-h5 {
+    font-weight: $font-weight-bold;
+    font-size: $font-size-typography-h5;
+    text-transform: uppercase;
+  }
+
+  &-h6 {
+    font-weight: $font-weight-bold;
+    font-size: $font-size-typography-h6;
+    text-transform: uppercase;
   }
 }
