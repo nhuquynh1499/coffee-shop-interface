@@ -6,14 +6,13 @@ import Typography from "@material-ui/core/Typography";
 import React from "react";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
 import Table from "../components/Table";
-import Button from "../components/Button";
-import { Grid } from "@material-ui/core";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    flexGrow: 1,
   },
   appBar: {
     [theme.breakpoints.up("sm")]: {
@@ -28,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UserPage = () => {
+const OrderPage = () => {
   const classes = useStyles();
 
   return (
@@ -38,7 +37,7 @@ const UserPage = () => {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
-            User Managements
+            Order Managements
           </Typography>
         </Toolbar>
       </AppBar>
@@ -47,12 +46,8 @@ const UserPage = () => {
 
       <main className={classes.content}>
         <Table />
-
-        <Grid container style={{ margin: "auto", marginTop: 24 }}>
-          <Button />
-        </Grid>
       </main>
     </div>
   );
 };
-export default UserPage;
+export default OrderPage;

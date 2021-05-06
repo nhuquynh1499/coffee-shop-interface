@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import UserActions from './UserActions';
+import EmployeeActions from './EmployeeActions';
 
 const useStyles = makeStyles({
   table: {
@@ -35,7 +35,7 @@ const BasicTable = () => {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Username</TableCell>
+            <TableCell>Employee's Name</TableCell>
             <TableCell align="center">Phone Number</TableCell>
             <TableCell align="center">Address</TableCell>
             <TableCell align="center">Active</TableCell>
@@ -52,7 +52,7 @@ const BasicTable = () => {
               <TableCell align="center">{row.address}</TableCell>
               <TableCell align="center">{row.active}</TableCell>
               <TableCell align="center">
-                  <UserActions />
+                  <EmployeeActions />
               </TableCell>
             </TableRow>
           ))}

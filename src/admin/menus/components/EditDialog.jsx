@@ -1,14 +1,14 @@
-import { Slide } from "@material-ui/core";
+import { Grid, makeStyles, Slide, TextField } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
+import { green } from "@material-ui/core/colors";
 import Dialog from "@material-ui/core/Dialog";
 import IconButton from "@material-ui/core/IconButton";
-import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
+import EditIcon from "@material-ui/icons/Edit";
 import React, { useState } from "react";
-import CreateDialog from "./CreateDialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,34 +26,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ContainedButtons() {
+const EditDialog = () => {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
   };
-  console.log({ open });
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
   });
 
   return (
-    <div className={classes.root}>
-      <Button
-        variant="contained"
-        color="primary"
-        style={{ width: 400, marginTop: 8, marginBottom: 24 }}
-        onClick={handleOpen}
-      >
-        Add User
-      </Button>
-
+    <React.Fragment>
+      <IconButton aria-label="edit" onClick={handleOpen}>
+        <EditIcon fontSize="medium" style={{ color: green[500] }} />
+      </IconButton>
       <Dialog
         fullScreen
         open={open}
@@ -71,16 +65,48 @@ export default function ContainedButtons() {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Create User Information
+              Edit Drink Item
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
               Save
             </Button>
           </Toolbar>
         </AppBar>
+        <Grid container style={{ padding: 16 }}>
+          <Grid item>
+            <Typography style={{ margin: 16, fontWeight: "bold" }}>
+              Name:
+            </Typography>
+          </Grid>
 
-        <CreateDialog />
+          <Grid item xs={10}>
+            <TextField
+              id="outlined-basic"
+              label="Name"
+              variant="outlined"
+              fullWidth
+            />
+          </Grid>
+        </Grid>
+
+        <Grid container style={{ padding: 16 }}>
+          <Grid item>
+            <Typography style={{ margin: 16, fontWeight: "bold" }}>
+              Price:
+            </Typography>
+          </Grid>
+
+          <Grid item xs={10}>
+            <TextField
+              id="outlined-basic"
+              label="Price"
+              variant="outlined"
+              fullWidth
+            />
+          </Grid>
+        </Grid>
       </Dialog>
-    </div>
+    </React.Fragment>
   );
-}
+};
+export default EditDialog;
