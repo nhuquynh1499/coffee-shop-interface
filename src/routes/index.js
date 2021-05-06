@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import LoginPage from "../share/pages/LoginPage";
-import SignupPage from "../share/pages/SignupPage";
-import HomePage from "../share/pages/HomePage";
+import LoginPage from "../users/pages/LoginPage";
+import SignupPage from "../users/pages/SignupPage";
+import HomePage from "../users/pages/HomePage";
 
 import Admin from "../admin/Admin";
 import Menu from "../admin/menus/pages/Menu";
@@ -18,6 +18,7 @@ import EventPage from "../admin/events/pages/EventPage";
 import MenuPage from "../users/pages/MenuPage";
 import UserDetailPage from "../users/pages/UserDetailPage";
 import UserChangePasswordPage from "../users/pages/UserChangePasswordPage";
+import { PrivateRoute } from "./PrivateRoute";
 
 const routes = () => {
   return (
@@ -25,7 +26,7 @@ const routes = () => {
       <Route exact path="/" component={HomePage} />
       <Route path="/login" component={LoginPage} />
       <Route path="/signup" component={SignupPage} />
-      <Route path="/menu" component={MenuPage} />
+      <PrivateRoute path="/menu" component={MenuPage} />
       <Route exact path="/user/detail" component={UserDetailPage} />
       <Route
         exact

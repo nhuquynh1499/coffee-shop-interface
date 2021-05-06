@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom"
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -17,11 +18,14 @@ const validationSchema = yup.object({
     .required('Username is required'),
   password: yup
     .string('Enter your password')
-    .min(6, 'Password should be of minimum 6 characters length')
+    // .min(6, 'Password should be of minimum 6 characters length')
     .required('Password is required'),
 });
 
 export default function Login(props) {
+  const { handleSubmitForm } = props;
+  let history = useHistory();
+
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -30,15 +34,7 @@ export default function Login(props) {
     },
     validationSchema: validationSchema,
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-      // axios.post("https://api-expense-tracker-codersx.herokuapp.com/api/login", values).then((res) => {
-      // console.log(res);
-      // localStorage.setItem("token", res.data.token);
-      //     localStorage.setItem("userId", res.data.userId);
-      //     history.push("/");
-      // }).catch((error) => {
-      // toast.error("Invalid username or password");
-      // });
+      handleSubmitForm(values)
     },
   });
 

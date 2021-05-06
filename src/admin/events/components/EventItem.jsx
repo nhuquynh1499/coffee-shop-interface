@@ -67,7 +67,7 @@ const EventItem = () => {
             color="textSecondary"
             style={{ marginTop: 8 }}
           >
-            Business Meeting will be occur in 30/05/2021
+            Business Meeting will be occurred in 30/05/2021
           </Typography>
         </CardContent>
       </div>
