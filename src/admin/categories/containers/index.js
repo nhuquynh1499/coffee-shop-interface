@@ -5,7 +5,7 @@ import { getList } from "../actions";
 import { ObjectUtils } from "../../../../utils/object.utils";
 
 const mapStateToProps = ({ listReducer }) => ({
-  listCategory: ObjectUtils.get(listReducer, 'listCategory', []),
+  list: ObjectUtils.get(listReducer, 'listCategory', []),
 });
 
 const mapDispatchToProps = (dispatch) =>

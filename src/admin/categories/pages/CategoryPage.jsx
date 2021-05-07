@@ -4,9 +4,12 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
-import Card from '../components/Card';
+import Card from "../components/Card";
+import { getList } from "../actions";
+
 
 const drawerWidth = 240;
 
@@ -28,8 +31,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CategoryPage = () => {
+const CategoryPage = (props) => {
+  const { list } = props;
+  const dispatch = useDispatch();
+
   const classes = useStyles();
+
+  useEffect(() => {
+    dispatch(getList());
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -46,11 +56,11 @@ const CategoryPage = () => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
-          <Grid container spacing={1} style={{marginLeft: '25%'}}>
-            <Grid item xs={6}>
-              <Card />
-            </Grid>
+        <Grid container spacing={1} style={{ marginLeft: "25%" }}>
+          <Grid item xs={6}>
+            <Card />
           </Grid>
+        </Grid>
       </main>
     </div>
   );
