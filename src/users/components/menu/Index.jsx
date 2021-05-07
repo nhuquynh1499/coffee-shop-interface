@@ -11,10 +11,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2)
   },
   cols: {
-    display: "grid",
-    "grid-template-columns": "1fr 1fr 1fr 1fr",
+    display: "flex",
+    flexWrap: "wrap",
+    // justifyContent: 'space-between',
     gap: theme.spacing(2),
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
   },
 }));
 
@@ -22,13 +23,13 @@ export default function HomePage(props) {
     const classes = useStyles();
     const { data } = props;
     return (
-      <div class="container">
+      <div className="container">
         <Typography component="h6" variant="h6" className={classes.title}>
           MENU
         </Typography>
         <div className={classes.cols}>
           {
-            data.map((item, index) => <MenuItem key={index} photo={item.photo} name={item.name} price={item.price}/>)
+            data.map((item, index) => <MenuItem key={index} photo={item.image} name={item.name} price={item.price}/>)
           }
         </div>
       </div>
