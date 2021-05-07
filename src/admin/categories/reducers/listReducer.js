@@ -1,11 +1,16 @@
-export default (state = {}, { type, payload }) => {
-  switch (type) {
-    case "GET_LIST":
+const initialState = {};
+
+const listReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "SET_STATUS_LOGIN": {
       return {
         ...state,
-        ...payload,
       };
-    default:
+    }
+    default: {
       return state;
+    }
   }
 };
+
+export default listReducer;
