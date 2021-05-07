@@ -18,7 +18,6 @@ $font-size-body: 17px;
 
 body {
 background: $BG_BLUE2;
-font-family: "Montserrat", sans-serif;
 font-size: 11px;
 line-height: 1.6;
 color: $TEXT;
@@ -338,7 +337,7 @@ h1, h2, h3, h4, h5, h6 {
 .typography {
   &-h1 {
     font-size: $font-size-typography-h1;
-    font-family: 'Fredericka the Great', cursive;
+    font-family: 'Fredericka the Great', cursive!important;
     text-transform: uppercase;
     font-weight: $font-weight-regular;
   }

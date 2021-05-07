@@ -17,9 +17,6 @@ const validationSchema = yup.object().shape({
     .string('Enter your password')
     .min(6, 'Password should be of minimum 6 characters length')
     .required('Password is required'),
-  fullname: yup
-    .string('Enter your full name')
-    .required('Fullname is required'),
   phone: yup
     .string('Enter your phone number')
     .required('Phone number is required'),
@@ -36,7 +33,6 @@ export default function Login(props) {
     initialValues: {
       username: '',
       password: '',
-      fullname: '',
       phone: '',
       address: '',
       isAccept: false,
@@ -96,19 +92,6 @@ export default function Login(props) {
                 onChange={formik.handleChange}
                 error={formik.touched.password && Boolean(formik.errors.password)}
                 helperText={formik.touched.password && formik.errors.password}
-              />
-            </div>
-            <div className="flex-center mb-12">
-              <TextField 
-                fullWidth 
-                variant="outlined" 
-                label="Fullname"
-                name="fullname"
-                type="text"
-                value={formik.values.fullname}
-                onChange={formik.handleChange}
-                error={formik.touched.fullname && Boolean(formik.errors.fullname)}
-                helperText={formik.touched.fullname && formik.errors.fullname}
               />
             </div>
             <div className="flex-center mb-12">

@@ -1,4 +1,6 @@
 import { Button, Card, makeStyles, TextField } from '@material-ui/core';
+import { Link } from "react-router-dom";
+
 import React from 'react';
 
 const useStyles = makeStyles({
@@ -50,7 +52,9 @@ export default function UserDetail() {
               className={classes.input}
             />
             <div className="flex-right mt-10">
-              <Button className={classes.button} variant="contained" href="/user/detail">Back</Button>
+              <Link to="/user/detail">
+                <Button className={classes.button} variant="contained">Back</Button>
+              </Link>
               <Button className={classes.button} variant="contained" color="primary">Submit</Button>
             </div>
           </form>

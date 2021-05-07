@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom"
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -24,7 +23,6 @@ const validationSchema = yup.object({
 
 export default function Login(props) {
   const { handleSubmitForm } = props;
-  let history = useHistory();
 
   const formik = useFormik({
     initialValues: {

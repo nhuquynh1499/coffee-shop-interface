@@ -1,7 +1,7 @@
 const initialState = {
   userId: localStorage.getItem("userId") || null,
   token: localStorage.getItem("token") || null,
-  infor: null,
+  infor: {},
 };
 
 const authReducer = (state = initialState, action) => {
@@ -15,6 +15,16 @@ const authReducer = (state = initialState, action) => {
         ...state,
         userId: _id,
         token: token,
+        infor: {
+          username, phone, address
+        }
+      }
+    }
+    case "SET_INFOR": {
+      const { username, phone, address } = action.payload;
+
+      return {
+        ...state,
         infor: {
           username, phone, address
         }
