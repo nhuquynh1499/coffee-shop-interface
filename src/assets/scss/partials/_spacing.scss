@@ -55,6 +55,14 @@
     .m-#{$i} {
       margin: #{$i}px !important;
     }
+    .mx-#{$i} {
+      margin-right: #{$i}px !important;
+      margin-left: #{$i}px !important;
+    }
+    .my-#{$i} {
+      margin-bottom: #{$i}px !important;
+      margin-top: #{$i}px !important;
+    }
     .mt-#{$i} {
       margin-top: #{$i}px !important;
     }
@@ -69,6 +77,14 @@
     }
     .p-#{$i} {
       padding: #{$i}px !important;
+    }
+    .px-#{$i} {
+      padding-left: #{$i}px !important;
+      padding-right: #{$i}px !important;
+    }
+    .py-#{$i} {
+      padding-top: #{$i}px !important;
+      padding-bottom: #{$i}px !important;
     }
     .pt-#{$i} {
       padding-top: #{$i}px !important;

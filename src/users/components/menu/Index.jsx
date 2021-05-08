@@ -1,5 +1,6 @@
 import { makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
+import Loading from '../ui/Loading';
 import MenuItem from './MenuItem';
 
 const useStyles = makeStyles((theme) => ({
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function HomePage(props) {
     const classes = useStyles();
-    const { data } = props;
+    const { data, handleClickAddToCart } = props;
     return (
       <div className="container">
         <Typography component="h6" variant="h6" className={classes.title}>
@@ -29,7 +30,7 @@ export default function HomePage(props) {
         </Typography>
         <div className={classes.cols}>
           {
-            data.map((item, index) => <MenuItem key={index} photo={item.image} name={item.name} price={item.price}/>)
+            data.length == 0 ? <Loading /> : data.map((item, index) => <MenuItem key={index} photo={item.image} name={item.name} price={item.price} handleClickAddToCart={handleClickAddToCart}/>)
           }
         </div>
       </div>
