@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { useFormik } from "formik";
 import * as yup from 'yup';
@@ -7,8 +7,10 @@ import TextField from '@material-ui/core/TextField';
 
 import logo from "../../../assets/images/commons/logo.png";
 
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 const validationSchema = yup.object().shape({
   username: yup
     .string('Enter your username')
@@ -29,6 +31,24 @@ const validationSchema = yup.object().shape({
 });
 
 export default function Login(props) {
+  const { handleSubmitForm, status } = props;
+  const dispatch = useDispatch();
+  let history = useHistory();
+
+  useEffect(() => {
+    console.log(status)
+    if (status) {
+      if (status.number !== 200) {
+        toast.error(status.message);
+      } else {
+        toast.success(status.message)
+        dispatch({
+          type: "RESET_STATUS"
+        })
+        history.push('/login')
+      }
+    }
+  }, [status])
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -39,21 +59,13 @@ export default function Login(props) {
     },
     validationSchema: validationSchema,
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-      // axios.post("https://api-expense-tracker-codersx.herokuapp.com/api/login", values).then((res) => {
-      // console.log(res);
-      // localStorage.setItem("token", res.data.token);
-      //     localStorage.setItem("userId", res.data.userId);
-      //     history.push("/");
-      // }).catch((error) => {
-      // toast.error("Invalid username or password");
-      // });
+      handleSubmitForm(values);
     },
   });
 
   return (
     <div className="auth">
-      {/* <ToastContainer /> */}
+      <ToastContainer />
       <div className="wrapped flex-column pt-30 pb-30">
         <div className="logo">
           <div className="image">

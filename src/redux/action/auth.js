@@ -6,7 +6,7 @@ export const sendPostLogin = (payload) => {
       .then(response => {
         const data = response.data.data.data;
         dispatch({
-          type: "SET_STATUS_LOGIN",
+          type: "SET_LOGIN",
           payload: data
         })
       })
@@ -42,5 +42,27 @@ export const logout = () => {
     dispatch({
       type: "DELETE_AUTH",
     })
+  }
+};
+
+export const sendPostSignup = (payload) => {
+  return async (dispatch) => {
+    dispatch({
+      type: "RESET_STATUS"
+    })
+    return axios.post('https://salty-dawn-54578.herokuapp.com/users/sign-up', payload)
+      .then(response => {
+        console.log(response.data)
+        dispatch({
+          type: "SET_STATUS",
+          payload: {
+            number: response.status,
+            message: response.data.message,
+          }
+        })
+      })
+      .catch(error => {
+        throw (error);
+      });
   }
 }
