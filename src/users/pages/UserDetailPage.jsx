@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getInforByToken } from '../../redux/action/auth';
 import UserDetailForm from '../components/user/DetailForm';
@@ -15,12 +16,16 @@ const useStyles = makeStyles({
 
 export default function UserDetailPage() {
   const classes = useStyles();
+  let history = useHistory();
   const token = useSelector((state) => state.auth.token);
   const infor = useSelector((state) => state.auth.infor);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getInforByToken(token))
+    if (!token) {
+      history.push("/")
+    }
   }, [token]);
 
   return (
