@@ -5,11 +5,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
-import Card from "../components/Card";
 import { getList } from "../actions";
-
+import Button from "../components/Button";
+import Card from "../components/Card";
 
 const drawerWidth = 240;
 
@@ -27,12 +27,11 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    height: 750,
-  },
+    height: 750
+  }
 }));
 
 const CategoryPage = (props) => {
-  const { list } = props;
   const dispatch = useDispatch();
 
   const classes = useStyles();
@@ -40,6 +39,8 @@ const CategoryPage = (props) => {
   useEffect(() => {
     dispatch(getList());
   }, []);
+
+  const list = useSelector((state) => state.listAdmin.list);
 
   return (
     <div className={classes.root}>
@@ -56,13 +57,22 @@ const CategoryPage = (props) => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
-        <Grid container spacing={1} style={{ marginLeft: "25%" }}>
-          <Grid item xs={6}>
-            <Card />
-          </Grid>
+        <Grid container spacing={1}>
+          {list.map((item) => (
+            <Grid item xs={3} style={{marginBottom: 16}}>
+              <Card category={item} />
+            </Grid>
+          ))}
         </Grid>
+
+        <Button className={classes.button} />
       </main>
     </div>
   );
 };
-export default CategoryPage;
+
+const mapStateToProps = (state) => {
+  return { list: state.list };
+};
+
+export default connect(mapStateToProps)(CategoryPage);

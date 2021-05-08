@@ -79,13 +79,13 @@ function ResponsiveDrawer(props) {
         {[
           "Categories",
           "Bevarages",
-          "Employees",
-          "Users",
           "Orders",
           "Events",
-          "Calendar",
           "Salary",
           "Feedbacks",
+          "Calendar",
+          "Users",
+          "Employees",
         ].map((text) => (
           <ListItem button key={text}>
             <ListItemIcon>

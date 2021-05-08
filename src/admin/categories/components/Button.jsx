@@ -37,7 +37,6 @@ export default function ContainedButtons() {
   const handleOpen = () => {
     setOpen(true);
   };
-  console.log({ open });
 
   const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -48,7 +47,7 @@ export default function ContainedButtons() {
       <Button
         variant="contained"
         color="primary"
-        style={{ width: 400, marginTop: 32 }}
+        style={{ width: 400, marginTop: 32, marginLeft: "30%", marginBottom: 32}}
         onClick={handleOpen}
       >
         Add Category

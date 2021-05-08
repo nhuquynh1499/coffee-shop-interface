@@ -3,8 +3,10 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
+import { getOrders } from "../actions";
 import Table from "../components/Table";
 
 const drawerWidth = 240;
@@ -28,6 +30,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const OrderPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getOrders());
+  }, []);
+
+  const orders = useSelector((state) => state.orderAdmin.orders);
+
   const classes = useStyles();
 
   return (
@@ -45,7 +55,7 @@ const OrderPage = () => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
-        <Table />
+        <Table orders={orders} />
       </main>
     </div>
   );
