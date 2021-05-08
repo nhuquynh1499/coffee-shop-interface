@@ -1,9 +1,9 @@
 import Rating from "@material-ui/lab/Rating";
 import React from "react";
 
-const RatingColumn = () => {
-  return (
-    <Rating name="read-only" value={2} readOnly />
-  );
+const RatingColumn = (props) => {
+  const { feedback } = props;
+
+  return <Rating name="read-only" value={feedback.rating} readOnly />;
 };
 export default RatingColumn;

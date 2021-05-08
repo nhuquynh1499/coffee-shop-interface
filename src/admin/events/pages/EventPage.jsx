@@ -4,10 +4,12 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
-import EventItem from "../components/EventItem";
+import { getEvents } from "../actions";
 import Button from "../components/Button";
+import EventItem from "../components/EventItem";
 
 const drawerWidth = 240;
 
@@ -30,6 +32,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EventPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getEvents());
+  }, []);
+
+  const events = useSelector((state) => state.eventAdmin.events);
+
   const classes = useStyles();
 
   return (
@@ -47,8 +57,8 @@ const EventPage = () => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
-        {[1, 2, 3, 4, 5].map((item) => (
-          <EventItem key={item} />
+        {events.map((item) => (
+          <EventItem key={item} event={item} />
         ))}
 
         <Grid container style={{ margin: "auto" }}>

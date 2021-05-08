@@ -37,7 +37,6 @@ export default function ContainedButtons() {
   const handleOpen = () => {
     setOpen(true);
   };
-  console.log({ open });
 
   const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;

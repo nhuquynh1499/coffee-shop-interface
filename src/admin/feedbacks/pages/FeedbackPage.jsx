@@ -3,10 +3,12 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
+import React, { useEffect } from "react";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
 import Table from "../components/Table";
 import Rating from "@material-ui/lab/Rating";
+import { useDispatch, useSelector } from "react-redux";
+import { getFeedbacks } from "../actions";
 
 const drawerWidth = 240;
 
@@ -29,6 +31,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const FeedbackPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getFeedbacks());
+  }, []);
+
+  const feedbacks = useSelector((state) => state.feedbackAdmin.feedbacks);
+  console.log({ feedbacks });
   const classes = useStyles();
 
   return (
@@ -46,7 +56,7 @@ const FeedbackPage = () => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
-        <Table />
+        <Table feedbacks={feedbacks} />
       </main>
     </div>
   );

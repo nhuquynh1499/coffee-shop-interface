@@ -4,8 +4,10 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
+import { getDrink } from "../actions";
 import Button from "../components/Button";
 import MenuItems from "../components/MenuItems";
 
@@ -30,7 +32,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MenuPage = () => {
+  const dispatch = useDispatch();
+
   const classes = useStyles();
+
+  useEffect(() => {
+    dispatch(getDrink());
+  }, []);
+
+  const drinks = useSelector((state) => state.drinkAdmin.drinks);
 
   return (
     <div className={classes.root}>
@@ -47,10 +57,10 @@ const MenuPage = () => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
-        {[1, 2, 3, 4, 5].map((index) => (
-          <MenuItems />
+        {drinks.map((drink) => (
+          <MenuItems drink={drink} />
         ))}
-        
+
         <Grid container style={{ margin: "auto" }}>
           <Button />
         </Grid>

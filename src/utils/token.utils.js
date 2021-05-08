@@ -1,0 +1,4 @@
+export const TokenUtils = {
+  TOKEN:
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcxMGE5M2UzZDFhOGZlMjBjYWVhOTciLCJwYXNzd29yZCI6IjEyMzQ1NjciLCJ1c2VybmFtZSI6InNlcnZpY2UifQ.QFkHBdTf9y6peXCObEaF35OJwYaAFUmUeYLaZXcHJwY",
+};

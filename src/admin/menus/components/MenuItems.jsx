@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 import coffeeCup from "../../../assets/images/commons/coffeeCup.jpg";
+import { ObjectUtils } from "../../../utils/object.utils";
 import DeleteDialog from "./DeleteDialog";
 import EditDialog from "./EditDialog";
 
@@ -13,47 +14,43 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     marginBottom: theme.spacing(3),
   },
-  details: {
-    display: "flex",
-    flexDirection: "column",
+  cover: {
+    width: 125,
+    height: 125
+  },
+  media: {
+    height: 125
   },
   actions: {
-    display: "block",
-    flexDirection: "column",
-    marginLeft: 850,
+    position: "absolute",
+    right: 0,
     marginTop: 32,
   },
-  content: {
-    flex: "1 0 auto",
-  },
-  cover: {
-    width: 120,
-  },
-  controls: {
-    display: "flex",
-    alignItems: "center",
-    paddingLeft: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-  },
 }));
-const MenuItems = () => {
+const MenuItems = (props) => {
+  const { drink } = props;
+
+  const category = ObjectUtils.get(drink, "category", {});
+
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
-      <CardMedia className={classes.cover} image={coffeeCup} />
+      <CardMedia className={classes.media}>
+        <img src={drink.image} alt="image-drink" className={classes.cover} />
+      </CardMedia>
 
-      <div className={classes.details}>
-        <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
-            Espresso
+      <div className={classes.media}>
+        <CardContent>
+          <Typography component="h6" variant="h6">
+            {drink.name}
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            Price: 20000đ
+            Price: {drink.price}
           </Typography>
 
           <Typography variant="subtitle1" color="textSecondary">
-            Total: 30
+            Category: {category.name}
           </Typography>
         </CardContent>
       </div>
