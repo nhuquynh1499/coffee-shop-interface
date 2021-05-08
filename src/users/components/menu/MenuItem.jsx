@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
@@ -72,14 +71,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MenuItem(props) {
   const classes = useStyles();
-  const { photo, name, price } = props;
+  const { photo, name, price, handleClickAddToCart } = props;
 
   return (
     <Card className={classes.root}>
-      {/* <CardMedia
-        className={classes.cover}
-        image={photo}
-        /> */}
       <img src={photo} alt="" className={classes.cover} />
       <div className={classes.details}>
         <CardContent className={classes.content}>
@@ -87,11 +82,11 @@ export default function MenuItem(props) {
             {name}
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            {price.toLocaleString('en-IN')}
+            {price.toLocaleString()}đ
           </Typography>
         </CardContent>
         <div className={classes.controls}>
-          <button className={classes.btn}>Add to card</button>
+          <button className={classes.btn} onClick={() => handleClickAddToCart({ photo, name, price })}>Add to card</button>
         </div>
       </div>
     </Card>

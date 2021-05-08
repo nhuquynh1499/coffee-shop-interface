@@ -36,3 +36,11 @@ export const getInforByToken = (payload) => {
       });
   };
 };
+
+export const logout = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: "DELETE_AUTH",
+    })
+  }
+}

@@ -5,7 +5,6 @@ const initialState = {
 const drinkReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_DRINK": {
-      console.log(action.payload)
       const listData = action.payload;
 
       return {
