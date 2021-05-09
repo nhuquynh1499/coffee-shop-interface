@@ -1,11 +1,12 @@
 const initialState = {
   token: localStorage.getItem("token") || null,
+  status: null,
   infor: null,
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_STATUS_LOGIN": {
+    case "SET_LOGIN": {
       const { _id, token, username, phone, address, avatar, password } = action.payload;
       localStorage.setItem("token", token);
 
@@ -34,6 +35,18 @@ const authReducer = (state = initialState, action) => {
       return {
         token: null,
         infor: null,
+      }
+    }
+    case "SET_STATUS": {
+      return {
+        ...state,
+        status: action.payload,
+      }
+    }
+    case "RESET_STATUS": {
+      return {
+        ...state,
+        status: null,
       }
     }
     default: {
