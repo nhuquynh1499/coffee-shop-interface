@@ -16,13 +16,7 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     position: "relative",
     backgroundColor: "#5FA3B7",
-  },
-  button: {
-    width: 400,
-    marginBottom: theme.spacing(2),
-    backgroundColor: "#5FA3B7",
-    color: "white",
-  },
+  }
 }));
 
 const CategoryCreate = (props) => {
@@ -46,7 +40,12 @@ const CategoryCreate = (props) => {
         <Button
           variant="contained"
           onClick={handleOpenDialog}
-          className={classes.button}
+          style={{
+            width: 400,
+            marginBottom: 16,
+            backgroundColor: "#5FA3B7",
+            color: "white",
+          }}
           open={open}
         >
           Add Category

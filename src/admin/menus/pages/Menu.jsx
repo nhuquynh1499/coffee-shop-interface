@@ -58,7 +58,7 @@ const MenuPage = () => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
-        <Grid container style={{ margin: "auto" }}>
+        <Grid container style={{ margin: "auto", marginBottom: 16 }}>
           <Button />
         </Grid>
 
