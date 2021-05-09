@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       margin: theme.spacing(1),
     },
-    margin: "auto",
   },
   appBar: {
     position: "relative",
@@ -47,7 +46,12 @@ export default function ContainedButtons() {
       <Button
         variant="contained"
         color="primary"
-        style={{ width: 400, marginTop: 8, marginBottom: 24 }}
+        style={{
+          width: 400,
+          backgroundColor: "#5FA3B7",
+          marginBottom: 16,
+          margin: 'auto'
+        }}
         onClick={handleOpen}
       >
         Add Menu Item

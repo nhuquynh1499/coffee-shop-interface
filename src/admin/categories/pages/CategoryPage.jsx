@@ -7,9 +7,9 @@ import Typography from "@material-ui/core/Typography";
 import React, { useEffect } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
-import { getList } from "../actions";
-import Button from "../components/Button";
+import { getList, postList } from "../actions";
 import Card from "../components/Card";
+import CategoryCreate from "../components/CategoryCreate";
 
 const drawerWidth = 240;
 
@@ -23,12 +23,13 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
+    backgroundColor: "#5FA3B7",
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    height: 750
-  }
+    height: 750,
+  },
 }));
 
 const CategoryPage = (props) => {
@@ -41,6 +42,10 @@ const CategoryPage = (props) => {
   }, []);
 
   const list = useSelector((state) => state.listAdmin.list);
+
+  const handleSubmit = (payload) => {
+    dispatch(postList(payload));
+  };
 
   return (
     <div className={classes.root}>
@@ -57,15 +62,15 @@ const CategoryPage = (props) => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
+        <CategoryCreate onSubmit={handleSubmit} />
+
         <Grid container spacing={1}>
           {list.map((item) => (
-            <Grid item xs={3} style={{marginBottom: 16}}>
+            <Grid item xs={3} style={{ marginBottom: 16 }}>
               <Card category={item} />
             </Grid>
           ))}
         </Grid>
-
-        <Button className={classes.button} />
       </main>
     </div>
   );

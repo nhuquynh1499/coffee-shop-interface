@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
+    backgroundColor: "#5FA3B7",
   },
   content: {
     flexGrow: 1,

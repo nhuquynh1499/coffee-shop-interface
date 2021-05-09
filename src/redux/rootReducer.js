@@ -2,13 +2,14 @@ import { combineReducers } from "redux";
 import listAdminReducer from "../admin/categories/reducers/listAdminReducer";
 import staffAdminReducer from "../admin/employees/reducers/staffAdminReducer";
 import eventAdminReducer from "../admin/events/reducers/eventAdminReducer";
+import feedbackAdminReducer from "../admin/feedbacks/reducers/feedbackAdminReducer";
 import menuAdminReducer from "../admin/menus/reducers/menuAdminReducer";
 import orderAdminReducer from "../admin/orders/reducers/orderAdminReducer";
+import salaryAdminReducer from "../admin/salary/reducers/salaryAdminReducer";
 import userAdminReducer from "../admin/users/reducers/userAdminReducer";
-import feedbackAdminReducer from "../admin/feedbacks/reducers/feedbackAdminReducer";
 import authReducer from "./reducer/auth";
-import drinkReducer from "./reducer/drink";
 import cartReducer from "./reducer/cart";
+import drinkReducer from "./reducer/drink";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   orderAdmin: orderAdminReducer,
   eventAdmin: eventAdminReducer,
   feedbackAdmin: feedbackAdminReducer,
+  salaryAdmin: salaryAdminReducer,
   cart: cartReducer,
 });
 
