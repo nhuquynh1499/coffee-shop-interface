@@ -100,7 +100,7 @@
     }
 }
 
-@include rp('min', 990px) {
+@include rp('min', 630px) {
     .header {
         .nav-bar {
             flex-direction: row;

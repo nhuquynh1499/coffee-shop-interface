@@ -31,8 +31,7 @@ const validationSchema = yup.object({
 
 export default function UserDetail(props) {
   const classes = useStyles();
-  const [isEdit, setIsEdit] = useState(false);
-  const { infor } = props;
+  const { infor, handleSubmitFormDetail,token } = props;
 
   const formik = useFormik({
     initialValues: {
@@ -41,6 +40,10 @@ export default function UserDetail(props) {
     validationSchema: validationSchema,
     onSubmit: values => {
       console.log(values);
+      handleSubmitFormDetail({
+        token,
+        ...values
+      })
     },
   });
 
@@ -50,12 +53,10 @@ export default function UserDetail(props) {
         label="Username" 
         variant="outlined" 
         name="username"
+        disabled
         value={formik.values.username}
         onChange={formik.handleChange}
         className={classes.input}
-        InputProps={{
-          readOnly: true,
-        }}
       />
       <TextField 
         label="Phone number" 
@@ -66,9 +67,6 @@ export default function UserDetail(props) {
         className={classes.input}
         error={formik.touched.phone && Boolean(formik.errors.phone)}
         helperText={formik.touched.phone && formik.errors.phone}
-        InputProps={{
-          readOnly: !isEdit,
-        }}
       />
       <TextField 
         label="Address" 
@@ -79,20 +77,9 @@ export default function UserDetail(props) {
         className={classes.input}
         error={formik.touched.address && Boolean(formik.errors.address)}
         helperText={formik.touched.address && formik.errors.address}
-        InputProps={{
-          readOnly: !isEdit,
-        }}
       />
       <div className="flex-right mt-10">
-        { !isEdit && 
-          <Link to="/user/change-password"><Button className={classes.button} variant="contained">Change Password</Button></Link> ||
-          <Button className={classes.button} variant="contained"  onClick={() => setIsEdit(false)}>Cancel</Button>
-        }
-          
-        { !isEdit && 
-          <Button className={classes.button} onClick={() => setIsEdit(true)} variant="contained" color="primary">Edit information</Button> ||
-          <Button className={classes.button} variant="contained" color="primary" type="submit">Submit</Button>
-        }
+        <Button className={classes.button} variant="contained" color="primary" type="submit">Submit</Button>
       </div>
     </form>
   );

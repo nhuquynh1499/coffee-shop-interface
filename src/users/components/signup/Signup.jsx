@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+import TextField from '@material-ui/core/TextField';
 
 import { useFormik } from "formik";
 import * as yup from 'yup';
-import TextField from '@material-ui/core/TextField';
 
 import logo from "../../../assets/images/commons/logo.png";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+
 const validationSchema = yup.object().shape({
   username: yup
     .string('Enter your username')
@@ -65,7 +64,6 @@ export default function Login(props) {
 
   return (
     <div className="auth">
-      <ToastContainer />
       <div className="wrapped flex-column pt-30 pb-30">
         <div className="logo">
           <div className="image">

@@ -23,8 +23,10 @@ export default function Header() {
   const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("token") ? true : false);
   const [isActive, setIsActive] = useState(pathname);
   const [isCartOpened, setIsCartOpened] = useState(false);
+  const [avatar, setAvatar] = useState(null);
   const listInCart = useSelector((state) => state.cart.listInCart);
   const token = useSelector((state) => state.auth.token);
+  const infor = useSelector((state) => state.auth.infor);
 
   const toggleDrawer = (open) => (event) => {
     if ( event.type === "keydown" && (event.key === "Tab" || event.key === "Shift") )
@@ -36,6 +38,12 @@ export default function Header() {
   useEffect(() => {
     setIsActive(pathname);
   }, [pathname]);
+
+  useEffect(() => {
+    if (infor) {
+      setAvatar(infor.avatar);
+    }
+  }, [infor]);
 
   useEffect(() => {
     setIsAuthenticated(token);
@@ -86,9 +94,12 @@ export default function Header() {
                   <img src={iconSearch} alt="Icon Search" />
                 </li>
               </ul>
-              <Link to="/user/detail">
-                <Avatar alt="Remy Sharp" src={avatarUser} className="mr-10"/>
-              </Link>
+              {
+                isAuthenticated &&
+                  <Link to="/user/detail">
+                    <Avatar alt="Remy Sharp" src={avatar || avatarUser} className="mr-10"/>
+                  </Link>
+              }
               {
                 isAuthenticated ? <button onClick={handleLogout}className="btn-radius p-10 bg-blue-btn text-white text-uppercase text-bold">Logout</button> : 
                 <Link to="/login">

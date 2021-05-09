@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from "react-toastify";
 
 export const sendPostLogin = (payload) => {
   return async (dispatch) => {
@@ -50,7 +51,11 @@ export const sendPostSignup = (payload) => {
     dispatch({
       type: "RESET_STATUS"
     })
-    return axios.post('https://salty-dawn-54578.herokuapp.com/users/sign-up', payload)
+    return axios.post('https://salty-dawn-54578.herokuapp.com/users/sign-up', {
+      headers: {
+        'Authorization': `Bearer ${payload.token}`
+      }
+    })
       .then(response => {
         console.log(response.data)
         dispatch({
@@ -63,6 +68,26 @@ export const sendPostSignup = (payload) => {
       })
       .catch(error => {
         throw (error);
+      });
+  }
+}
+
+export const sendPostUpdateInfor = (payload) => {
+  return async (dispatch) => {
+    return axios.put('https://salty-dawn-54578.herokuapp.com/users/update',{
+      username: payload.username,
+      address: payload.address,
+      phone: payload.phone
+    }, {
+      headers: {
+        'Authorization': `Bearer ${payload.token}`
+      }
+    })
+      .then(response => {
+        toast.success(response.data.message)
+      })
+      .catch(error => {
+        toast.error("Đã xảy ra lỗi. Vui lòng thử lại!")
       });
   }
 }
