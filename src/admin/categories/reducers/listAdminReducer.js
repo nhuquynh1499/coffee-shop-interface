@@ -5,12 +5,9 @@ const initialState = {
 const listAdminReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_LIST": {
-      let listData = [...state.list];
-      listData.push(...action.payload);
-
       return {
         ...state,
-        list: listData,
+        list: action.payload,
       };
     }
     case "POST_LIST": {

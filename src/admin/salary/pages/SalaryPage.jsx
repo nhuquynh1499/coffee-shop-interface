@@ -36,7 +36,7 @@ const SalaryPage = () => {
   }, []);
 
   const salary = useSelector((state) => state.salaryAdmin.salary);
-  console.log({salary})
+  
   const classes = useStyles();
 
   return (

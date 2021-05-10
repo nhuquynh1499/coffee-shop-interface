@@ -8,8 +8,6 @@ import AccessAlarmIcon from "@material-ui/icons/AccessAlarm";
 import EventOutlinedIcon from "@material-ui/icons/EventOutlined";
 import React from "react";
 import { DateFormat, DateUtils } from "../../../utils";
-import DeleteDialog from "../components/DeleteDialog";
-import EditDialog from "../components/EditDialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   actions: {
     position: "absolute",
     right: 0,
-    marginTop: 48
+    marginTop: 48,
   },
   icon: {
     width: 100,
@@ -75,11 +73,6 @@ const EventItem = (props) => {
             {event.desc}
           </Typography>
         </CardContent>
-      </div>
-
-      <div className={classes.actions}>
-        <EditDialog />
-        <DeleteDialog />
       </div>
     </Card>
   );

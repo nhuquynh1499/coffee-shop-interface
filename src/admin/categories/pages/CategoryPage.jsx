@@ -4,7 +4,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
 import { getList, postList } from "../actions";
@@ -32,7 +32,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CategoryPage = (props) => {
+const CategoryPage = () => {
+  const [open, setOpen] = useState(false);
+
   const dispatch = useDispatch();
 
   const classes = useStyles();
@@ -45,7 +47,15 @@ const CategoryPage = (props) => {
 
   const handleSubmit = (payload) => {
     dispatch(postList(payload));
+    setOpen(false);
+  };
 
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return (
@@ -63,7 +73,12 @@ const CategoryPage = (props) => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
-        <CategoryCreate onSubmit={handleSubmit} />
+        <CategoryCreate
+          onSubmit={handleSubmit}
+          open={open}
+          onOpen={handleOpen}
+          onClose={handleClose}
+        />
 
         <Grid container spacing={1}>
           {list.map((item) => (

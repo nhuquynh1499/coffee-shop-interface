@@ -1,15 +1,15 @@
-import { Grid } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
-import { getDrink } from "../actions";
-import Button from "../components/Button";
+import { getDrink, postDrink } from "../actions";
 import MenuItems from "../components/MenuItems";
+import MenuCreate from "../components/MenuCreate";
+import { getList } from "../../categories/actions";
 
 const drawerWidth = 240;
 
@@ -33,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MenuPage = () => {
+  const [open, setOpen] = useState(false);
+
   const dispatch = useDispatch();
 
   const classes = useStyles();
@@ -41,7 +43,26 @@ const MenuPage = () => {
     dispatch(getDrink());
   }, []);
 
+  useEffect(() => {
+    dispatch(getList());
+  }, []);
+
   const drinks = useSelector((state) => state.drinkAdmin.drinks);
+
+  const list = useSelector((state) => state.listAdmin.list);
+
+  const handleSubmit = (payload) => {
+    dispatch(postDrink(payload));
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div className={classes.root}>
@@ -58,9 +79,13 @@ const MenuPage = () => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
-        <Grid container style={{ margin: "auto", marginBottom: 16 }}>
-          <Button />
-        </Grid>
+        <MenuCreate
+          onSubmit={handleSubmit}
+          list={list}
+          open={open}
+          onOpen={handleOpen}
+          onClose={handleClose}
+        />
 
         {drinks.map((drink) => (
           <MenuItems drink={drink} />

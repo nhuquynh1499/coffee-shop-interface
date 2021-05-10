@@ -1,13 +1,13 @@
+import { IconButton } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
+import { green } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import EditIcon from "@material-ui/icons/Edit";
 import React from "react";
-import coffeeCup from "../../../assets/images/commons/coffeeCup.jpg";
 import { ObjectUtils } from "../../../utils/object.utils";
-import DeleteDialog from "./DeleteDialog";
-import EditDialog from "./EditDialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,15 +16,15 @@ const useStyles = makeStyles((theme) => ({
   },
   cover: {
     width: 125,
-    height: 125
+    height: 125,
   },
   media: {
-    height: 125
+    height: 125,
   },
-  actions: {
+  iconButton: {
     position: "absolute",
-    right: 0,
-    marginTop: 32,
+    marginLeft: 650,
+    marginTop: -80,
   },
 }));
 const MenuItems = (props) => {
@@ -53,11 +53,12 @@ const MenuItems = (props) => {
             Category: {category.name}
           </Typography>
         </CardContent>
-      </div>
 
-      <div className={classes.actions}>
-        <EditDialog />
-        <DeleteDialog />
+        <div className={classes.iconButton}>
+          <IconButton>
+            <EditIcon style={{ color: green[500] }} fontSize="small" />
+          </IconButton>
+        </div>
       </div>
     </Card>
   );
