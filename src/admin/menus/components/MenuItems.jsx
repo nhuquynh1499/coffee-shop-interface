@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
   },
   iconButton: {
     position: "absolute",
-    marginLeft: 650,
-    marginTop: -80,
+    right: 0,
+    marginTop: 32,
   },
 }));
 const MenuItems = (props) => {
@@ -53,12 +53,12 @@ const MenuItems = (props) => {
             Category: {category.name}
           </Typography>
         </CardContent>
+      </div>
 
-        <div className={classes.iconButton}>
-          <IconButton>
-            <EditIcon style={{ color: green[500] }} fontSize="small" />
-          </IconButton>
-        </div>
+      <div className={classes.iconButton}>
+        <IconButton>
+          <EditIcon style={{ color: green[500] }} fontSize="small" />
+        </IconButton>
       </div>
     </Card>
   );
