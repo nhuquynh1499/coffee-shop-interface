@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
 import Button from "../components/Button";
 import Table from "../components/Table";
@@ -37,6 +37,8 @@ const EmployeePage = () => {
   useEffect(() => {
     dispatch(getListStaff());
   }, []);
+
+  const listStaff = useSelector((state) => state.staffAdmin.listStaff)
 
   const classes = useStyles();
 

@@ -1,15 +1,14 @@
+import { Grid } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
-import Table from "../components/Table";
-import Button from "../components/Button";
-import { Grid } from "@material-ui/core";
-import { useDispatch } from "react-redux";
 import { getUsers } from "../actions";
+import UserItem from "../components/UserItem";
 
 const drawerWidth = 240;
 
@@ -22,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    backgroundColor: "#5FA3B7"
+    backgroundColor: "#5FA3B7",
   },
   content: {
     flexGrow: 1,
@@ -33,10 +32,13 @@ const useStyles = makeStyles((theme) => ({
 
 const UserPage = () => {
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(getUsers());
   }, []);
+
+  const users = useSelector((state) => state.userAdmin.users);
+  console.log({ users });
   const classes = useStyles();
 
   return (
@@ -54,10 +56,12 @@ const UserPage = () => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
-        <Table />
-
-        <Grid container style={{ margin: "auto", marginTop: 24 }}>
-          <Button />
+        <Grid container spacing={8} style={{marginLeft: 0}}>
+          {users.map((user) => (
+            <Grid item style={{marginBottom: -40}}>
+              <UserItem user={user} />
+            </Grid>
+          ))}
         </Grid>
       </main>
     </div>
