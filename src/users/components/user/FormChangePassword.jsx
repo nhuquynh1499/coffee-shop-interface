@@ -1,7 +1,11 @@
+import React from 'react';
 import { Button, Card, makeStyles, TextField } from '@material-ui/core';
 import { Link } from "react-router-dom";
+import { useFormik } from 'formik';
+import { toast } from "react-toastify";
+import * as yup from 'yup';
+import { SignalCellularNullTwoTone } from '@material-ui/icons';
 
-import React from 'react';
 
 const useStyles = makeStyles({
   root: {
@@ -21,34 +25,75 @@ const useStyles = makeStyles({
   }
 });
 
-export default function UserDetail() {
+export default function UserDetail(props) {
   const classes = useStyles();
+  const { infor, handleSubmitFormChangePassword, token } = props;
+
+  const validationSchema = yup.object({
+    oldPassword: yup.string().oneOf([infor.password], "Both password need to be the same").required("This field is required"),
+    newPassword: yup.string().required("This field is required"),
+    confirmPassword: yup.string().oneOf([yup.ref("newPassword")], "Both password need to be the same").required("This field is required"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      oldPassword: '',
+      newPassword: '',
+      confirmPassword: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: values => {
+      console.log(values)
+      if (values.oldPassword === infor.password) {
+
+      } else {
+        toast.error("Mật khẩu")
+      }
+      // handleSubmitFormChangePassword({
+      //   token,
+      //   ...values
+      // })
+    },
+  });
 
   return (
-    <form className="p-20">
+    <form onSubmit={formik.handleSubmit} className="p-20">
+      <p>{infor.password}</p>
       <TextField 
-        id="outlined-basic" 
         label="Old password" 
+        name="oldPassword"
         type="password"
         variant="outlined" 
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         className={classes.input}
+        error={formik.touched.oldPassword && Boolean(formik.errors.oldPassword)}
+        helperText={formik.touched.oldPassword && formik.errors.oldPassword}
       />
       <TextField 
-        id="outlined-basic" 
         label="New password" 
+        name="newPassword"
         type="password"
         variant="outlined" 
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         className={classes.input}
+        error={formik.touched.newPassword && Boolean(formik.errors.newPassword)}
+        helperText={formik.touched.newPassword && formik.errors.newPassword}
       />
       <TextField 
-        id="outlined-basic" 
         label="Confirm new password" 
+        name="confirmPassword"
         type="password"
         variant="outlined" 
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         className={classes.input}
+        error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+        helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
       />
       <div className="flex-right mt-10">
-        <Button className={classes.button} variant="contained" color="primary">Submit</Button>
+        <Button className={classes.button} variant="contained" color="primary" type="submit">Submit</Button>
       </div>
     </form>
   );

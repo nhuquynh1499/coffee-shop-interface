@@ -31,7 +31,7 @@ const validationSchema = yup.object({
 
 export default function UserDetail(props) {
   const classes = useStyles();
-  const { infor, handleSubmitFormDetail,token } = props;
+  const { infor, handleSubmitFormDetail, token } = props;
 
   const formik = useFormik({
     initialValues: {

@@ -26,7 +26,7 @@ export const getInforByToken = (payload) => {
     })
       .then(response => {
         const data = response.data.data.data;
-        console.log(data)
+        console.log(response)
         dispatch({
           type: "SET_INFOR",
           payload: data
@@ -89,5 +89,11 @@ export const sendPostUpdateInfor = (payload) => {
       .catch(error => {
         toast.error("Đã xảy ra lỗi. Vui lòng thử lại!")
       });
+  }
+}
+
+export const sendPostUpdatePassword = (payload) => {
+  return async (dispatch) => {
+    return 
   }
 }

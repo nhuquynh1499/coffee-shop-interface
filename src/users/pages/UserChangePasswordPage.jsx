@@ -2,7 +2,7 @@ import { Card, makeStyles } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { getInforByToken } from '../../redux/action/auth';
+import { getInforByToken, sendPostUpdatePassword } from '../../redux/action/auth';
 import Loading from '../components/ui/Loading';
 import UserChangePassword from '../components/user/FormChangePassword';
 
@@ -28,12 +28,16 @@ export default function UserChangePasswordPage() {
     }
   }, [token]);
 
+  const handleSubmitFormChangePassword = (payload) => {
+    dispatch(sendPostUpdatePassword(payload))
+  }
+
   return (
     <div className="user-detail">
       <div className="mt-30 container">
         <Card className={classes.root}>
           <h1 className="text-center mt-20">Change password</h1>
-          { infor ? <UserChangePassword /> : <Loading />}
+          { infor ? <UserChangePassword infor={infor} handleSubmitFormChangePassword={handleSubmitFormChangePassword} token={token}/> : <Loading />}
         </Card>
       </div>
     </div>
