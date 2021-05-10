@@ -45,6 +45,7 @@ const CategoryPage = (props) => {
 
   const handleSubmit = (payload) => {
     dispatch(postList(payload));
+
   };
 
   return (
