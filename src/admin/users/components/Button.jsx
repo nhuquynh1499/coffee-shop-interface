@@ -47,7 +47,7 @@ export default function ContainedButtons() {
       <Button
         variant="contained"
         color="primary"
-        style={{ width: 400, marginTop: 8, marginBottom: 24 }}
+        style={{ width: 400, marginTop: 8, marginBottom: 24, backgroundColor: "#5FA3B7" }}
         onClick={handleOpen}
       >
         Add User

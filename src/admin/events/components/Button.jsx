@@ -47,7 +47,7 @@ export default function ContainedButtons() {
       <Button
         variant="contained"
         color="primary"
-        style={{ width: 400, marginTop: 0, marginBottom: 16 }}
+        style={{ width: 400, marginTop: 0, marginBottom: 16, backgroundColor: "#5FA3B7" }}
         onClick={handleOpen}
       >
         Add Event Item

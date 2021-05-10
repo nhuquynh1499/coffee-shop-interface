@@ -1,5 +1,5 @@
 const initialState = {
-  list: []
+  list: [],
 };
 
 const listAdminReducer = (state = initialState, action) => {
@@ -7,7 +7,13 @@ const listAdminReducer = (state = initialState, action) => {
     case "GET_LIST": {
       return {
         ...state,
-        list: action.payload
+        list: action.payload,
+      };
+    }
+    case "POST_LIST": {
+      return {
+        ...state,
+        list: action.payload,
       };
     }
     default: {

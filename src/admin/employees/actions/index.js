@@ -1,7 +1,7 @@
 import axios from "axios";
 import { TokenUtils } from "../../../utils/token.utils";
 
-const token = TokenUtils.TOKEN;
+const token = TokenUtils.TOKEN_ADMIN;
 
 export const getListStaff = (payload) => {
   return async (dispatch) => {

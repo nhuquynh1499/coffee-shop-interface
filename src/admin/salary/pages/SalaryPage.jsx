@@ -3,8 +3,10 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
+import { getSalary } from "../actions";
 
 const drawerWidth = 240;
 
@@ -17,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
+    backgroundColor: "#5FA3B7"
   },
   content: {
     flexGrow: 1,
@@ -26,6 +29,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SalaryPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSalary());
+  }, []);
+
+  const salary = useSelector((state) => state.salaryAdmin.salary);
+  console.log({salary})
   const classes = useStyles();
 
   return (
@@ -43,6 +54,7 @@ const SalaryPage = () => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
+        
       </main>
     </div>
   );
