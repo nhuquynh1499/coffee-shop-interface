@@ -78,7 +78,10 @@ export default function UserDetail(props) {
         error={formik.touched.address && Boolean(formik.errors.address)}
         helperText={formik.touched.address && formik.errors.address}
       />
-      <div className="flex-right mt-10">
+      <div className="flex-row mt-10">
+        <Link to="/user/change-password" className="fs-14 text-underline">
+          Change to password
+        </Link>
         <Button className={classes.button} variant="contained" color="primary" type="submit">Submit</Button>
       </div>
     </form>

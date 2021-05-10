@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -11,7 +11,8 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { Typography } from "@material-ui/core";
 import CartItem from "./CartItem";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { changeQuantityItem } from "../../../redux/action/cart";
 
 const useStyles = makeStyles({
   list: {
@@ -20,16 +21,20 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     margin: 10,
+    overflow: "hidden"
   },
   header: {
     marginBottom: 10,
   },
   main: {
-    flexGrow: 1
+    flexGrow: 1,
+    overflowY: 'auto',
+    maxHeight: "calc(100vh - 140px)",
   },
   footer: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    marginTop: 20
   },
   total: {
     flexGrow: 1,
@@ -44,16 +49,28 @@ const useStyles = makeStyles({
 
 const Cart = (props) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const { isCartOpened, toggleDrawer } = props;
   const listInCart = useSelector((state) => state.cart.listInCart);
-  const total = useSelector((state) => state.cart.total);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    sessionStorage.setItem("cart", JSON.stringify(listInCart));
+    console.log(listInCart)
+    const totalInCart = listInCart.reduce((sum, item) => { 
+      return sum + item.quantity*item.price
+    }, 0);
+    setTotal(totalInCart)
+  }, [listInCart])
+
+  const handleChangeQuantity = (payload) => {
+    dispatch(changeQuantityItem(payload))
+  }
 
   const list = () => (
     <div
       className={classes.list}
       role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
     >
       <div className={classes.header}>
         <Typography variant="h4" component="h4" className="text-center">
@@ -63,11 +80,10 @@ const Cart = (props) => {
       <div className={classes.main}>
         <List>
           {listInCart.map((item, index) => (
-            <CartItem item={item} key={index}/>
+            <CartItem item={item} key={index} handleChangeQuantity={handleChangeQuantity}/>
           ))}
         </List>
       </div>
-      {/* <Divider /> */}
       <div className={classes.footer}>
         <div className={classes.total}>
           <p className={classes.totalTitle}>Thành tiền</p>

@@ -6,3 +6,12 @@ export const addToCart = (payload) => {
     })
   };
 };
+
+export const changeQuantityItem = (payload) => {
+  return async (dispatch) => {
+    dispatch({
+      type: "SET_QUANTITY",
+      payload: payload
+    })
+  }
+}

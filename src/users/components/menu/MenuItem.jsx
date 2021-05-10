@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MenuItem(props) {
   const classes = useStyles();
-  const { photo, name, price, handleClickAddToCart } = props;
+  const { _id, photo, name, price, handleClickAddToCart } = props;
 
   return (
     <Card className={classes.root}>
@@ -86,7 +86,7 @@ export default function MenuItem(props) {
           </Typography>
         </CardContent>
         <div className={classes.controls}>
-          <button className={classes.btn} onClick={() => handleClickAddToCart({ photo, name, price })}>Add to card</button>
+          <button className={classes.btn} onClick={() => handleClickAddToCart({ photo, name, price, _id })}>Add to card</button>
         </div>
       </div>
     </Card>

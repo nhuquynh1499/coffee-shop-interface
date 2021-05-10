@@ -30,7 +30,7 @@ export default function UserDetail(props) {
   const { infor, handleSubmitFormChangePassword, token } = props;
 
   const validationSchema = yup.object({
-    oldPassword: yup.string().oneOf([infor.password], "Both password need to be the same").required("This field is required"),
+    oldPassword: yup.string().required("This field is required"),
     newPassword: yup.string().required("This field is required"),
     confirmPassword: yup.string().oneOf([yup.ref("newPassword")], "Both password need to be the same").required("This field is required"),
   });
@@ -45,20 +45,21 @@ export default function UserDetail(props) {
     onSubmit: values => {
       console.log(values)
       if (values.oldPassword === infor.password) {
-
+        handleSubmitFormChangePassword({
+          token,
+          username: infor.username,
+          address: infor.address,
+          phone: infor.phone,
+          password: values.newPassword
+        })
       } else {
-        toast.error("Mật khẩu")
+        toast.error("Old password is wrong! Please check again.")
       }
-      // handleSubmitFormChangePassword({
-      //   token,
-      //   ...values
-      // })
     },
   });
 
   return (
     <form onSubmit={formik.handleSubmit} className="p-20">
-      <p>{infor.password}</p>
       <TextField 
         label="Old password" 
         name="oldPassword"
