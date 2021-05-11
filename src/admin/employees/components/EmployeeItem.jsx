@@ -1,11 +1,9 @@
 import { Divider } from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import { green, red } from "@material-ui/core/colors";
+import { green } from "@material-ui/core/colors";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -13,11 +11,12 @@ import EditIcon from "@material-ui/icons/Edit";
 import React from "react";
 import { DateFormat, DateUtils } from "../../../utils";
 import avatar from "../../svg/avatar.jpg";
+import PermissionDialog from "../dialogs/PermissionDialog";
 
 const useStyles = makeStyles(() => ({
   root: {
     width: 300,
-    height: 250,
+    height: 310,
   },
   media: {
     height: 0,
@@ -29,27 +28,22 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const UserItem = (props) => {
-  const { user } = props;
+const EmployeeItem = (props) => {
+  const { staff } = props;
 
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardHeader
-        avatar={
-          <Avatar
-            className={classes.avatar}
-            src={avatar}
-          />
-        }
+        avatar={<Avatar className={classes.avatar} src={avatar} />}
         title={
           <Typography variant="h6" style={{ fontWeight: 600 }}>
-            {user.username}
+            {staff.username}
           </Typography>
         }
         subheader={
-          <div>{DateUtils.format(user.createdAt, DateFormat.YYYY_MM_DD)}</div>
+          <div>{DateUtils.format(staff.createdAt, DateFormat.YYYY_MM_DD)}</div>
         }
         action={
           <IconButton>
@@ -66,14 +60,22 @@ const UserItem = (props) => {
       <CardContent>
         <Typography variant="subtitle2">Phone</Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          {user.phone}
+          {staff.phone}
         </Typography>
+
         <Typography variant="subtitle2">Address</Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          {user.address}
+          {staff.address !== "" ? staff.address : "N/A"}
         </Typography>
+
+        <Typography variant="subtitle2">Role</Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {staff.role}
+        </Typography>
+
+        <PermissionDialog staff={staff} />
       </CardContent>
     </Card>
   );
 };
-export default UserItem;
+export default EmployeeItem;

@@ -19,6 +19,7 @@ import MenuPage from "../users/pages/MenuPage";
 import UserDetailPage from "../users/pages/UserDetailPage";
 import UserChangePasswordPage from "../users/pages/UserChangePasswordPage";
 import { PrivateRoute } from "./PrivateRoute";
+import RolePage from "../admin/roles/pages/RolePage";
 
 const routes = () => {
   return (
@@ -28,7 +29,11 @@ const routes = () => {
       <Route path="/signup" component={SignupPage} />
       <PrivateRoute path="/menu" component={MenuPage} />
       <PrivateRoute exact path="/user/detail" component={UserDetailPage} />
-      <PrivateRoute exact path="/user/change-password" component={UserChangePasswordPage} />
+      <PrivateRoute
+        exact
+        path="/user/change-password"
+        component={UserChangePasswordPage}
+      />
 
       <Route path="/admin/summary" component={Admin} />
       <Route path="/admin/menu" component={Menu} />
@@ -40,6 +45,7 @@ const routes = () => {
       <Route path="/admin/feedbacks" component={FeedbackPage} />
       <Route path="/admin/events" component={EventPage} />
       <Route path="/admin/orders" component={OrderPage} />
+      <Route path="/admin/roles" component={RolePage} />
     </Switch>
   );
 };
