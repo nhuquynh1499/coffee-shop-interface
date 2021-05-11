@@ -29,7 +29,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const EmployeeItem = (props) => {
-  const { staff } = props;
+  const { staff, roles } = props;
 
   const classes = useStyles();
 
@@ -70,7 +70,15 @@ const EmployeeItem = (props) => {
 
         <Typography variant="subtitle2">Role</Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          {staff.role}
+          {roles.map((role) => {
+            if (role._id === staff.role) {
+              return role.name;
+            }
+            if (staff.role === "000000000000000000000000") {
+              return "N/A";
+            }
+            return null;
+          })}
         </Typography>
 
         <PermissionDialog staff={staff} />

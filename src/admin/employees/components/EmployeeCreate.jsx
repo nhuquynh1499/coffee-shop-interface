@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const EmployeeCreate = (props) => {
-  const { open } = props;
+  const { open, roles } = props;
   const { onSubmit, onOpen, onClose } = props;
 
   const classes = useStyles();
@@ -59,7 +59,7 @@ const EmployeeCreate = (props) => {
             </Toolbar>
           </AppBar>
 
-          <EmployeeCreateDialog onSubmit={onSubmit} />
+          <EmployeeCreateDialog onSubmit={onSubmit} roles={roles} />
         </Dialog>
       )}
     </React.Fragment>

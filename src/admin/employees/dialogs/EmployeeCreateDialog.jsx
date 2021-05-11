@@ -1,8 +1,18 @@
-import { Button, Grid, TextField } from "@material-ui/core";
+import {
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Grid,
+  Radio,
+  RadioGroup,
+  TextField,
+} from "@material-ui/core";
 import { useFormik } from "formik";
 import React from "react";
 
 const EmployeeCreateDialog = (props) => {
+  const { roles } = props;
   const { onSubmit } = props;
 
   const formik = useFormik({
@@ -10,8 +20,8 @@ const EmployeeCreateDialog = (props) => {
       username: "",
       password: "",
       phone: "",
-      role: "606bd3723022fa57d8e5154a",
       address: "",
+      role: "",
     },
     onSubmit: (values) => {
       onSubmit(values);
@@ -70,27 +80,15 @@ const EmployeeCreateDialog = (props) => {
             />
           </Grid>
 
-          <Grid item xs={12} style={{ marginBottom: 16 }}>
-            <TextField
-              name="role"
-              type="text"
-              label="Role"
-              variant="outlined"
-              fullWidth
-              value={formik.values.role}
-              onChange={formik.handleChange}
-            />
-          </Grid>
-
-          {/* <FormControl component="fieldset">
-            <FormLabel component="legend">Category</FormLabel>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Role</FormLabel>
             <Grid item xs={12}>
-              {list.map((item) => (
+              {roles.map((item) => (
                 <React.Fragment>
                   <RadioGroup
-                    aria-label="Category"
-                    name="category"
-                    value={formik.values.category}
+                    aria-label="Roles"
+                    name="role"
+                    value={formik.values.role}
                     onChange={formik.handleChange}
                   >
                     <FormControlLabel
@@ -102,7 +100,7 @@ const EmployeeCreateDialog = (props) => {
                 </React.Fragment>
               ))}
             </Grid>
-          </FormControl> */}
+          </FormControl>
         </Grid>
 
         <Button

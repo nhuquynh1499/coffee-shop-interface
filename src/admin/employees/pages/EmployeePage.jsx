@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
+import { getRoles } from "../../roles/actions";
 import { getListStaff, postStaff } from "../actions";
 import EmployeeCreate from "../components/EmployeeCreate";
 import EmployeeItem from "../components/EmployeeItem";
@@ -40,6 +41,10 @@ const EmployeePage = () => {
     dispatch(getListStaff());
   }, []);
 
+  useEffect(() => {
+    dispatch(getRoles());
+  }, []);
+
   const handleSubmit = (payload) => {
     dispatch(postStaff(payload));
     setOpen(false);
@@ -54,6 +59,8 @@ const EmployeePage = () => {
   };
 
   const listStaff = useSelector((state) => state.staffAdmin.listStaff);
+
+  const roles = useSelector((state) => state.roleAdmin.roles);
 
   const classes = useStyles();
 
@@ -74,6 +81,7 @@ const EmployeePage = () => {
       <main className={classes.content}>
         <EmployeeCreate
           onSubmit={handleSubmit}
+          roles={roles}
           open={open}
           onOpen={handleOpen}
           onClose={handleClose}
@@ -82,7 +90,7 @@ const EmployeePage = () => {
         <Grid container spacing={2}>
           {listStaff.map((staff) => (
             <Grid item xs={3}>
-              <EmployeeItem staff={staff} />
+              <EmployeeItem staff={staff} roles={roles} />
             </Grid>
           ))}
         </Grid>
