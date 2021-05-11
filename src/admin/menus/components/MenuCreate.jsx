@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import React from "react";
-import CategoryCreateDialog from "../dialogs/CategoryCreateDialog";
+import MenuCreateDialog from "../dialogs/MenuCreateDialog";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CategoryCreate = (props) => {
-  const { open } = props;
+const MenuCreate = (props) => {
+  const { open, list } = props;
   const { onSubmit, onOpen, onClose } = props;
 
   const classes = useStyles();
@@ -39,7 +39,7 @@ const CategoryCreate = (props) => {
           }}
           open={open}
         >
-          Add Category
+          Add Menu
         </Button>
       </Grid>
 
@@ -55,14 +55,14 @@ const CategoryCreate = (props) => {
               >
                 <CloseIcon />
               </IconButton>
-              <Typography variant="h6">Create Category</Typography>
+              <Typography variant="h6">Create Menu</Typography>
             </Toolbar>
           </AppBar>
 
-          <CategoryCreateDialog onSubmit={onSubmit} />
+          <MenuCreateDialog onSubmit={onSubmit} list={list} />
         </Dialog>
       )}
     </React.Fragment>
   );
 };
-export default CategoryCreate;
+export default MenuCreate;

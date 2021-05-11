@@ -1,12 +1,11 @@
-import { Grid } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import React from "react";
 
 const CardActionsCate = () => {
   return (
-    <React.Fragment>
-      <Grid container>
-      </Grid>
-    </React.Fragment>
+    <Button size="small" color="primary">
+      Edit
+    </Button>
   );
 };
 

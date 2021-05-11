@@ -10,6 +10,14 @@ const staffAdminReducer = (state = initialState, action) => {
         listStaff: action.payload,
       };
     }
+    case "POST_STAFF": {
+      const staffData = [...state.listStaff];
+      staffData.push(action.payload);
+      return {
+        ...state,
+        listStaff: staffData,
+      };
+    }
 
     default: {
       return state;

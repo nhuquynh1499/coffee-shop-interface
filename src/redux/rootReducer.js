@@ -5,6 +5,7 @@ import eventAdminReducer from "../admin/events/reducers/eventAdminReducer";
 import feedbackAdminReducer from "../admin/feedbacks/reducers/feedbackAdminReducer";
 import menuAdminReducer from "../admin/menus/reducers/menuAdminReducer";
 import orderAdminReducer from "../admin/orders/reducers/orderAdminReducer";
+import roleAdminReducer from "../admin/roles/reducers/roleAdminReducer";
 import salaryAdminReducer from "../admin/salary/reducers/salaryAdminReducer";
 import userAdminReducer from "../admin/users/reducers/userAdminReducer";
 import authReducer from "./reducer/auth";
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   eventAdmin: eventAdminReducer,
   feedbackAdmin: feedbackAdminReducer,
   salaryAdmin: salaryAdminReducer,
+  roleAdmin: roleAdminReducer,
   cart: cartReducer,
 });
 

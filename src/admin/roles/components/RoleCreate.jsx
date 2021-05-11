@@ -10,16 +10,16 @@ import {
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import React from "react";
-import CategoryCreateDialog from "../dialogs/CategoryCreateDialog";
+import RoleCreateDialog from "../dialogs/RoleCreateDialog";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   appBar: {
     position: "relative",
     backgroundColor: "#5FA3B7",
   },
 }));
 
-const CategoryCreate = (props) => {
+const RoleCreate = (props) => {
   const { open } = props;
   const { onSubmit, onOpen, onClose } = props;
 
@@ -39,7 +39,7 @@ const CategoryCreate = (props) => {
           }}
           open={open}
         >
-          Add Category
+          Add Role
         </Button>
       </Grid>
 
@@ -55,14 +55,14 @@ const CategoryCreate = (props) => {
               >
                 <CloseIcon />
               </IconButton>
-              <Typography variant="h6">Create Category</Typography>
+              <Typography variant="h6">Create Role</Typography>
             </Toolbar>
           </AppBar>
 
-          <CategoryCreateDialog onSubmit={onSubmit} />
+          <RoleCreateDialog onSubmit={onSubmit} />
         </Dialog>
       )}
     </React.Fragment>
   );
 };
-export default CategoryCreate;
+export default RoleCreate;

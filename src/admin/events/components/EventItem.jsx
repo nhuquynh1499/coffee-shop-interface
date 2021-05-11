@@ -1,15 +1,16 @@
+import { IconButton } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Chip from "@material-ui/core/Chip";
+import { green } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import AccessAlarmIcon from "@material-ui/icons/AccessAlarm";
+import EditIcon from "@material-ui/icons/Edit";
 import EventOutlinedIcon from "@material-ui/icons/EventOutlined";
 import React from "react";
 import { DateFormat, DateUtils } from "../../../utils";
-import DeleteDialog from "../components/DeleteDialog";
-import EditDialog from "../components/EditDialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   actions: {
     position: "absolute",
     right: 0,
-    marginTop: 48
+    marginTop: 48,
   },
   icon: {
     width: 100,
@@ -37,6 +38,11 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flex: "1 0 auto",
+  },
+  iconButton: {
+    position: "absolute",
+    right: 0,
+    marginTop: 48,
   },
 }));
 
@@ -77,9 +83,10 @@ const EventItem = (props) => {
         </CardContent>
       </div>
 
-      <div className={classes.actions}>
-        <EditDialog />
-        <DeleteDialog />
+      <div className={classes.iconButton}>
+        <IconButton>
+          <EditIcon style={{ color: green[500] }} fontSize="small" />
+        </IconButton>
       </div>
     </Card>
   );

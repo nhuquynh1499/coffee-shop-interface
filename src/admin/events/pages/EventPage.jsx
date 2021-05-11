@@ -1,14 +1,13 @@
-import { Grid } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
-import { getEvents } from "../actions";
-import Button from "../components/Button";
+import { getEvents, postEvent } from "../actions";
+import EventCreate from "../components/EventCreate";
 import EventItem from "../components/EventItem";
 
 const drawerWidth = 240;
@@ -23,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    backgroundColor: "#5FA3B7"
+    backgroundColor: "#5FA3B7",
   },
   content: {
     flexGrow: 1,
@@ -33,7 +32,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EventPage = () => {
+  const [open, setOpen] = useState(false);
+
   const dispatch = useDispatch();
+
+  const classes = useStyles();
 
   useEffect(() => {
     dispatch(getEvents());
@@ -41,7 +44,18 @@ const EventPage = () => {
 
   const events = useSelector((state) => state.eventAdmin.events);
 
-  const classes = useStyles();
+  const handleSubmit = (payload) => {
+    dispatch(postEvent(payload));
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div className={classes.root}>
@@ -58,13 +72,16 @@ const EventPage = () => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
+        <EventCreate
+          onSubmit={handleSubmit}
+          open={open}
+          onOpen={handleOpen}
+          onClose={handleClose}
+        />
+
         {events.map((item) => (
           <EventItem key={item} event={item} />
         ))}
-
-        <Grid container style={{ margin: "auto" }}>
-          <Button />
-        </Grid>
       </main>
     </div>
   );

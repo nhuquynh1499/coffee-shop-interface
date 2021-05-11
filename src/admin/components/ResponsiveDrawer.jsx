@@ -59,6 +59,9 @@ function ResponsiveDrawer(props) {
     if (text === "Orders") {
       return "/admin/orders";
     }
+    if (text === "Roles") {
+      return "/admin/roles";
+    }
     return "/admin/summary";
   };
 
@@ -81,11 +84,12 @@ function ResponsiveDrawer(props) {
           "Bevarages",
           "Orders",
           "Events",
-          "Feedbacks",
-          "Salary",
           "Users",
           "Employees",
+          "Roles",
+          "Feedbacks",
           "Calendar",
+          "Salary",
         ].map((text) => (
           <ListItem button key={text}>
             <ListItemIcon>

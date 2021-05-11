@@ -10,17 +10,17 @@ import {
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import React from "react";
-import CategoryCreateDialog from "../dialogs/CategoryCreateDialog";
+import EmployeeCreateDialog from "../dialogs/EmployeeCreateDialog";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   appBar: {
     position: "relative",
     backgroundColor: "#5FA3B7",
   },
 }));
 
-const CategoryCreate = (props) => {
-  const { open } = props;
+const EmployeeCreate = (props) => {
+  const { open, roles } = props;
   const { onSubmit, onOpen, onClose } = props;
 
   const classes = useStyles();
@@ -39,7 +39,7 @@ const CategoryCreate = (props) => {
           }}
           open={open}
         >
-          Add Category
+          Add Staff
         </Button>
       </Grid>
 
@@ -55,14 +55,14 @@ const CategoryCreate = (props) => {
               >
                 <CloseIcon />
               </IconButton>
-              <Typography variant="h6">Create Category</Typography>
+              <Typography variant="h6">Create Staff</Typography>
             </Toolbar>
           </AppBar>
 
-          <CategoryCreateDialog onSubmit={onSubmit} />
+          <EmployeeCreateDialog onSubmit={onSubmit} roles={roles} />
         </Dialog>
       )}
     </React.Fragment>
   );
 };
-export default CategoryCreate;
+export default EmployeeCreate;

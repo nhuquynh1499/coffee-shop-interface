@@ -10,6 +10,14 @@ const eventAdminReducer = (state = initialState, action) => {
         events: action.payload,
       };
     }
+    case "POST_EVENT": {
+      const eventData = [...state.events];
+      eventData.push(action.payload);
+      return {
+        ...state,
+        events: eventData,
+      };
+    }
     default: {
       return state;
     }

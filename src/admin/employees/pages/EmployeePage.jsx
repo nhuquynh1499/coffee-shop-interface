@@ -4,12 +4,13 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
-import Button from "../components/Button";
-import Table from "../components/Table";
-import { getListStaff } from "../actions";
+import { getRoles } from "../../roles/actions";
+import { getListStaff, postStaff } from "../actions";
+import EmployeeCreate from "../components/EmployeeCreate";
+import EmployeeItem from "../components/EmployeeItem";
 
 const drawerWidth = 240;
 
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    backgroundColor: "#5FA3B7"
+    backgroundColor: "#5FA3B7",
   },
   content: {
     flexGrow: 1,
@@ -32,11 +33,34 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EmployeePage = () => {
+  const [open, setOpen] = useState(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getListStaff());
   }, []);
+
+  useEffect(() => {
+    dispatch(getRoles());
+  }, []);
+
+  const handleSubmit = (payload) => {
+    dispatch(postStaff(payload));
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const listStaff = useSelector((state) => state.staffAdmin.listStaff);
+
+  const roles = useSelector((state) => state.roleAdmin.roles);
 
   const classes = useStyles();
 
@@ -55,10 +79,20 @@ const EmployeePage = () => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
-        <Table />
+        <EmployeeCreate
+          onSubmit={handleSubmit}
+          roles={roles}
+          open={open}
+          onOpen={handleOpen}
+          onClose={handleClose}
+        />
 
-        <Grid container style={{ margin: "auto", marginTop: 24 }}>
-          <Button />
+        <Grid container spacing={2}>
+          {listStaff.map((staff) => (
+            <Grid item xs={3}>
+              <EmployeeItem staff={staff} roles={roles} />
+            </Grid>
+          ))}
         </Grid>
       </main>
     </div>

@@ -4,11 +4,12 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
-import { getUsers } from "../actions";
-import UserItem from "../components/UserItem";
+import { getPermissions, getRoles, postRole } from "../actions";
+import RoleItem from "../components/RoleItem";
+import RoleCreate from "../components/RoleCreate";
 
 const drawerWidth = 240;
 
@@ -30,15 +31,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UserPage = () => {
+const RolePage = () => {
+  const [open, setOpen] = useState(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUsers());
+    dispatch(getRoles());
   }, []);
 
-  const users = useSelector((state) => state.userAdmin.users);
-  console.log({ users });
+  useEffect(() => {
+    dispatch(getPermissions());
+  }, []);
+
+  const handleSubmit = (payload) => {
+    dispatch(postRole(payload));
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const roles = useSelector((state) => state.roleAdmin.roles);
+
+  const permissions = useSelector((state) => state.roleAdmin.permissions);
+  console.log({permissions})
+
   const classes = useStyles();
 
   return (
@@ -48,7 +71,7 @@ const UserPage = () => {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
-            User Managements
+            Role Managements
           </Typography>
         </Toolbar>
       </AppBar>
@@ -56,10 +79,17 @@ const UserPage = () => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
+        <RoleCreate
+          onSubmit={handleSubmit}
+          roles={roles}
+          open={open}
+          onOpen={handleOpen}
+          onClose={handleClose}
+        />
         <Grid container spacing={2}>
-          {users.map((user) => (
+          {roles.map((role) => (
             <Grid item xs={3}>
-              <UserItem user={user} />
+              <RoleItem role={role} />
             </Grid>
           ))}
         </Grid>
@@ -67,4 +97,4 @@ const UserPage = () => {
     </div>
   );
 };
-export default UserPage;
+export default RolePage;
