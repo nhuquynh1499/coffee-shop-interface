@@ -16,6 +16,7 @@ import OrderPage from "../admin/orders/pages/OrderPage";
 import EventPage from "../admin/events/pages/EventPage";
 
 import MenuPage from "../users/pages/MenuPage";
+import ConfirmOrderPage from "../users/pages/ConfirmOrderPage";
 import UserDetailPage from "../users/pages/UserDetailPage";
 import UserChangePasswordPage from "../users/pages/UserChangePasswordPage";
 import { PrivateRoute } from "./PrivateRoute";
@@ -27,6 +28,7 @@ const routes = () => {
       <Route path="/login" component={LoginPage} />
       <Route path="/signup" component={SignupPage} />
       <PrivateRoute path="/menu" component={MenuPage} />
+      <PrivateRoute path="/order" component={ConfirmOrderPage} />
       <PrivateRoute exact path="/user/detail" component={UserDetailPage} />
       <PrivateRoute exact path="/user/change-password" component={UserChangePasswordPage} />
 
