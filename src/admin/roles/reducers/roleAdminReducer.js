@@ -1,5 +1,6 @@
 const initialState = {
   roles: [],
+  permissions: [],
 };
 
 const roleAdminReducer = (state = initialState, action) => {
@@ -10,7 +11,20 @@ const roleAdminReducer = (state = initialState, action) => {
         roles: action.payload,
       };
     }
-
+    case "POST_ROLE": {
+      const roleData = [...state.roles];
+      roleData.push(action.payload);
+      return {
+        ...state,
+        roles: roleData,
+      };
+    }
+    case "GET_PERMISSIONS": {
+      return {
+        ...state,
+        permissions: action.payload,
+      };
+    }
     default: {
       return state;
     }

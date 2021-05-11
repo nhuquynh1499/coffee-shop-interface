@@ -27,3 +27,53 @@ export const getRoles = (payload) => {
       });
   };
 };
+
+export const postRole = (payload) => {
+  return async (dispatch) => {
+    return axios
+      .post(
+        "https://salty-dawn-54578.herokuapp.com/staffRole",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+        payload
+      )
+      .then((response) => {
+        const data = response.data.data.staffRoles;
+        dispatch({
+          type: "POST_ROLE",
+          payload: data,
+        });
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+};
+
+export const getPermissions = (payload) => {
+  return async (dispatch) => {
+    return axios
+      .get(
+        "https://salty-dawn-54578.herokuapp.com/staffRole/permissions",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+        payload
+      )
+      .then((response) => {
+        const data = response.data.data.permissions;
+        dispatch({
+          type: "GET_PERMISSIONS",
+          payload: data,
+        });
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+};

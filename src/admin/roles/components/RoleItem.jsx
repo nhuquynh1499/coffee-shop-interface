@@ -54,6 +54,7 @@ const RoleItem = (props) => {
 
       <CardContent>
         <Typography variant="subtitle1">Permissions</Typography>
+        
         {ObjectUtils.get(role, "permissions", []).map((permission) => (
           <React.Fragment>
             <Chip label={permission} style={{marginBottom: 8}} />

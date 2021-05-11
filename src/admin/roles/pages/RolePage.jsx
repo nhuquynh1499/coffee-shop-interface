@@ -7,8 +7,9 @@ import Typography from "@material-ui/core/Typography";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ResponsiveDrawer from "../../components/ResponsiveDrawer";
-import { getRoles } from "../actions";
+import { getPermissions, getRoles, postRole } from "../actions";
 import RoleItem from "../components/RoleItem";
+import RoleCreate from "../components/RoleCreate";
 
 const drawerWidth = 240;
 
@@ -39,21 +40,27 @@ const RolePage = () => {
     dispatch(getRoles());
   }, []);
 
-  //   const handleSubmit = (payload) => {
-  //     dispatch(postStaff(payload));
-  //     setOpen(false);
-  //   };
+  useEffect(() => {
+    dispatch(getPermissions());
+  }, []);
 
-  //   const handleOpen = () => {
-  //     setOpen(!open);
-  //   };
+  const handleSubmit = (payload) => {
+    dispatch(postRole(payload));
+    setOpen(false);
+  };
 
-  //   const handleClose = () => {
-  //     setOpen(false);
-  //   };
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const roles = useSelector((state) => state.roleAdmin.roles);
-  console.log({ roles });
+
+  const permissions = useSelector((state) => state.roleAdmin.permissions);
+  console.log({permissions})
 
   const classes = useStyles();
 
@@ -72,6 +79,13 @@ const RolePage = () => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
+        <RoleCreate
+          onSubmit={handleSubmit}
+          roles={roles}
+          open={open}
+          onOpen={handleOpen}
+          onClose={handleClose}
+        />
         <Grid container spacing={2}>
           {roles.map((role) => (
             <Grid item xs={3}>
