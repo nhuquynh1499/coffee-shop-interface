@@ -22,6 +22,8 @@ import UserChangePasswordPage from "../users/pages/UserChangePasswordPage";
 import { PrivateRoute } from "./PrivateRoute";
 import RolePage from "../admin/roles/pages/RolePage";
 
+import StaffLogin from "../staff/login/pages/Login";
+
 const routes = () => {
   return (
     <Switch>
@@ -48,6 +50,8 @@ const routes = () => {
       <Route path="/admin/events" component={EventPage} />
       <Route path="/admin/orders" component={OrderPage} />
       <Route path="/admin/roles" component={RolePage} />
+
+      <Route path="/staff/login" component={StaffLogin} />
     </Switch>
   );
 };

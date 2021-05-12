@@ -43,14 +43,12 @@ export default function UserDetail(props) {
     },
     validationSchema: validationSchema,
     onSubmit: values => {
-      console.log(values)
       if (values.oldPassword === infor.password) {
         handleSubmitFormChangePassword({
           token,
-          username: infor.username,
-          address: infor.address,
-          phone: infor.phone,
-          password: values.newPassword
+          password: values.oldPassword,
+          newPassword: values.newPassword,
+          newPasswordAgain: values.confirmPassword
         })
       } else {
         toast.error("Old password is wrong! Please check again.")

@@ -19,6 +19,7 @@ export default function UserChangePasswordPage() {
   let history = useHistory();
   const token = useSelector((state) => state.auth.token);
   const infor = useSelector((state) => state.auth.infor);
+  const isDoneChangePasword = useSelector((state) => state.auth.isDoneChangePasword);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,6 +28,13 @@ export default function UserChangePasswordPage() {
       history.push("/")
     }
   }, [token]);
+
+  useEffect(() => {
+    console.log(infor)
+    if (isDoneChangePasword) {
+      history.push("/")
+    }
+  }, [isDoneChangePasword])
 
   const handleSubmitFormChangePassword = (payload) => {
     dispatch(sendPostUpdatePassword(payload))
