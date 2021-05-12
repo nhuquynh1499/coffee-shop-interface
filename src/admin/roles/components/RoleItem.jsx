@@ -35,7 +35,7 @@ const useStyles = makeStyles(() => ({
       if (name === "bartender") {
         return "#4caf50";
       }
-      return "5fa3b7";
+      return "#004d7f";
     },
     color: "white",
   },
@@ -43,6 +43,7 @@ const useStyles = makeStyles(() => ({
 
 const RoleItem = (props) => {
   const { role } = props;
+  console.log({role})
 
   const classes = useStyles({ role });
 

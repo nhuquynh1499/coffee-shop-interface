@@ -31,17 +31,13 @@ export const getRoles = (payload) => {
 export const postRole = (payload) => {
   return async (dispatch) => {
     return axios
-      .post(
-        "https://salty-dawn-54578.herokuapp.com/staffRole",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      .post("https://salty-dawn-54578.herokuapp.com/staffRole", payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-        payload
-      )
+      })
       .then((response) => {
-        const data = response.data.data.staffRoles;
+        const data = response.data.data.role;
         dispatch({
           type: "POST_ROLE",
           payload: data,

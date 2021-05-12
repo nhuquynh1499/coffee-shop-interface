@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const RoleCreate = (props) => {
-  const { open } = props;
+  const { open, permissions } = props;
   const { onSubmit, onOpen, onClose } = props;
 
   const classes = useStyles();
@@ -59,7 +59,7 @@ const RoleCreate = (props) => {
             </Toolbar>
           </AppBar>
 
-          <RoleCreateDialog onSubmit={onSubmit} />
+          <RoleCreateDialog onSubmit={onSubmit} permissions={permissions} />
         </Dialog>
       )}
     </React.Fragment>
