@@ -8,7 +8,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import AccessAlarmIcon from "@material-ui/icons/AccessAlarm";
 import EditIcon from "@material-ui/icons/Edit";
-import EventOutlinedIcon from "@material-ui/icons/EventOutlined";
 import React from "react";
 import { DateFormat, DateUtils } from "../../../utils";
 
@@ -54,7 +53,10 @@ const EventItem = (props) => {
   return (
     <Card className={classes.root}>
       <CardMedia>
-        <EventOutlinedIcon className={classes.icon} />
+        <img
+          src="https://image.flaticon.com/icons/png/512/2558/2558944.png"
+          className={classes.icon}
+        />
       </CardMedia>
 
       <div className={classes.details}>
