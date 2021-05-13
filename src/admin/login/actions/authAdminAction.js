@@ -11,6 +11,10 @@ export const sendPostLogin = (payload) => {
           type: "SET_ADMIN_LOGIN",
           payload: data
         })
+        dispatch({
+          type: "SET_ADMIN_INFOR",
+          payload: data
+        })
         toast.success("Đăng nhập thành công! Chào mừng bạn đã trở lại.")
       })
       .catch(error => {

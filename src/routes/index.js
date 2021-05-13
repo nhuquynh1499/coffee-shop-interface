@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 
 import Admin from "../admin/Admin";
 import AdminLoginPage from "../admin/login/pages/Login";
+import AdminInforPage from "../admin/infor/pages/Infor";
 import AdminMenuPage from "../admin/menus/pages/Menu";
 import EmployeePage from "../admin/employees/pages/EmployeePage";
 import UserPage from "../admin/users/pages/UserPage";
@@ -47,6 +48,7 @@ const routes = () => {
       <Route path="/admin/orders" component={OrderPage} />
       <Route path="/admin/roles" component={RolePage} />
       <Route path="/admin/login" component={AdminLoginPage} />
+      <Route path="/admin/infor" component={AdminInforPage} />
     </Switch>
   );
 };

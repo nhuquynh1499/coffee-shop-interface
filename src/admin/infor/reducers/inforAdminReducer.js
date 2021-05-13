@@ -1,16 +1,22 @@
 const initialState = {
-  token: localStorage.getItem("token") || null,
+  infor: null,
 };
 
-const authReducer = (state = initialState, action) => {
+const inforAdminReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_ADMIN_LOGIN": {
-      const { token } = action.payload;
-      localStorage.setItem("token", token);
+    case "SET_ADMIN_INFOR": {
+      const { _id, username, phone, address, avatar, permissions } = action.payload;
 
       return {
         ...state,
-        token,
+        infor: {
+          userId: _id || (state.infor && state.infor.userId),
+          username: username || (state.infor && state.infor.username), 
+          phone: phone || (state.infor && state.infor.phone), 
+          address: address || (state.infor && state.infor.address), 
+          avatar: avatar || (state.infor && state.infor.avatar), 
+          permissions: permissions || (state.infor && state.infor.permissions)
+        }
       }
     }
 //     case "SET_INFOR": {
@@ -49,4 +55,4 @@ const authReducer = (state = initialState, action) => {
   }
 }
 
-export default authReducer;
+export default inforAdminReducer;
