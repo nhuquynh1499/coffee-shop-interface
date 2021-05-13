@@ -8,6 +8,7 @@ import orderAdminReducer from "../admin/orders/reducers/orderAdminReducer";
 import roleAdminReducer from "../admin/roles/reducers/roleAdminReducer";
 import salaryAdminReducer from "../admin/salary/reducers/salaryAdminReducer";
 import userAdminReducer from "../admin/users/reducers/userAdminReducer";
+import authAdminReducer from "../admin/login/reducers/authAdminReducer";
 import authReducer from "./reducer/auth";
 import cartReducer from "./reducer/cart";
 import drinkReducer from "./reducer/drink";
@@ -15,6 +16,7 @@ import drinkReducer from "./reducer/drink";
 const rootReducer = combineReducers({
   auth: authReducer,
   drink: drinkReducer,
+  cart: cartReducer,
   listAdmin: listAdminReducer,
   drinkAdmin: menuAdminReducer,
   staffAdmin: staffAdminReducer,
@@ -24,7 +26,7 @@ const rootReducer = combineReducers({
   feedbackAdmin: feedbackAdminReducer,
   salaryAdmin: salaryAdminReducer,
   roleAdmin: roleAdminReducer,
-  cart: cartReducer,
+  authAdmin: authAdminReducer,
 });
 
 export default rootReducer;

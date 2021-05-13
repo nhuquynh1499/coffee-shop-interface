@@ -1,24 +1,24 @@
-// const initialState = {
-//   token: localStorage.getItem("token") || null,
-//   status: null,
-//   infor: null,
-// };
+const initialState = {
+  token: localStorage.getItem("token") || null,
+  status: null,
+  infor: null,
+};
 
-// const authReducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     case "SET_STAFF_LOGIN": {
-//       const { _id, token, username, phone, address, avatar, password } = action.payload;
-//       localStorage.setItem("token", token);
+const authReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "SET_ADMIN_LOGIN": {
+      const { _id, token, username, phone, address, avatar, permissions } = action.payload;
+      localStorage.setItem("token", token);
 
-//       return {
-//         ...state,
-//         token: token,
-//         infor: {
-//           userId: _id,
-//           username, phone, address, avatar, password
-//         }
-//       }
-//     }
+      return {
+        ...state,
+        token: token,
+        infor: {
+          userId: _id,
+          username, phone, address, avatar, permissions
+        }
+      }
+    }
 //     case "SET_INFOR": {
 //       const { username, phone, address, avatar, password, _id } = action.payload;
 
@@ -49,10 +49,10 @@
 //         status: null,
 //       }
 //     }
-//     default: {
-//       return state;
-//     }
-//   }
-// }
+    default: {
+      return state;
+    }
+  }
+}
 
-// export default authReducer;
+export default authReducer;

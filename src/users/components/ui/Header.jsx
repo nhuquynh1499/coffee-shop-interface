@@ -27,6 +27,7 @@ export default function Header() {
   const listInCart = useSelector((state) => state.cart.listInCart);
   const token = useSelector((state) => state.auth.token);
   const infor = useSelector((state) => state.auth.infor);
+  const isUser = (pathname.indexOf("admin") === -1 ? true : false);
 
   const toggleDrawer = (open) => (event) => {
     if ( event.type === "keydown" && (event.key === "Tab" || event.key === "Shift") )
@@ -60,6 +61,8 @@ export default function Header() {
 
   return (
     <div className="header bg-white">
+      { isUser &&
+      <div>
       <div className="container h-100">
         <div className="h-100 pl-20 pr-20 flex-middle">
           <div className="h-100 mr-30">
@@ -112,6 +115,8 @@ export default function Header() {
         </div>
       </div>
       <Cart isCartOpened={isCartOpened} toggleDrawer={toggleDrawer}></Cart>
+      </div>
+      }
     </div>
   );
 }

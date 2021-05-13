@@ -97,7 +97,7 @@ function ResponsiveDrawer(props) {
             </ListItemIcon>
             <Link
               to={handleTo(text)}
-              class="text-bold text-black ml-5"
+              className="text-bold text-black ml-5"
               style={{ textDecoration: "none" }}
             >
               {text}
