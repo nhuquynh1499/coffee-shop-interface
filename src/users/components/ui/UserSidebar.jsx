@@ -7,97 +7,83 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import PropTypes from "prop-types";
-import React from "react";
-import { Link } from "react-router-dom";
-import logo from "../../../src/assets/images/commons/logo.png";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import PersonIcon from '@material-ui/icons/Person';
+import LockIcon from '@material-ui/icons/Lock';
+import HistoryIcon from '@material-ui/icons/History';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
+    backgroundColor: '#ffffff',
+    boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);',
     [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
     },
   },
-  toolbar: theme.mixins.toolbar,
   drawerPaper: {
+    position: 'relative',
     width: drawerWidth,
   },
+  icon: {
+    minWidth: 30
+  },
+  actived: {
+    background: "#5fa3b7",
+    '&:hover': {
+      background: "#5fa3b7",
+    }
+  }
 }));
 
-function ResponsiveDrawer(props) {
+function SideBar(props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
+  let { pathname } = useLocation();
+  const [isActive, setIsActive] = useState('');
+
+  useEffect(() => {
+    if (pathname === '/user/detail') {
+      setIsActive("Information");
+    }
+    if (pathname === '/user/change-password') {
+      setIsActive("Change password");
+    }
+    if (pathname === "/user/history-order") {
+      setIsActive("History order");
+    }
+  }, [pathname]);
 
   const handleTo = (text) => {
-    if (text === "Categories") {
-      return "/admin/categories";
+    if (text === "Information") {
+      return "/user/detail";
     }
-    if (text === "Bevarages") {
-      return "/admin/menu";
+    if (text === "Change password") {
+      return "/user/change-password";
     }
-    if (text === "Employees") {
-      return "/admin/employees";
+    if (text === "History order") {
+      return "/user/history-order";
     }
-    if (text === "Users") {
-      return "/admin/users";
-    }
-    if (text === "Calendar") {
-      return "/admin/schedule";
-    }
-    if (text === "Feedbacks") {
-      return "/admin/feedbacks";
-    }
-    if (text === "Salary") {
-      return "/admin/salary";
-    }
-    if (text === "Events") {
-      return "/admin/events";
-    }
-    if (text === "Orders") {
-      return "/admin/orders";
-    }
-    if (text === "Roles") {
-      return "/admin/roles";
-    }
-    if (text === "Infor") {
-      return "/admin/infor";
-    }
-    return "/admin/summary";
+    return "/user/detail";
   };
 
   const drawer = (
     <div>
-      <div className={classes.toolbar}>
-        <img
-          className="logo"
-          src={logo}
-          alt="logo"
-          style={{ marginLeft: "5%", width: 200, height: 200 }}
-        />
-      </div>
-
-      <Divider />
-
       <List>
         {[
-          "Categories",
-          "Bevarages",
-          "Orders",
-          "Events",
-          "Users",
-          "Employees",
-          "Roles",
-          "Feedbacks",
-          "Calendar",
-          "Salary",
-          "Infor",
-        ].map((text) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              <InboxIcon />
+          "Information",
+          "Change password",
+          "History order",
+        ].map((text, index) => (
+          <ListItem button key={text} className={text.indexOf(isActive) !== -1 && classes.actived}>
+            <ListItemIcon className={classes.icon}>
+              { index === 0 && <PersonIcon /> }
+              { index === 1 && <LockIcon /> }
+              { index === 2 && <HistoryIcon /> }
             </ListItemIcon>
             <Link
               to={handleTo(text)}
@@ -148,8 +134,8 @@ function ResponsiveDrawer(props) {
   );
 }
 
-ResponsiveDrawer.propTypes = {
+SideBar.propTypes = {
   window: PropTypes.func,
 };
 
-export default ResponsiveDrawer;
+export default SideBar;

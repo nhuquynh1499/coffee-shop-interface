@@ -38,7 +38,7 @@ const UserPage = () => {
   }, []);
 
   const users = useSelector((state) => state.userAdmin.users);
-  console.log({ users });
+  
   const classes = useStyles();
 
   return (

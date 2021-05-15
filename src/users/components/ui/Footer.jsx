@@ -8,13 +8,12 @@ import { useLocation } from 'react-router';
 
 export default function Footer() {
   let { pathname } = useLocation();
-  const isAdmin = (pathname.indexOf("admin") === -1 ? false : true);
+  const isUser = (pathname.indexOf("admin") === -1 ? true : false);
 
   return (
      <footer className="footer">
-         <p>{isAdmin}</p>
         { 
-        !isAdmin && <div className="container">
+        isUser && <div className="container">
             <div className="footer__up">
                 <div className="footer__title">
                     <div className="footer__title-logo">

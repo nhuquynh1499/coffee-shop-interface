@@ -1,0 +1,39 @@
+[debug] [2021-05-15T17:20:14.214Z] ----------------------------------------------------------------------
+[debug] [2021-05-15T17:20:14.216Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-05-15T17:20:14.217Z] CLI Version:   9.10.2
+[debug] [2021-05-15T17:20:14.217Z] Platform:      win32
+[debug] [2021-05-15T17:20:14.217Z] Node Version:  v14.16.0
+[debug] [2021-05-15T17:20:14.218Z] Time:          Sun May 16 2021 00:20:14 GMT+0700 (Indochina Time)
+[debug] [2021-05-15T17:20:14.218Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-05-15T17:20:14.224Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-05-15T17:20:14.224Z] > authorizing via signed-in user (ngngocnhuquynh0104@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Admin\Desktop\DEV\Đồ án\coffee-shop-interface
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2021-05-15T17:20:35.494Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2021-05-15T17:20:36.168Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2021-05-15T17:20:36.168Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project blue-coffee-store (blue-coffee-store) 
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 

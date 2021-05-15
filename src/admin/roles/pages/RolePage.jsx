@@ -60,7 +60,6 @@ const RolePage = () => {
   const roles = useSelector((state) => state.roleAdmin.roles);
 
   const permissions = useSelector((state) => state.roleAdmin.permissions);
-  console.log({permissions})
 
   const classes = useStyles();
 
@@ -81,7 +80,7 @@ const RolePage = () => {
       <main className={classes.content}>
         <RoleCreate
           onSubmit={handleSubmit}
-          roles={roles}
+          permissions={permissions}
           open={open}
           onOpen={handleOpen}
           onClose={handleClose}
