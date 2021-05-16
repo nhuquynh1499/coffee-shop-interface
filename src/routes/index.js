@@ -23,6 +23,8 @@ import UserDetailPage from "../users/pages/UserDetailPage";
 import UserChangePasswordPage from "../users/pages/UserChangePasswordPage";
 import UserHistoryOrder from "../users/pages/UserHistoryOrder";
 
+import NotFound from "../components/NotFound";
+
 import { PrivateRoute } from "./PrivateRoute";
 import RolePage from "../admin/roles/pages/RolePage";
 
@@ -52,6 +54,7 @@ const routes = () => {
       <Route path="/admin/roles" component={RolePage} />
       <Route path="/admin/login" component={AdminLoginPage} />
       <Route path="/admin/infor" component={AdminInforPage} />
+      <Route path="*" component={NotFound} />
     </Switch>
   );
 };
