@@ -44,3 +44,30 @@ export const postDrink = (payload) => {
       });
   };
 };
+
+export const updateDrink = (payload) => {
+  return async (dispatch) => {
+    return axios
+      .put(`https://salty-dawn-54578.herokuapp.com/drink/${payload._id}`, {
+        name: payload.name,
+        price: payload.price,
+        image: payload.image,
+        category: payload.category,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        const data = response.data.data.data;
+        console.log(data);
+        dispatch({
+          type: "UPDATE_DRINK",
+          payload: data,
+        });
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+}

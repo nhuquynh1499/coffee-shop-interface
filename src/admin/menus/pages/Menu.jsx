@@ -9,6 +9,7 @@ import ResponsiveDrawer from "../../components/ResponsiveDrawer";
 import { getDrink, postDrink } from "../actions";
 import MenuItems from "../components/MenuItems";
 import MenuCreate from "../components/MenuCreate";
+import MenuUpdate from "../components/MenuUpdate";
 import { getList } from "../../categories/actions";
 
 const drawerWidth = 240;
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MenuPage = () => {
-  const [open, setOpen] = useState(false);
+  const [openCreate, setOpenCreate] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -51,17 +52,17 @@ const MenuPage = () => {
 
   const list = useSelector((state) => state.listAdmin.list);
 
-  const handleSubmit = (payload) => {
+  const handleSubmitCreate = (payload) => {
     dispatch(postDrink(payload));
-    setOpen(false);
+    setOpenCreate(false);
   };
 
-  const handleOpen = () => {
-    setOpen(!open);
+  const handleOpenCreate = () => {
+    setOpenCreate(!openCreate);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseCreate = () => {
+    setOpenCreate(false);
   };
 
   return (
@@ -80,15 +81,15 @@ const MenuPage = () => {
 
       <main className={classes.content}>
         <MenuCreate
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmitCreate}
           list={list}
-          open={open}
-          onOpen={handleOpen}
-          onClose={handleClose}
+          open={openCreate}
+          onOpen={handleOpenCreate}
+          onClose={handleCloseCreate}
         />
 
-        {drinks.map((drink) => (
-          <MenuItems drink={drink} />
+        {drinks.map((drink, index) => (
+          <MenuItems key={index} drink={drink} />
         ))}
       </main>
     </div>

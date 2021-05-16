@@ -6,8 +6,12 @@ import { green } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import EditIcon from "@material-ui/icons/Edit";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ObjectUtils } from "../../../utils/object.utils";
+import { getList } from "../../categories/actions";
+import { updateDrink } from "../actions";
+import MenuUpdate from "./MenuUpdate";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,10 +33,30 @@ const useStyles = makeStyles((theme) => ({
 }));
 const MenuItems = (props) => {
   const { drink } = props;
-
+  const [openUpdate, setOpenUpdate] = useState(false);
+  const list = useSelector((state) => state.listAdmin.list);
   const category = ObjectUtils.get(drink, "category", {});
-
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!list) {
+      dispatch(getList());
+    }
+  }, []);
+  
+  const handleSubmitUpdate = (payload) => {
+    dispatch(updateDrink(payload));
+    setOpenUpdate(false);
+  };
+
+  const handleOpenUpdate = () => {
+    setOpenUpdate(!openUpdate);
+  };
+
+  const handleCloseUpdate = () => {
+    setOpenUpdate(false);
+  };
 
   return (
     <Card className={classes.root}>
@@ -55,11 +79,19 @@ const MenuItems = (props) => {
         </CardContent>
       </div>
 
-      <div className={classes.iconButton}>
+      <div className={classes.iconButton}  onClick={handleOpenUpdate}>
         <IconButton>
           <EditIcon style={{ color: green[500] }} fontSize="small" />
         </IconButton>
       </div>
+      <MenuUpdate
+        onSubmit={handleSubmitUpdate}
+        list={list}
+        open={openUpdate}
+        onOpen={handleOpenUpdate}
+        onClose={handleCloseUpdate}
+        drink={drink}
+      />
     </Card>
   );
 };

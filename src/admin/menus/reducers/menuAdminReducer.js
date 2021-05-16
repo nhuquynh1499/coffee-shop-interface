@@ -18,6 +18,15 @@ const menuAdminReducer = (state = initialState, action) => {
         drinks: drinkData,
       };
     }
+    case "UPDATE_DRINK": {
+      let drinkData = [...state.drinks];
+      const drinkIsList = drinkData.find((item) => item._id === action.payload._id);
+      drinkData.splice(drinkData.indexOf(drinkIsList), 1, {...action.payload});
+      return {
+        ...state,
+        drinks: drinkData,
+      };
+    }
     default: {
       return state;
     }
