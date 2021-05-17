@@ -58,7 +58,6 @@ export const updateEvent = (payload) => {
       )
       .then((response) => {
         const data = response.data.data.data;
-        console.log(data);
         dispatch({
           type: "UPDATE_EVENT",
           payload: data,

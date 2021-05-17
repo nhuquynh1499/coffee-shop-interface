@@ -69,7 +69,6 @@ export const updateStaff = (payload) => {
       )
       .then((response) => {
         const data = response.data.data.staff;
-        console.log(data);
         dispatch({
           type: "UPDATE_STAFF",
           payload: data,

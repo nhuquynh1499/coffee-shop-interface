@@ -57,7 +57,6 @@ export const updateList = (payload) => {
       )
       .then((response) => {
         const data = response.data.data.data;
-        console.log(data);
         dispatch({
           type: "UPDATE_LIST",
           payload: data,

@@ -60,7 +60,6 @@ export const updateDrink = (payload) => {
       })
       .then((response) => {
         const data = response.data.data.data;
-        console.log(data);
         dispatch({
           type: "UPDATE_DRINK",
           payload: data,

@@ -16,19 +16,14 @@ const EmployeeUpdateDialog = (props) => {
   const { roles, staff } = props;
   const { onSubmit } = props;
 
-  const validationSchema = yup.object({
-    password: yup.string().required("Password is a required field"),
-  });
-
   const formik = useFormik({
     initialValues: {
       username: staff.username,
-      password: staff.password,
+      password: "abc123@QWE",
       phone: staff.phone,
       address: staff.address,
       role: staff.role,
     },
-    validationSchema: validationSchema,
     onSubmit: (values) => {
       onSubmit({
         ...values,
@@ -61,6 +56,7 @@ const EmployeeUpdateDialog = (props) => {
               label="Password"
               variant="outlined"
               fullWidth
+              disabled
               value={formik.values.password}
               onChange={formik.handleChange}
               error={formik.touched.password && Boolean(formik.errors.password)}
