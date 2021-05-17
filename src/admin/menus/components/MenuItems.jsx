@@ -34,9 +34,12 @@ const useStyles = makeStyles((theme) => ({
 const MenuItems = (props) => {
   const { drink } = props;
   const [openUpdate, setOpenUpdate] = useState(false);
+
   const list = useSelector((state) => state.listAdmin.list);
   const category = ObjectUtils.get(drink, "category", {});
+
   const classes = useStyles();
+  
   const dispatch = useDispatch();
 
   useEffect(() => {

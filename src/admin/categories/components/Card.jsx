@@ -42,7 +42,7 @@ const CategoryCard = (props) => {
               </Typography>
             </CardContent>
 
-            <CardActionsCate />
+            <CardActionsCate category={category} />
           </CardActionArea>
         </Card>
       </Grid>
