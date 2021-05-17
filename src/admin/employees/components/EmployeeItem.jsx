@@ -8,10 +8,13 @@ import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import EditIcon from "@material-ui/icons/Edit";
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { DateFormat, DateUtils } from "../../../utils";
 import avatar from "../../svg/avatar.jpg";
 import PermissionDialog from "../dialogs/PermissionDialog";
+import { updateStaff } from "../actions";
+import EmployeeUpdate from "./EmployeeUpdate";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -31,7 +34,24 @@ const useStyles = makeStyles(() => ({
 const EmployeeItem = (props) => {
   const { staff, roles } = props;
 
+  const [openUpdate, setOpenUpdate] = useState(false);
+
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+
+  const handleSubmitUpdate = (payload) => {
+    dispatch(updateStaff(payload));
+    setOpenUpdate(false);
+  };
+
+  const handleOpenUpdate = () => {
+    setOpenUpdate(!openUpdate);
+  };
+
+  const handleCloseUpdate = () => {
+    setOpenUpdate(false);
+  };
 
   return (
     <Card className={classes.root}>
@@ -46,11 +66,8 @@ const EmployeeItem = (props) => {
           <div>{DateUtils.format(staff.createdAt, DateFormat.YYYY_MM_DD)}</div>
         }
         action={
-          <IconButton>
-            <EditIcon
-              style={{ color: green[500], marginTop: 24 }}
-              fontSize="small"
-            />
+          <IconButton onClick={handleOpenUpdate}>
+            <EditIcon style={{ color: green[500] }} fontSize="small" />
           </IconButton>
         }
       />
@@ -83,6 +100,15 @@ const EmployeeItem = (props) => {
 
         <PermissionDialog staff={staff} />
       </CardContent>
+
+      <EmployeeUpdate
+        onSubmit={handleSubmitUpdate}
+        open={openUpdate}
+        onOpen={handleOpenUpdate}
+        onClose={handleCloseUpdate}
+        staff={staff}
+        roles={roles}
+      />
     </Card>
   );
 };

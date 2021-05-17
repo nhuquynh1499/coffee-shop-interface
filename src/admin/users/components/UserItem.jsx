@@ -54,7 +54,7 @@ const UserItem = (props) => {
         action={
           <IconButton>
             <EditIcon
-              style={{ color: green[500], marginTop: 24 }}
+              style={{ color: green[500] }}
               fontSize="small"
             />
           </IconButton>
