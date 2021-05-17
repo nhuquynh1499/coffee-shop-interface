@@ -62,24 +62,21 @@ const RoleUpdateDialog = (props) => {
                       {permission.name}
                     </Typography>
 
-                    {permission.permissions.map((item) => {
-                        console.log({item})
-                      return (
-                        <FormGroup
-                          aria-label="Permissions"
+                    {permission.permissions.map((item) => (
+                      <FormGroup
+                        aria-label="Permissions"
+                        name="permissions"
+                        value={[formik.values.permissions]}
+                        onChange={formik.handleChange}
+                      >
+                        <FormControlLabel
                           name="permissions"
-                          value={[formik.values.permissions]}
-                          onChange={formik.handleChange}
-                        >
-                          <FormControlLabel
-                            name="permissions"
-                            value={item._id}
-                            control={<Checkbox color="primary" />}
-                            label={item._id}
-                          />
-                        </FormGroup>
-                      );
-                    })}
+                          value={item._id}
+                          control={<Checkbox color="primary" />}
+                          label={item._id}
+                        />
+                      </FormGroup>
+                    ))}
                   </Grid>
                 </React.Fragment>
               ))}
