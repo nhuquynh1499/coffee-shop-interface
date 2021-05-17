@@ -47,9 +47,6 @@ function ResponsiveDrawer(props) {
     if (text === "Calendar") {
       return "/admin/schedule";
     }
-    if (text === "Feedbacks") {
-      return "/admin/feedbacks";
-    }
     if (text === "Salary") {
       return "/admin/salary";
     }
@@ -90,7 +87,6 @@ function ResponsiveDrawer(props) {
           "Users",
           "Employees",
           "Roles",
-          "Feedbacks",
           "Calendar",
           "Salary",
           "Infor",

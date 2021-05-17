@@ -39,7 +39,7 @@ const MenuItems = (props) => {
   const category = ObjectUtils.get(drink, "category", {});
 
   const classes = useStyles();
-  
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -87,6 +87,7 @@ const MenuItems = (props) => {
           <EditIcon style={{ color: green[500] }} fontSize="small" />
         </IconButton>
       </div>
+      
       <MenuUpdate
         onSubmit={handleSubmitUpdate}
         list={list}

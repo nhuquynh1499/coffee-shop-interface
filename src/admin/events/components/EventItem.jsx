@@ -8,8 +8,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import AccessAlarmIcon from "@material-ui/icons/AccessAlarm";
 import EditIcon from "@material-ui/icons/Edit";
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { DateFormat, DateUtils } from "../../../utils";
+import EventUpdate from "./EventUpdate";
+import { updateEvent } from "../actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,7 +51,24 @@ const useStyles = makeStyles((theme) => ({
 const EventItem = (props) => {
   const { event } = props;
 
+  const [openUpdate, setOpenUpdate] = useState(false);
+
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+
+  const handleSubmitUpdate = (payload) => {
+    dispatch(updateEvent(payload));
+    setOpenUpdate(false);
+  };
+
+  const handleOpenUpdate = () => {
+    setOpenUpdate(!openUpdate);
+  };
+
+  const handleCloseUpdate = () => {
+    setOpenUpdate(false);
+  };
 
   return (
     <Card className={classes.root}>
@@ -85,11 +105,19 @@ const EventItem = (props) => {
         </CardContent>
       </div>
 
-      <div className={classes.iconButton}>
+      <div className={classes.iconButton} onClick={handleOpenUpdate}>
         <IconButton>
           <EditIcon style={{ color: green[500] }} fontSize="small" />
         </IconButton>
       </div>
+
+      <EventUpdate
+        onSubmit={handleSubmitUpdate}
+        event={event}
+        open={openUpdate}
+        onOpen={handleOpenUpdate}
+        onClose={handleCloseUpdate}
+      />
     </Card>
   );
 };
