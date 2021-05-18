@@ -45,9 +45,6 @@ const MenuItems = (props) => {
 
   const [openDelete, setOpenDelete] = useState(false);
 
-  const active = useSelector((state) => state.drinkAdmin.active);
-
-  console.log({ active });
   const list = useSelector((state) => state.listAdmin.list);
 
   const category = ObjectUtils.get(drink, "category", {});
@@ -78,7 +75,7 @@ const MenuItems = (props) => {
   const handleSubmitDelete = (payload) => {
     dispatch(deleteDrink(payload));
     setOpenDelete(false);
-    window.location.reload()
+    window.location.reload();
   };
 
   const handleOpenDelete = () => {
