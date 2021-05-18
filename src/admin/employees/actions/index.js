@@ -79,3 +79,30 @@ export const updateStaff = (payload) => {
       });
   };
 };
+
+export const deleteStaff = (payload) => {
+  return async (dispatch) => {
+    return axios
+      .patch(
+        `https://salty-dawn-54578.herokuapp.com/staff/${payload._id}/status`,
+        {
+          _id: payload._id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        const data = response.data.data.staff;
+        dispatch({
+          type: "DELETE_STAFF",
+          payload: data,
+        });
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+};

@@ -8,7 +8,7 @@ import {
 import { useFormik } from "formik";
 import React from "react";
 
-const MenuUpdateDialog = (props) => {
+const MenuDeleteDialog = (props) => {
   const { drink } = props;
   const { onSubmit, onClose } = props;
 
@@ -44,4 +44,4 @@ const MenuUpdateDialog = (props) => {
     </React.Fragment>
   );
 };
-export default MenuUpdateDialog;
+export default MenuDeleteDialog;

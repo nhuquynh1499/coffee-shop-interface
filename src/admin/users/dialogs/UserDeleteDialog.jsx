@@ -8,7 +8,7 @@ import {
 import { useFormik } from "formik";
 import React from "react";
 
-const UserUpdateDialog = (props) => {
+const UserDeleteDialog = (props) => {
   const { user } = props;
   const { onSubmit, onClose } = props;
 
@@ -44,4 +44,4 @@ const UserUpdateDialog = (props) => {
     </React.Fragment>
   );
 };
-export default UserUpdateDialog;
+export default UserDeleteDialog;

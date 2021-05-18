@@ -31,6 +31,13 @@ const staffAdminReducer = (state = initialState, action) => {
         listStaff: staffData,
       };
     }
+    case "DELETE_STAFF": {
+      let staffData = [...state.listStaff];
+      return {
+        ...state,
+        listStaff: staffData,
+      };
+    }
     default: {
       return state;
     }

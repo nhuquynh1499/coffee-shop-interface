@@ -1,14 +1,14 @@
 import {
-    Button,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle
+  Button,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from "@material-ui/core";
 import { useFormik } from "formik";
 import React from "react";
 
-const EventUpdateDialog = (props) => {
+const EventDeleteDialog = (props) => {
   const { event } = props;
   const { onSubmit, onClose } = props;
 
@@ -44,4 +44,4 @@ const EventUpdateDialog = (props) => {
     </React.Fragment>
   );
 };
-export default EventUpdateDialog;
+export default EventDeleteDialog;
