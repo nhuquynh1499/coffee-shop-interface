@@ -45,7 +45,6 @@ const useStyles = makeStyles(() => ({
 
 const EmployeeItem = (props) => {
   const { staff, roles } = props;
-  console.log({staff})
 
   const [openUpdate, setOpenUpdate] = useState(false);
 
