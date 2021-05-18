@@ -1,18 +1,18 @@
-import { Divider } from "@material-ui/core";
+import { Divider, IconButton } from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import { green, red } from "@material-ui/core/colors";
-import IconButton from "@material-ui/core/IconButton";
+import { red } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import EditIcon from "@material-ui/icons/Edit";
-import React from "react";
+import DeleteIcon from "@material-ui/icons/Delete";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { DateFormat, DateUtils } from "../../../utils";
 import avatar from "../../svg/avatar.jpg";
+import { deleteUser } from "../actions";
+import UserDelete from "./UserDelete";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -32,17 +32,30 @@ const useStyles = makeStyles(() => ({
 const UserItem = (props) => {
   const { user } = props;
 
+  const [openDelete, setOpenDelete] = useState(false);
+
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+
+  const handleSubmitDelete = (payload) => {
+    dispatch(deleteUser(payload));
+    setOpenDelete(false);
+    window.location.reload();
+  };
+
+  const handleOpenDelete = () => {
+    setOpenDelete(!openDelete);
+  };
+
+  const handleCloseDelete = () => {
+    setOpenDelete(false);
+  };
 
   return (
     <Card className={classes.root}>
       <CardHeader
-        avatar={
-          <Avatar
-            className={classes.avatar}
-            src={avatar}
-          />
-        }
+        avatar={<Avatar className={classes.avatar} src={avatar} />}
         title={
           <Typography variant="h6" style={{ fontWeight: 600 }}>
             {user.username}
@@ -52,12 +65,15 @@ const UserItem = (props) => {
           <div>{DateUtils.format(user.createdAt, DateFormat.YYYY_MM_DD)}</div>
         }
         action={
-          <IconButton>
-            <EditIcon
-              style={{ color: green[500] }}
-              fontSize="small"
-            />
-          </IconButton>
+          <div onClick={handleOpenDelete}>
+            <IconButton>
+              {user.active ? (
+                <DeleteIcon style={{ color: red[500] }} fontSize="small" />
+              ) : (
+                <DeleteIcon fontSize="small" />
+              )}
+            </IconButton>
+          </div>
         }
       />
 
@@ -73,6 +89,14 @@ const UserItem = (props) => {
           {user.address}
         </Typography>
       </CardContent>
+
+      <UserDelete
+        onSubmit={handleSubmitDelete}
+        open={openDelete}
+        onOpen={handleOpenDelete}
+        onClose={handleCloseDelete}
+        user={user}
+      />
     </Card>
   );
 };
