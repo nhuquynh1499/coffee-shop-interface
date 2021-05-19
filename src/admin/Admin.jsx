@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import { useSelector } from "react-redux";
 import ResponsiveDrawer from "./components/ResponsiveDrawer";
 
 const drawerWidth = 240;
