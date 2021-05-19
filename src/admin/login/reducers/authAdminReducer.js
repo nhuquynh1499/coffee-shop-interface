@@ -1,12 +1,12 @@
 const initialState = {
-  token: localStorage.getItem("token") || null,
+  token: null,
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_ADMIN_LOGIN": {
       const { token } = action.payload;
-      localStorage.setItem("token", token);
+      sessionStorage.setItem("token", token);
 
       return {
         ...state,

@@ -6,7 +6,6 @@ export const sendPostLogin = (payload) => {
     return axios.post('https://salty-dawn-54578.herokuapp.com/staff/log-in', payload)
       .then(response => {
         const data = response.data.data.data;
-        console.log(response);
         dispatch({
           type: "SET_ADMIN_LOGIN",
           payload: data
@@ -18,7 +17,7 @@ export const sendPostLogin = (payload) => {
         toast.success("Đăng nhập thành công! Chào mừng bạn đã trở lại.")
       })
       .catch(error => {
-        throw (error);
+        toast.error("Username or password is not correct.")
       });
   };
 };
