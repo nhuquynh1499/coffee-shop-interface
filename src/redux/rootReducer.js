@@ -10,6 +10,8 @@ import userAdminReducer from "../admin/users/reducers/userAdminReducer";
 import authReducer from "./reducer/auth";
 import cartReducer from "./reducer/cart";
 import drinkReducer from "./reducer/drink";
+import salaryReducer from "./reducer/salary";
+import shiftReducer from "./reducer/shift";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -23,6 +25,8 @@ const rootReducer = combineReducers({
   feedbackAdmin: feedbackAdminReducer,
   salaryAdmin: salaryAdminReducer,
   cart: cartReducer,
+  salary: salaryReducer,
+  shift: shiftReducer,
 });
 
 export default rootReducer;

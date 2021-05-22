@@ -15,6 +15,9 @@ import FeedbackPage from "../admin/feedbacks/pages/FeedbackPage";
 import OrderPage from "../admin/orders/pages/OrderPage";
 import EventPage from "../admin/events/pages/EventPage";
 
+import Salary from '../employee/pages/Salary';
+import Calendar from '../employee/pages/Calendar';
+
 import MenuPage from "../users/pages/MenuPage";
 import UserDetailPage from "../users/pages/UserDetailPage";
 import UserChangePasswordPage from "../users/pages/UserChangePasswordPage";
@@ -40,6 +43,10 @@ const routes = () => {
       <Route path="/admin/feedbacks" component={FeedbackPage} />
       <Route path="/admin/events" component={EventPage} />
       <Route path="/admin/orders" component={OrderPage} />
+
+      <Route path="/employee/:employeeId/salary" component={Salary} />
+      <Route path="/employee/:employeeId/calendar" component={Calendar} />
+      
     </Switch>
   );
 };
