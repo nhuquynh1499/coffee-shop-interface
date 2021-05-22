@@ -47,9 +47,6 @@ function ResponsiveDrawer(props) {
     if (text === "Calendar") {
       return "/admin/schedule";
     }
-    if (text === "Feedbacks") {
-      return "/admin/feedbacks";
-    }
     if (text === "Salary") {
       return "/admin/salary";
     }
@@ -58,6 +55,12 @@ function ResponsiveDrawer(props) {
     }
     if (text === "Orders") {
       return "/admin/orders";
+    }
+    if (text === "Roles") {
+      return "/admin/roles";
+    }
+    if (text === "Infor") {
+      return "/admin/infor";
     }
     return "/admin/summary";
   };
@@ -81,11 +84,12 @@ function ResponsiveDrawer(props) {
           "Bevarages",
           "Orders",
           "Events",
-          "Feedbacks",
-          "Salary",
           "Users",
           "Employees",
+          "Roles",
           "Calendar",
+          "Salary",
+          "Infor",
         ].map((text) => (
           <ListItem button key={text}>
             <ListItemIcon>
@@ -93,7 +97,7 @@ function ResponsiveDrawer(props) {
             </ListItemIcon>
             <Link
               to={handleTo(text)}
-              class="text-bold text-black ml-5"
+              className="text-bold text-black ml-5"
               style={{ textDecoration: "none" }}
             >
               {text}

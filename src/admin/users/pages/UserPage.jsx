@@ -38,7 +38,7 @@ const UserPage = () => {
   }, []);
 
   const users = useSelector((state) => state.userAdmin.users);
-  console.log({ users });
+  
   const classes = useStyles();
 
   return (
@@ -56,9 +56,9 @@ const UserPage = () => {
       <ResponsiveDrawer />
 
       <main className={classes.content}>
-        <Grid container spacing={8} style={{marginLeft: 0}}>
+        <Grid container spacing={2}>
           {users.map((user) => (
-            <Grid item style={{marginBottom: -40}}>
+            <Grid item xs={3}>
               <UserItem user={user} />
             </Grid>
           ))}

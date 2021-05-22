@@ -5,12 +5,17 @@ import { getInforByToken, sendPostUpdateInfor } from '../../redux/action/auth';
 import UserDetailForm from '../components/user/FormDetail';
 import Loading from '../components/ui/Loading';
 import { Card, makeStyles } from '@material-ui/core';
+import SideBar from '../components/ui/UserSidebar';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 600,
-    margin: 'auto',
-    marginBottom: 20
+    maxWidth: '100%',
+    marginLeft: 20,
+  },
+  myContainer: {
+    alignItems: 'stretch',
+    display: 'flex',
+    justifyContent: 'center'
   }
 });
 
@@ -34,7 +39,8 @@ export default function UserDetailPage() {
 
   return (
     <div className="user-detail">
-      <div className="mt-30 container">
+      <div className={classes.myContainer + ' my-30 container'}>
+        <SideBar />
         <Card className={classes.root}>
           <h1 className="text-center mt-20">User detail</h1>
           { infor ? <UserDetailForm infor={infor} handleSubmitFormDetail={handleSubmitFormDetail} token={token} /> : <Loading />}

@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import { Typography } from "@material-ui/core";
 import CartItem from "./CartItem";
 import { useDispatch, useSelector } from "react-redux";
@@ -91,7 +86,9 @@ const Cart = (props) => {
             {total.toLocaleString()}đ
           </Typography>
         </div>
-        <button className="btn-radius py-10 px-25 bg-blue-btn text-white text-uppercase text-bold">Mua hàng</button>
+        <Link to="/order">
+          <button onClick={toggleDrawer(false)} className="btn-radius py-10 px-25 bg-blue-btn text-white text-uppercase text-bold">Mua hàng</button>
+        </Link>
       </div>
     </div>
   );

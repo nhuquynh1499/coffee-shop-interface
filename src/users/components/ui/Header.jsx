@@ -20,13 +20,14 @@ export default function Header() {
   const classes = useStyles();
   let { pathname } = useLocation();
   const dispatch = useDispatch();
-  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("token") ? true : false);
+  const [isAuthenticated, setIsAuthenticated] = useState(sessionStorage.getItem("token") ? true : false);
   const [isActive, setIsActive] = useState(pathname);
   const [isCartOpened, setIsCartOpened] = useState(false);
   const [avatar, setAvatar] = useState(null);
   const listInCart = useSelector((state) => state.cart.listInCart);
   const token = useSelector((state) => state.auth.token);
   const infor = useSelector((state) => state.auth.infor);
+  const isUser = (pathname.indexOf("admin") === -1 ? true : false);
 
   const toggleDrawer = (open) => (event) => {
     if ( event.type === "keydown" && (event.key === "Tab" || event.key === "Shift") )
@@ -60,6 +61,7 @@ export default function Header() {
 
   return (
     <div className="header bg-white">
+      { isUser &&
       <div className="container h-100">
         <div className="h-100 pl-20 pr-20 flex-middle">
           <div className="h-100 mr-30">
@@ -81,6 +83,7 @@ export default function Header() {
               <ul className="flex-center">
                 <li><Link to="/" onClick={toggle} className={isActive === "/" ? "active" : null}>Home</Link></li>
                 <li><Link to="/menu" onClick={toggle} className={isActive === "/menu" ? "active" : null}>Menu</Link></li>
+                { token && <li><Link to="/user/detail" onClick={toggle} className={isActive === "/user/detail" ? "active" : null}>Account</Link></li> }
               </ul>
             </div>
             <div className="actions flex-middle">
@@ -111,6 +114,7 @@ export default function Header() {
           </div>
         </div>
       </div>
+      }
       <Cart isCartOpened={isCartOpened} toggleDrawer={toggleDrawer}></Cart>
     </div>
   );

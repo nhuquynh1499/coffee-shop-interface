@@ -27,3 +27,30 @@ export const getUsers = (payload) => {
       });
   };
 };
+
+export const deleteUser = (payload) => {
+  return async (dispatch) => {
+    return axios
+      .patch(
+        `https://salty-dawn-54578.herokuapp.com/users/${payload._id}/status`,
+        {
+          _id: payload._id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        const data = response.data.data.data;
+        dispatch({
+          type: "DELETE_USER",
+          payload: data,
+        });
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+};

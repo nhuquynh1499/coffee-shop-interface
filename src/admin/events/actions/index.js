@@ -40,3 +40,58 @@ export const postEvent = (payload) => {
       });
   };
 };
+
+export const updateEvent = (payload) => {
+  return async (dispatch) => {
+    return axios
+      .put(
+        `https://salty-dawn-54578.herokuapp.com/event/${payload._id}`,
+        {
+          name: payload.name,
+          desc: payload.desc,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        const data = response.data.data.data;
+        dispatch({
+          type: "UPDATE_EVENT",
+          payload: data,
+        });
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+};
+
+export const deleteEvent = (payload) => {
+  return async (dispatch) => {
+    return axios
+      .patch(
+        `https://salty-dawn-54578.herokuapp.com/event/${payload._id}/status`,
+        {
+          _id: payload._id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        const data = response.data.data.data;
+        dispatch({
+          type: "DELETE_EVENT",
+          payload: data,
+        });
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+};

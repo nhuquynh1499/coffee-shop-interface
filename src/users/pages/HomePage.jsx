@@ -5,11 +5,14 @@ import Home from '../components/home/Home'
 
 export default function HomePage() {
   const token = useSelector((state) => state.auth.token);
+  const infor = useSelector((state) => state.auth.infor)
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getInforByToken(token))
-  }, [token]);
+    if (!infor) {
+      dispatch(getInforByToken(token))
+    }
+  }, []);
 
   return (
     <Home />

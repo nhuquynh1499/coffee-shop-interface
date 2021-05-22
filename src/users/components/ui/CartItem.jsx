@@ -1,14 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const CartItem = (props) => {
-  const { photo, name, price, quantity, _id } = props.item;
+  const { image, name, price, quantity, _id } = props.item;
   const { handleChangeQuantity } = props;
   const quantityInput = useRef(null);
 
   return (
     <div className="cart-item">
       <div className="cart-item__image mr-7">
-        <img src={photo} alt="" />
+        <img src={image} alt="" />
       </div>
       <div className="cart-item__infor">
         <p className="cart-item__infor--bold">{name}</p>

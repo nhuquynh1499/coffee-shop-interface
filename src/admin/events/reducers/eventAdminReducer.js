@@ -18,6 +18,26 @@ const eventAdminReducer = (state = initialState, action) => {
         events: eventData,
       };
     }
+    case "UPDATE_EVENT": {
+      let eventData = [...state.events];
+      const eventIsList = eventData.find(
+        (item) => item._id === action.payload._id
+      );
+      eventData.splice(eventData.indexOf(eventIsList), 1, {
+        ...action.payload,
+      });
+      return {
+        ...state,
+        events: eventData,
+      };
+    }
+    case "DELETE_EVENT": {
+      let eventData = [...state.events];
+      return {
+        ...state,
+        events: eventData,
+      };
+    }
     default: {
       return state;
     }

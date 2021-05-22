@@ -1,14 +1,15 @@
 const initialState = {
-  token: localStorage.getItem("token") || null,
+  token: sessionStorage.getItem("token") || null,
   status: null,
   infor: null,
+  isDoneChangePasword: false,
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_LOGIN": {
       const { _id, token, username, phone, address, avatar, password } = action.payload;
-      localStorage.setItem("token", token);
+      sessionStorage.setItem("token", token);
 
       return {
         ...state,
@@ -25,13 +26,17 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         infor: {
-          userId: _id,
-          username, phone, address, avatar, password
+          userId: _id || (state.infor && state.infor.userId),
+          username: username || (state.infor && state.infor.username), 
+          phone: phone || (state.infor && state.infor.phone), 
+          address: address || (state.infor && state.infor.address), 
+          avatar: avatar || (state.infor && state.infor.avatar), 
+          password: password || (state.infor && state.infor.password)
         }
       }
     }
     case "DELETE_AUTH": {
-      localStorage.removeItem("token")
+      sessionStorage.removeItem("token")
       return {
         token: null,
         infor: null,
@@ -47,6 +52,12 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         status: null,
+      }
+    }
+    case "CHANGED_PASSWORD": {
+      return {
+        ...state,
+        isDoneChangePasword: true,
       }
     }
     default: {
