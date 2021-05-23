@@ -29,14 +29,14 @@ export default function Footer() {
                 <div className="footer__infor">
                     <div className="footer__infor-item">
                         <div className="footer__infor-item-image">
-                            <img src="./images/icons/location.png" />
+                            <img alt="" src="./images/icons/location.png" />
                         </div>
                         <p>Main Road, Building Name, Country</p>
                     </div>
 
                     <a className="footer__infor-item" href="mailto:info@companyname.com">
                         <div className="footer__infor-item-image">
-                            <img src="./images/icons/letter.png" />
+                            <img alt="" src="./images/icons/letter.png" />
                         </div>
                         <p>info@companyname.com</p>
                     </a>
