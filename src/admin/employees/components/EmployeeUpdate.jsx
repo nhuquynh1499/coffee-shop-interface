@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import React from "react";
-import MenuUpdateDialog from "../dialogs/MenuUpdateDialog";
+import EmployeeUpdateDialog from "../dialogs/EmployeeUpdateDialog";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MenuUpdate = (props) => {
-  const { open, list, drink } = props;
+const EmployeeUpdate = (props) => {
+  const { open, staff, roles } = props;
   const { onSubmit, onClose } = props;
 
   const classes = useStyles();
@@ -37,14 +37,18 @@ const MenuUpdate = (props) => {
               >
                 <CloseIcon />
               </IconButton>
-              <Typography variant="h6">Update Drink</Typography>
+              <Typography variant="h6">Update Employee</Typography>
             </Toolbar>
           </AppBar>
 
-          <MenuUpdateDialog onSubmit={onSubmit} drink={drink} list={list} />
+          <EmployeeUpdateDialog
+            onSubmit={onSubmit}
+            staff={staff}
+            roles={roles}
+          />
         </Dialog>
       )}
     </React.Fragment>
   );
 };
-export default MenuUpdate;
+export default EmployeeUpdate;

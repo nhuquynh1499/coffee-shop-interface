@@ -1,20 +1,14 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-export const PrivateRoute = ({ component: Component, ...rest }) => {
+export const PrivateRoute = ({ path: path, component: Component, ...rest }) => {
+  const token = sessionStorage.getItem("token") || null;
+
   return (
     <Route
       {...rest}
       render={props => {
-        return localStorage.getItem("token") ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login"
-            }}
-          />
-        );
+        return token ? <Component {...props} /> : <Redirect to={{ pathname: (path.indexOf("/admin") !== -1) ? "/admin/login" : "/login" }} />;
       }}
     />
   );

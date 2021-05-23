@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import Admin from "../admin/Admin";
 import AdminLoginPage from "../admin/login/pages/Login";
@@ -40,20 +40,22 @@ const routes = () => {
       <PrivateRoute exact path="/user/detail" component={UserDetailPage} />
       <PrivateRoute exact path="/user/change-password" component={UserChangePasswordPage} />
       <PrivateRoute exact path="/user/history-order" component={UserHistoryOrder} />
-
-      <Route path="/admin/summary" component={Admin} />
-      <Route path="/admin/menu" component={AdminMenuPage} />
-      <Route path="/admin/employees" component={EmployeePage} />
-      <Route path="/admin/users" component={UserPage} />
-      <Route path="/admin/salary" component={SalaryPage} />
-      <Route path="/admin/schedule" component={SchedulePage} />
-      <Route path="/admin/categories" component={CategoryPage} />
-      <Route path="/admin/feedbacks" component={FeedbackPage} />
-      <Route path="/admin/events" component={EventPage} />
-      <Route path="/admin/orders" component={OrderPage} />
-      <Route path="/admin/roles" component={RolePage} />
+      
+      <Redirect exact from="/admin" to="/admin/summary" />
+      <PrivateRoute path="/admin/summary" component={Admin} />
+      <PrivateRoute path="/admin/menu" component={AdminMenuPage} />
+      <PrivateRoute path="/admin/employees" component={EmployeePage} />
+      <PrivateRoute path="/admin/users" component={UserPage} />
+      <PrivateRoute path="/admin/salary" component={SalaryPage} />
+      <PrivateRoute path="/admin/schedule" component={SchedulePage} />
+      <PrivateRoute path="/admin/categories" component={CategoryPage} />
+      <PrivateRoute path="/admin/feedbacks" component={FeedbackPage} />
+      <PrivateRoute path="/admin/events" component={EventPage} />
+      <PrivateRoute path="/admin/orders" component={OrderPage} />
+      <PrivateRoute path="/admin/roles" component={RolePage} />
       <Route path="/admin/login" component={AdminLoginPage} />
-      <Route path="/admin/infor" component={AdminInforPage} />
+      <PrivateRoute path="/admin/infor" component={AdminInforPage} />
+      
       <Route path="*" component={NotFound} />
     </Switch>
   );

@@ -10,6 +10,13 @@ const userAdminReducer = (state = initialState, action) => {
         users: action.payload,
       };
     }
+    case "DELETE_USER": {
+      let userData = [...state.users];
+      return {
+        ...state,
+        users: userData,
+      };
+    }
     default: {
       return state;
     }

@@ -3,13 +3,18 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Chip from "@material-ui/core/Chip";
-import { green } from "@material-ui/core/colors";
+import { green, red } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import AccessAlarmIcon from "@material-ui/icons/AccessAlarm";
 import EditIcon from "@material-ui/icons/Edit";
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { DateFormat, DateUtils } from "../../../utils";
+import EventUpdate from "./EventUpdate";
+import EventDelete from "./EventDelete";
+import { deleteEvent, updateEvent } from "../actions";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,17 +43,55 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flex: "1 0 auto",
   },
-  iconButton: {
+  iconEdit: {
+    position: "absolute",
+    right: 40,
+    marginTop: 36,
+  },
+  iconDelete: {
     position: "absolute",
     right: 0,
-    marginTop: 48,
+    marginTop: 36,
   },
 }));
 
 const EventItem = (props) => {
   const { event } = props;
 
+  const [openUpdate, setOpenUpdate] = useState(false);
+
+  const [openDelete, setOpenDelete] = useState(false);
+
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+
+  const handleSubmitUpdate = (payload) => {
+    dispatch(updateEvent(payload));
+    setOpenUpdate(false);
+  };
+
+  const handleOpenUpdate = () => {
+    setOpenUpdate(!openUpdate);
+  };
+
+  const handleCloseUpdate = () => {
+    setOpenUpdate(false);
+  };
+
+  const handleSubmitDelete = (payload) => {
+    dispatch(deleteEvent(payload));
+    setOpenDelete(false);
+    window.location.reload();
+  };
+
+  const handleOpenDelete = () => {
+    setOpenDelete(!openDelete);
+  };
+
+  const handleCloseDelete = () => {
+    setOpenDelete(false);
+  };
 
   return (
     <Card className={classes.root}>
@@ -85,11 +128,37 @@ const EventItem = (props) => {
         </CardContent>
       </div>
 
-      <div className={classes.iconButton}>
+      <div className={classes.iconEdit} onClick={handleOpenUpdate}>
         <IconButton>
           <EditIcon style={{ color: green[500] }} fontSize="small" />
         </IconButton>
       </div>
+
+      <EventUpdate
+        onSubmit={handleSubmitUpdate}
+        event={event}
+        open={openUpdate}
+        onOpen={handleOpenUpdate}
+        onClose={handleCloseUpdate}
+      />
+
+      <div className={classes.iconDelete} onClick={handleOpenDelete}>
+        <IconButton>
+          {event.active ? (
+            <DeleteIcon style={{ color: red[500] }} fontSize="small" />
+          ) : (
+            <DeleteIcon fontSize="small" />
+          )}
+        </IconButton>
+      </div>
+
+      <EventDelete
+        onSubmit={handleSubmitDelete}
+        open={openDelete}
+        onOpen={handleOpenDelete}
+        onClose={handleCloseDelete}
+        event={event}
+      />
     </Card>
   );
 };

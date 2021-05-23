@@ -73,3 +73,31 @@ export const getPermissions = (payload) => {
       });
   };
 };
+
+export const updateRole = (payload) => {
+  return async (dispatch) => {
+    return axios
+      .put(
+        `https://salty-dawn-54578.herokuapp.com/staffRole/${payload._id}`,
+        {
+          name: payload.name,
+          permissions: payload.permissions,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        const data = response.data.data.role;
+        dispatch({
+          type: "UPDATE_ROLE",
+          payload: data,
+        });
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+};

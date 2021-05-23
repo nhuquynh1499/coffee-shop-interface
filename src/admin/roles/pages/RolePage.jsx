@@ -88,7 +88,7 @@ const RolePage = () => {
         <Grid container spacing={2}>
           {roles.map((role) => (
             <Grid item xs={3}>
-              <RoleItem role={role} />
+              <RoleItem role={role} permissions={permissions} />
             </Grid>
           ))}
         </Grid>

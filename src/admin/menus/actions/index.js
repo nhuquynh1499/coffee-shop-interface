@@ -8,7 +8,7 @@ export const getDrink = (payload) => {
     return axios
       .get(
         "https://salty-dawn-54578.herokuapp.com/drink",
-        { params: { keyword: "tra" } },
+        { params: { keyword: "" } },
         payload
       )
       .then((response) => {
@@ -48,19 +48,22 @@ export const postDrink = (payload) => {
 export const updateDrink = (payload) => {
   return async (dispatch) => {
     return axios
-      .put(`https://salty-dawn-54578.herokuapp.com/drink/${payload._id}`, {
-        name: payload.name,
-        price: payload.price,
-        image: payload.image,
-        category: payload.category,
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      .put(
+        `https://salty-dawn-54578.herokuapp.com/drink/${payload._id}`,
+        {
+          name: payload.name,
+          price: payload.price,
+          image: payload.image,
+          category: payload.category,
         },
-      })
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((response) => {
         const data = response.data.data.data;
-        console.log(data);
         dispatch({
           type: "UPDATE_DRINK",
           payload: data,
@@ -69,5 +72,32 @@ export const updateDrink = (payload) => {
       .catch((error) => {
         throw error;
       });
-  }
-}
+  };
+};
+
+export const deleteDrink = (payload) => {
+  return async (dispatch) => {
+    return axios
+      .patch(
+        `https://salty-dawn-54578.herokuapp.com/drink/${payload._id}/status`,
+        {
+          _id: payload._id
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        const data = response.data.data.data;
+        dispatch({
+          type: "DELETE_DRINK",
+          payload: data,
+        });
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+};

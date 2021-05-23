@@ -1,5 +1,5 @@
 const initialState = {
-  token: localStorage.getItem("token") || null,
+  token: sessionStorage.getItem("token") || null,
   status: null,
   infor: null,
   isDoneChangePasword: false,
@@ -9,7 +9,7 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_LOGIN": {
       const { _id, token, username, phone, address, avatar, password } = action.payload;
-      localStorage.setItem("token", token);
+      sessionStorage.setItem("token", token);
 
       return {
         ...state,
@@ -36,7 +36,7 @@ const authReducer = (state = initialState, action) => {
       }
     }
     case "DELETE_AUTH": {
-      localStorage.removeItem("token")
+      sessionStorage.removeItem("token")
       return {
         token: null,
         infor: null,

@@ -48,3 +48,61 @@ export const postStaff = (payload) => {
       });
   };
 };
+
+export const updateStaff = (payload) => {
+  return async (dispatch) => {
+    return axios
+      .put(
+        `https://salty-dawn-54578.herokuapp.com/staff/${payload._id}`,
+        {
+          username: payload.username,
+          password: payload.password,
+          phone: payload.phone,
+          address: payload.address,
+          role: payload.role,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        const data = response.data.data.staff;
+        dispatch({
+          type: "UPDATE_STAFF",
+          payload: data,
+        });
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+};
+
+export const deleteStaff = (payload) => {
+  return async (dispatch) => {
+    return axios
+      .patch(
+        `https://salty-dawn-54578.herokuapp.com/staff/${payload._id}/status`,
+        {
+          _id: payload._id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        const data = response.data.data.staff;
+        dispatch({
+          type: "DELETE_STAFF",
+          payload: data,
+        });
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+};

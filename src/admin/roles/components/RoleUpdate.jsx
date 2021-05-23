@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import React from "react";
-import MenuUpdateDialog from "../dialogs/MenuUpdateDialog";
+import RoleUpdateDialog from "../dialogs/RoleUpdateDialog";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MenuUpdate = (props) => {
-  const { open, list, drink } = props;
+const RoleUpdate = (props) => {
+  const { open, role, permissions } = props;
   const { onSubmit, onClose } = props;
 
   const classes = useStyles();
@@ -37,14 +37,18 @@ const MenuUpdate = (props) => {
               >
                 <CloseIcon />
               </IconButton>
-              <Typography variant="h6">Update Drink</Typography>
+              <Typography variant="h6">Update Role</Typography>
             </Toolbar>
           </AppBar>
 
-          <MenuUpdateDialog onSubmit={onSubmit} drink={drink} list={list} />
+          <RoleUpdateDialog
+            onSubmit={onSubmit}
+            role={role}
+            permissions={permissions}
+          />
         </Dialog>
       )}
     </React.Fragment>
   );
 };
-export default MenuUpdate;
+export default RoleUpdate;

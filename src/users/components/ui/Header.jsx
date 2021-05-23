@@ -20,7 +20,7 @@ export default function Header() {
   const classes = useStyles();
   let { pathname } = useLocation();
   const dispatch = useDispatch();
-  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("token") ? true : false);
+  const [isAuthenticated, setIsAuthenticated] = useState(sessionStorage.getItem("token") ? true : false);
   const [isActive, setIsActive] = useState(pathname);
   const [isCartOpened, setIsCartOpened] = useState(false);
   const [avatar, setAvatar] = useState(null);
