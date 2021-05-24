@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { toast } from "react-toastify";
+import { getInforByToken } from '../../infor/actions/inforAdminAction';
 
 export const sendPostLogin = (payload) => {
   return async (dispatch) => {
@@ -14,7 +15,8 @@ export const sendPostLogin = (payload) => {
             ...data,
             isRoot: isRoot
           }
-        })
+        });
+        dispatch(getInforByToken(data.token))
         toast.success("Đăng nhập thành công! Chào mừng bạn đã trở lại.")
       })
       .catch(error => {

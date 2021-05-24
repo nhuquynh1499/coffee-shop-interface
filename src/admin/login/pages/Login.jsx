@@ -18,14 +18,14 @@ export default function LoginPage() {
     if (token) {
       if (isRoot) 
         history.push("/admin/summary")
-      else {
-        dispatch(getInforByToken(token));
-        if (infor) {
-          history.push(`/employee/${infor.userId}/salary`)
-        }
-      }
     }
   }, [token]);
+
+  useEffect(() => {
+    if (!isRoot && infor) {
+      history.push(`/employee/${infor.userId}/salary`)
+    }
+  }, [infor])
 
   const handleSubmitForm = (payload) => {
     dispatch(sendPostLogin(payload))
