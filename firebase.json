@@ -6,6 +6,7 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "homepage": "https://blue-coffee-store.web.app/",
     "rewrites": [
       {
         "source": "**",
