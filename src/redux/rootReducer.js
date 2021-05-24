@@ -14,6 +14,8 @@ import userAdminReducer from "../admin/users/reducers/userAdminReducer";
 import authReducer from "./reducer/auth";
 import cartReducer from "./reducer/cart";
 import drinkReducer from "./reducer/drink";
+import salaryReducer from "./reducer/salary";
+import shiftReducer from "./reducer/shift";
 import orderReducer from "./reducer/order";
 
 const rootReducer = combineReducers({
@@ -29,6 +31,9 @@ const rootReducer = combineReducers({
   eventAdmin: eventAdminReducer,
   feedbackAdmin: feedbackAdminReducer,
   salaryAdmin: salaryAdminReducer,
+  cart: cartReducer,
+  salary: salaryReducer,
+  shift: shiftReducer,
   roleAdmin: roleAdminReducer,
   authAdmin: authAdminReducer,
   inforAdmin: inforAdminReducer,

@@ -14,6 +14,9 @@ import FeedbackPage from "../admin/feedbacks/pages/FeedbackPage";
 import OrderPage from "../admin/orders/pages/OrderPage";
 import EventPage from "../admin/events/pages/EventPage";
 
+import Salary from '../employee/pages/Salary';
+import Calendar from '../employee/pages/Calendar';
+
 import LoginPage from "../users/pages/LoginPage";
 import SignupPage from "../users/pages/SignupPage";
 import HomePage from "../users/pages/HomePage";
@@ -55,6 +58,9 @@ const routes = () => {
       <PrivateRoute path="/admin/roles" component={RolePage} />
       <Route path="/admin/login" component={AdminLoginPage} />
       <PrivateRoute path="/admin/infor" component={AdminInforPage} />
+
+      <Route path="/employee/:employeeId/salary" component={Salary} />
+      <Route path="/employee/:employeeId/calendar" component={Calendar} />
       
       <Route path="*" component={NotFound} />
     </Switch>
