@@ -62,7 +62,7 @@ const routes = () => {
       <Route path="/employee/:employeeId/salary" component={Salary} />
       <Route path="/employee/:employeeId/calendar" component={Calendar} />
       
-      <Route path="*" component={NotFound} />
+      {/* <Route path="*" component={NotFound} /> */}
     </Switch>
   );
 };
