@@ -30,7 +30,7 @@ export default function HomePage(props) {
         </Typography>
         <div className={classes.cols}>
           {
-            data.length == 0 ? <Loading /> : data.map((item, index) => <MenuItem key={index} item={item} handleClickAddToCart={handleClickAddToCart}/>)
+            data.length === 0 ? <Loading /> : data.map((item, index) => <MenuItem key={index} item={item} handleClickAddToCart={handleClickAddToCart}/>)
           }
         </div>
       </div>
