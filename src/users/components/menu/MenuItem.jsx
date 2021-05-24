@@ -90,9 +90,7 @@ export default function MenuItem(props) {
     const item = listInCart.find((item) => item._id === _id);
     if (item) {
       setIsInCart(true);
-      console.log(item.name, item.quantity);
       setQuantity(item.quantity)
-      // quantityInput.defaultValue = item.quantity;
     } else {
       setIsInCart(false);
     }
@@ -128,9 +126,7 @@ export default function MenuItem(props) {
                 >-</button>
                 <input 
                   className="px-0"
-                  // value={quantity}
                   defaultValue={quantity} 
-                  // placeholder={quantity}
                   onBlur={(e) => { 
                     const quantity = e.target.value;
                     handleChangeQuantity({

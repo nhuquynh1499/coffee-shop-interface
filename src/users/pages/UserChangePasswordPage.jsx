@@ -10,6 +10,7 @@ import SideBar from '../components/ui/UserSidebar';
 const useStyles = makeStyles({
   root: {
     maxWidth: '100%',
+    minWidth: '50vw',
     marginLeft: 20,
   },
   myContainer: {

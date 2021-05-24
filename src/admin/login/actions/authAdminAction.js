@@ -6,13 +6,14 @@ export const sendPostLogin = (payload) => {
     return axios.post('https://salty-dawn-54578.herokuapp.com/staff/log-in', payload)
       .then(response => {
         const data = response.data.data.data;
+        const isRoot = payload.username === "admin" ? true : false;
+
         dispatch({
           type: "SET_ADMIN_LOGIN",
-          payload: data
-        })
-        dispatch({
-          type: "SET_ADMIN_INFOR",
-          payload: data
+          payload: {
+            ...data,
+            isRoot: isRoot
+          }
         })
         toast.success("Đăng nhập thành công! Chào mừng bạn đã trở lại.")
       })

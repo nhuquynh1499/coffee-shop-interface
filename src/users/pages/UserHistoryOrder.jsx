@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import UserDetailForm from '../components/user/FormDetail';
 import Loading from '../components/ui/Loading';
 import { Card, makeStyles } from '@material-ui/core';
 import SideBar from '../components/ui/UserSidebar';
@@ -11,6 +10,7 @@ import ListOrder from '../components/user/ListOrder';
 const useStyles = makeStyles({
   root: {
     maxWidth: '100%',
+    minWidth: '50vw',
     marginLeft: 20,
   },
   myContainer: {
@@ -28,9 +28,10 @@ export default function HistoryOrder() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getListOrder(token))
     if (!token) {
       history.push("/")
+    } else {
+      dispatch(getListOrder(token))
     }
   }, [token]);
 
@@ -40,7 +41,7 @@ export default function HistoryOrder() {
         <SideBar />
         <Card className={classes.root}>
           <h1 className="text-center mt-20">History Order</h1>
-          { listOrder ? <ListOrder data={listOrder} /> : <Loading />}
+          { listOrder.length > 0 ? <ListOrder data={listOrder} /> : <Loading />}
         </Card>
       </div>
     </div>

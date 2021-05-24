@@ -4,16 +4,26 @@ import { useSelector, useDispatch } from "react-redux";
 import { sendPostLogin } from '../actions/authAdminAction';
 import LoginForm from '../components/LoginForm';
 import logo from "../../../assets/images/commons/logo.png";
+import { getInforByToken } from '../../infor/actions/inforAdminAction';
 
 export default function LoginPage() {
   let history = useHistory();
   const token = useSelector((state) => state.authAdmin.token);
+  const isRoot = useSelector((state) => state.authAdmin.isRoot);
+  const infor = useSelector((state) => state.inforAdmin.infor);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (token) {
-      history.push("/admin/summary")
+      if (isRoot) 
+        history.push("/admin/summary")
+      else {
+        dispatch(getInforByToken(token));
+        if (infor) {
+          history.push(`/employee/${infor.userId}/salary`)
+        }
+      }
     }
   }, [token]);
 

@@ -56,7 +56,7 @@ const routes = () => {
       <PrivateRoute path="/admin/events" component={EventPage} />
       <PrivateRoute path="/admin/orders" component={OrderPage} />
       <PrivateRoute path="/admin/roles" component={RolePage} />
-      <PrivateRoute path="/admin/login" component={AdminLoginPage} />
+      <Route path="/admin/login" component={AdminLoginPage} />
       <PrivateRoute path="/admin/infor" component={AdminInforPage} />
 
       <Route path="/employee/:employeeId/salary" component={Salary} />
