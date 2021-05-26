@@ -2,7 +2,7 @@ const initialState = {
   infor: null,
 };
 
-const inforAdminReducer = (state = initialState, action) => {
+const inforStaffReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_ADMIN_INFOR": {
       const { _id, username, phone, address, avatar, permissions } = action.payload;
@@ -55,4 +55,4 @@ const inforAdminReducer = (state = initialState, action) => {
   }
 }
 
-export default inforAdminReducer;
+export default inforStaffReducer;

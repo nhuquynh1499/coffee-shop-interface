@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { toast } from "react-toastify";
-import { getInforByToken } from '../../infor/actions/inforAdminAction';
+import { getInforByToken } from '../../../redux/action/inforStaff';
 
 export const sendPostLogin = (payload) => {
   return async (dispatch) => {

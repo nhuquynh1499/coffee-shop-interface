@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import Admin from "../admin/Admin";
 import AdminLoginPage from "../admin/login/pages/Login";
-import AdminInforPage from "../admin/infor/pages/Infor";
 import AdminMenuPage from "../admin/menus/pages/Menu";
 import EmployeePage from "../admin/employees/pages/EmployeePage";
 import UserPage from "../admin/users/pages/UserPage";
@@ -16,6 +15,8 @@ import EventPage from "../admin/events/pages/EventPage";
 
 import Salary from '../employee/pages/Salary';
 import Calendar from '../employee/pages/Calendar';
+import InformationStaff from "../employee/pages/Information";
+
 
 import LoginPage from "../users/pages/LoginPage";
 import SignupPage from "../users/pages/SignupPage";
@@ -44,6 +45,7 @@ const routes = () => {
       <PrivateRoute exact path="/user/change-password" component={UserChangePasswordPage} />
       <PrivateRoute exact path="/user/history-order" component={UserHistoryOrder} />
       
+      <Route path="/admin/login" component={AdminLoginPage} />
       <Redirect exact from="/admin" to="/admin/summary" />
       <PrivateRoute path="/admin/summary" component={Admin} />
       <PrivateRoute path="/admin/menu" component={AdminMenuPage} />
@@ -56,13 +58,12 @@ const routes = () => {
       <PrivateRoute path="/admin/events" component={EventPage} />
       <PrivateRoute path="/admin/orders" component={OrderPage} />
       <PrivateRoute path="/admin/roles" component={RolePage} />
-      <Route path="/admin/login" component={AdminLoginPage} />
-      <PrivateRoute path="/admin/infor" component={AdminInforPage} />
 
+      <Route path="/employee/infor" component={InformationStaff} />
       <Route path="/employee/:employeeId/salary" component={Salary} />
       <Route path="/employee/:employeeId/calendar" component={Calendar} />
       
-      {/* <Route path="*" component={NotFound} /> */}
+      <Route path="*" component={NotFound} />
     </Switch>
   );
 };

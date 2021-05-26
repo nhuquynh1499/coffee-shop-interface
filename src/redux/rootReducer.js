@@ -3,7 +3,6 @@ import listAdminReducer from "../admin/categories/reducers/listAdminReducer";
 import staffAdminReducer from "../admin/employees/reducers/staffAdminReducer";
 import eventAdminReducer from "../admin/events/reducers/eventAdminReducer";
 import feedbackAdminReducer from "../admin/feedbacks/reducers/feedbackAdminReducer";
-import inforAdminReducer from "../admin/infor/reducers/inforAdminReducer";
 import authAdminReducer from "../admin/login/reducers/authAdminReducer";
 import menuAdminReducer from "../admin/menus/reducers/menuAdminReducer";
 import orderAdminReducer from "../admin/orders/reducers/orderAdminReducer";
@@ -17,6 +16,7 @@ import drinkReducer from "./reducer/drink";
 import salaryReducer from "./reducer/salary";
 import shiftReducer from "./reducer/shift";
 import orderReducer from "./reducer/order";
+import inforStaffReducer from "./reducer/inforStaff";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -36,7 +36,7 @@ const rootReducer = combineReducers({
   shift: shiftReducer,
   roleAdmin: roleAdminReducer,
   authAdmin: authAdminReducer,
-  inforAdmin: inforAdminReducer,
+  inforStaff: inforStaffReducer,
   shiftAdmin: shiftAdminReducer,
 });
 

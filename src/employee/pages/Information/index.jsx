@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { getInforByToken } from '../actions/inforAdminAction';
-import InforForm from '../components/InforForm';
-import Loading from '../../ui/Loading';
+import { getInforByToken } from '../../../redux/action/inforStaff';
+import InforForm from '../../containers/Information/InforForm';
+import Loading from '../../containers/ui/Loading';
 import { Card, makeStyles, CssBaseline, AppBar, Toolbar, Typography } from '@material-ui/core';
-import ResponsiveDrawer from '../../components/ResponsiveDrawer';
 
 const drawerWidth = 240;
 
@@ -63,8 +62,6 @@ export default function UserDetailPage() {
           </Typography>
         </Toolbar>
       </AppBar>
-
-      <ResponsiveDrawer />
 
       <main className={classes.content}>
         <div className="user-detail">

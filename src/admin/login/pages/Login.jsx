@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { sendPostLogin } from '../actions/authAdminAction';
 import LoginForm from '../components/LoginForm';
 import logo from "../../../assets/images/commons/logo.png";
-import { getInforByToken } from '../../infor/actions/inforAdminAction';
+import { getInforByToken } from '../../../redux/action/inforStaff';
 
 export default function LoginPage() {
   let history = useHistory();
