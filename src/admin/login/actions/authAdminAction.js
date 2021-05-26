@@ -16,6 +16,7 @@ export const sendPostLogin = (payload) => {
             isRoot: isRoot
           }
         });
+        console.log(data);
         dispatch(getInforByToken(data.token))
         toast.success("Đăng nhập thành công! Chào mừng bạn đã trở lại.")
       })
@@ -23,4 +24,16 @@ export const sendPostLogin = (payload) => {
         toast.error("Username or password is not correct.")
       });
   };
+};
+
+
+export const logoutStaff = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: "DELETE_ADMIN_AUTH",
+    })
+    dispatch({
+      type: "DELETE_STAFF_INFOR",
+    })
+  }
 };

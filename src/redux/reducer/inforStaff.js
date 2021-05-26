@@ -30,10 +30,9 @@ const inforStaffReducer = (state = initialState, action) => {
 //         }
 //       }
 //     }
-    case "DELETE_TOKEN_STAFF": {
-      sessionStorage.removeItem("token")
+    case "DELETE_STAFF_INFOR": {
       return {
-        token: null,
+        infor: null,
       }
     }
 //     case "SET_STATUS": {

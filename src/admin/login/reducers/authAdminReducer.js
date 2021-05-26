@@ -26,13 +26,13 @@ const authReducer = (state = initialState, action) => {
 //         }
 //       }
 //     }
-//     case "DELETE_AUTH": {
-//       localStorage.removeItem("token")
-//       return {
-//         token: null,
-//         infor: null,
-//       }
-//     }
+    case "DELETE_ADMIN_AUTH": {
+      sessionStorage.removeItem("token")
+      return {
+        token: null,
+        isRoot: null,
+      }
+    }
 //     case "SET_STATUS": {
 //       return {
 //         ...state,

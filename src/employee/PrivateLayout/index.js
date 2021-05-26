@@ -1,16 +1,33 @@
-import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
 import { Layout, Avatar, Dropdown, Menu } from 'antd';
 import './styles.css';
 import { HeaderWrapper, LayoutWrapper, ContentWrapper, MenuWrapper } from './styles';
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
-import { useDispatch } from 'react-redux';
-import { logoutStaff } from '../../redux/action/inforStaff';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutStaff } from '../../admin/login/actions/authAdminAction';
+import { getInforByToken } from '../../redux/action/inforStaff';
+import Loading from '../containers/ui/Loading';
 
 const PrivateLayout = ({ children }) => {
   const { Header, Footer, Content } = Layout;
   const dispatch = useDispatch();
   const history = useHistory();
+  let { pathname } = useLocation();
+  const [isActive, setIsActive] = useState(pathname);
+  const token = useSelector((state) => state.authAdmin.token);
+  const infor = useSelector((state) => state.inforStaff.infor);
+  let { employeeId } = useParams();
+
+  useEffect(() => {
+    if (!infor) {
+      dispatch(getInforByToken(token))
+    }
+  }, [token])
+
+  useEffect(() => {
+    setIsActive(pathname);
+  }, [pathname]);
 
   const handleClickLogOut = () => {
     dispatch(logoutStaff());
@@ -37,12 +54,15 @@ const PrivateLayout = ({ children }) => {
           <p>theCoffee</p>
         </div>
         <div className="right-section">
-          <Menu mode="horizontal" defaultSelectedKeys={['2']}>
+          <Menu mode="horizontal" selectedKeys={[pathname.split('/')[3]]} >
             <Menu.Item key="salary">
-              <Link to="/employee/1/salary">Salary</Link>
+              <Link to={`/employee/${employeeId}/salary`}>Salary</Link>
             </Menu.Item>
             <Menu.Item key="calendar">
-              <Link to="/employee/1/calendar">Calendar</Link>
+              <Link to={`/employee/${employeeId}/calendar`}>Calendar</Link>
+            </Menu.Item>
+            <Menu.Item key="account">
+              <Link to={`/employee/${employeeId}/account/detail`}>Account</Link>
             </Menu.Item>
           </Menu>
           <div className="name-section">

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 
 export const getInforByToken = (payload) => {
+  console.log(payload)
   return async (dispatch) => {
     return axios.get('https://salty-dawn-54578.herokuapp.com/staff/me', {
       headers: {
@@ -60,11 +61,3 @@ export const sendPostUpdatePasswordStaff = (payload) => {
       });
   }
 }
-
-export const logoutStaff = () => {
-  return async (dispatch) => {
-    dispatch({
-      type: "DELETE_TOKEN_STAFF",
-    })
-  }
-};
