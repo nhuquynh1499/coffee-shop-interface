@@ -16,6 +16,7 @@ import EventPage from "../admin/events/pages/EventPage";
 import Salary from '../employee/pages/Salary';
 import Calendar from '../employee/pages/Calendar';
 import InformationStaff from "../employee/pages/Information";
+import ChangePasswordStaffPage from "../employee/pages/Information/changePassword";
 
 
 import LoginPage from "../users/pages/LoginPage";
@@ -59,9 +60,10 @@ const routes = () => {
       <PrivateRoute path="/admin/orders" component={OrderPage} />
       <PrivateRoute path="/admin/roles" component={RolePage} />
 
-      <Route path="/employee/infor" component={InformationStaff} />
-      <Route path="/employee/:employeeId/salary" component={Salary} />
-      <Route path="/employee/:employeeId/calendar" component={Calendar} />
+      <PrivateRoute path="/employee/:employeeId/account/detail" component={InformationStaff} />
+      <PrivateRoute path="/employee/:employeeId/account/change-password" component={ChangePasswordStaffPage} />
+      <PrivateRoute path="/employee/:employeeId/salary" component={Salary} />
+      <PrivateRoute path="/employee/:employeeId/calendar" component={Calendar} />
       
       <Route path="*" component={NotFound} />
     </Switch>

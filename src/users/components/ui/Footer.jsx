@@ -8,7 +8,7 @@ import { useLocation } from 'react-router';
 
 export default function Footer() {
   let { pathname } = useLocation();
-  const isUser = (pathname.indexOf("admin") === -1 ? true : false);
+  const isUser = (pathname.indexOf("admin") === -1 && pathname.indexOf("employee") === -1 ? true : false);
 
   return (
      <footer className="footer">

@@ -4,13 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { sendPostLogin } from '../actions/authAdminAction';
 import LoginForm from '../components/LoginForm';
 import logo from "../../../assets/images/commons/logo.png";
-import { getInforByToken } from '../../../redux/action/inforStaff';
 
 export default function LoginPage() {
   let history = useHistory();
   const token = useSelector((state) => state.authAdmin.token);
   const isRoot = useSelector((state) => state.authAdmin.isRoot);
-  const infor = useSelector((state) => state.inforAdmin.infor);
+  const infor = useSelector((state) => state.inforStaff.infor);
 
   const dispatch = useDispatch();
 

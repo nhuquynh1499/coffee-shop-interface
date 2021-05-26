@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { getInforByToken, sendPostUpdateInforStaff } from '../../../redux/action/inforStaff';
-import InforForm from '../../containers/Information/InforForm';
-import Loading from '../../containers/ui/Loading';
+import { sendPostUpdatePasswordStaff } from '../../../redux/action/inforStaff';
+import ChangePasswordForm from '../../containers/Information/ChangePasswordForm';
 import Layout from '../../PrivateLayout';
 import { Card, makeStyles, Typography } from '@material-ui/core';
 import SideBar from '../../containers/Information/Sidebar';
@@ -35,25 +34,20 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function UserDetailPage() {
+export default function ChangePasswordStaffPage() {
   const classes = useStyles();
   let history = useHistory();
   const token = useSelector((state) => state.authAdmin.token);
-  const infor = useSelector((state) => state.inforStaff.infor);
-  const [ isEdit, setIsEdit ] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!token) {
       history.push("/")
-    } else {
-      dispatch(getInforByToken(token))
     }
   }, [token]);
 
-  const handleSubmitFormDetail = (payload) => {
-    setIsEdit(false);
-    dispatch(sendPostUpdateInforStaff(payload))
+  const handleSubmitFormChangePasswordStaff = (payload) => {
+    dispatch(sendPostUpdatePasswordStaff(payload))
   }
 
   return (
@@ -64,15 +58,11 @@ export default function UserDetailPage() {
           <div className="user-detail">
             <div className="mt-30 container">
               <Card className={classes.card}>
-                <Typography variant="h4" component="h2" className="text-center mt-20">User detail</Typography>
-                { infor ? 
-                  <InforForm 
-                    infor={infor} 
-                    handleSubmitFormDetail={handleSubmitFormDetail} 
+                <Typography variant="h4" component="h2" className="text-center mt-20">Change Password</Typography>
+                  <ChangePasswordForm 
+                    handleSubmitFormChangePasswordStaff={handleSubmitFormChangePasswordStaff} 
                     token={token} 
-                    isEdit={isEdit}
-                    setIsEdit={setIsEdit}
-                  /> : <Loading />}
+                  />
               </Card>
             </div>
           </div>

@@ -8,7 +8,9 @@ export const PrivateRoute = ({ path: path, component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props => {
-        return token ? <Component {...props} /> : <Redirect to={{ pathname: (path.indexOf("/admin") !== -1) ? "/admin/login" : "/login" }} />;
+        return token ? 
+          <Component {...props} /> : 
+          <Redirect to={{ pathname: (path.indexOf("/admin") !== -1) || (path.indexOf("/employee") !== -1) ? "/admin/login" : "/login" }} />;
       }}
     />
   );

@@ -4,10 +4,16 @@ import { Layout, Avatar, Dropdown, Menu } from 'antd';
 import './styles.css';
 import { HeaderWrapper, LayoutWrapper, ContentWrapper, MenuWrapper } from './styles';
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { useDispatch } from 'react-redux';
+import { logoutStaff } from '../../redux/action/inforStaff';
 
 const PrivateLayout = ({ children }) => {
   const { Header, Footer, Content } = Layout;
-  const handleClickLogOut = () => {};
+  const dispatch = useDispatch();
+
+  const handleClickLogOut = () => {
+    dispatch(logoutStaff());
+  };
   const menu = (
     <MenuWrapper>
       <Menu.Item>
@@ -47,7 +53,7 @@ const PrivateLayout = ({ children }) => {
         </div>
       </HeaderWrapper>
       <ContentWrapper>{children}</ContentWrapper>
-      <Footer>Footer</Footer>
+      {/* <Footer>Footer</Footer> */}
     </LayoutWrapper>
   );
 };
