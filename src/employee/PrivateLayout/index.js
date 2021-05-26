@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Layout, Avatar, Dropdown, Menu } from 'antd';
 import './styles.css';
 import { HeaderWrapper, LayoutWrapper, ContentWrapper, MenuWrapper } from './styles';
@@ -10,9 +10,11 @@ import { logoutStaff } from '../../redux/action/inforStaff';
 const PrivateLayout = ({ children }) => {
   const { Header, Footer, Content } = Layout;
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleClickLogOut = () => {
     dispatch(logoutStaff());
+    history.push('/admin/login')
   };
   const menu = (
     <MenuWrapper>
